@@ -4,7 +4,7 @@
 @parent
 <!-- Include a navbar with auth user features-->
 <home :user="user" inline-template>
-@dd('In Home.Blade.Php, not sure if this is PowerPCS or Jetstream page.')
+@dd('...In Home.Blade.Php, not sure if this is PowerPCS or Jetstream page.')
     <div class="container-fluid">
         <!-- Application Dashboard -->
         <!-- <div class="row justify-content-center"> -->
@@ -13,7 +13,7 @@
             <div class="col">
                 <!-- <div class="card card-default"> -->
 
-<!-- test verbiage -->
+<!-- test verbiage.. -->
   @yield("navbarsection","didn't find the navbarsection")
 
                 <!-- </div> -->

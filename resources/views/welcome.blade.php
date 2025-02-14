@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @dUMP('WELCOME.BLADE')
-        WELCOME.BLADE - SHOWS UP ON FIRST VISIT, BEFORE LOGGING IN 20250212@2307
-        <title>Laravel</title>
+        WELCOME.BLADE ---- SHOWS UP ON FIRST VISIT, BEFORE LOGGING IN 20250212@2307
+        <title>xxLaravel</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
