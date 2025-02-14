@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 @dUMP('APP.BLADE')
-        LAYOUTS.APP.BLADE -- THIS IS THE SCREEN THAT A USER SEES AS SOON AS THEY HAVE SUCCESSFULLY LOGGED IN 20250212@2305
+        LAYOUTS.APP.BLADE - THIS IS THE SCREEN THAT A USER SEES AS SOON AS THEY HAVE SUCCESSFULLY LOGGED IN 20250212@2305
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
