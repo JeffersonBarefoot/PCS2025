@@ -15,6 +15,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-
+    Route::get('/positions', 'App\Http\Controllers\PositionController@show')->name('positions.show');
 
 });
