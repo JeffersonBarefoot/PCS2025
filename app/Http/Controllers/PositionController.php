@@ -7,14 +7,18 @@ use Illuminate\View\View;
 
 class PositionController extends Controller
 {
-    /**
-     * Show the profile for a given position
-     */
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    //**   S H O W   ( N 0   I D )
+    //***************************************************
+    //***************************************************
+    //***************************************************
     public function shownoid()
     {
 
 
-        return view('404');
+        return view('positions.404');
 
     }
 
@@ -48,7 +52,7 @@ class PositionController extends Controller
 //      dump($test2);
 //      dump($test3);
 
-        return view('positions')
+        return view('positions.show')
             ->with("id", $id)
             ->with(compact('position'))
             ->with("test", $test)
