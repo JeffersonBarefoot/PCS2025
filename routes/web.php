@@ -15,6 +15,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/positions', 'App\Http\Controllers\PositionController@show')->name('positions.show');
+    //    Very simple route that doesn't return an ID, and just shows the HelloWorld version'
+//    Route::get('/positions', 'App\Http\Controllers\PositionController@show')->name('positions.show');
 
+    // this passes the ID, but doesn't account for a default ID if none is passed
+        Route::get('/positions/{id?}', 'App\Http\Controllers\PositionController@show')->name('positions.show');
+
+    //    passes ID.  If ID is not included (i.e. /positions instead of /positions/12345) the the default ID of 9999999999 is passed and can be a trigger
+//    Route::get('/positions/{id?}', function ($id = 9999999998){
+//        return $id;
+//        }, 'App\Http\Controllers\PositionController@show')->name('positions.show');
 });
