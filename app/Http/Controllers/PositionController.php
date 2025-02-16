@@ -10,9 +10,21 @@ class PositionController extends Controller
     /**
      * Show the profile for a given position
      */
-    public function show($id): View
+    public function shownoid()
     {
-//        dump("1:  ".getTimestamp());
+
+
+        return view('404');
+
+    }
+
+    public function show($id)
+    {
+      if (is_null($id)) {
+        $id=1;
+      }
+
+        $id;
         $test=99;
         $test2="abcd";
         $test3="now is the time for all good men to come to the aid of their country";
