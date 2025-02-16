@@ -33,21 +33,24 @@ class PositionController extends Controller
         }
         $position = Position::find($id);
 
-    dump($position);
+
 
 
         $id;
         $test=99;
         $test2="abcd";
         $test3="now is the time for all good men to come to the aid of their country";
-        dump("Controller ID:..not a real id.".$test);
-      dump("Controller ID...this is the real id:  " . $id);
-      dump($test);
-      dump($test2);
-      dump($test3);
+//Test Dumps...all of these worked on 20250216
+//        dump($position);
+//        dump("Controller ID:..not a real id.".$test);
+//      dump("Controller ID...this is the real id:  " . $id);
+//      dump($test);
+//      dump($test2);
+//      dump($test3);
 
         return view('positions')
             ->with("id", $id)
+            ->with(compact('position'))
             ->with("test", $test)
             ->with("test2", $test2)
             ->with("test3", $test3);
