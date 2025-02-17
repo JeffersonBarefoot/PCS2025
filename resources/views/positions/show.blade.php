@@ -16,9 +16,9 @@ Hello World, this is Position<br><br>
 {{"Positon ID:  ".$id}}<br>
 {{"Position Description:  ".$position->descr}}<br><br>
 
-{{$test}}<br>
-{{$test2}}<br>
-{{$test3}}<br>
+{{--{{$test}}<br>--}}
+{{--{{$test2}}<br>--}}
+{{--{{$test3}}<br>--}}
 
 <br><br><br><br>
 <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -36,7 +36,7 @@ Hello World, this is Position<br><br>
 {{--                <!-- <div class="card card-default"> -->--}}
 This is where the nav bar goes when we get it working.<br>
                 <!-- test verbiage -->
-                @yield('navbarsection')
+@include('positions.sections.datanavbar')
 
 {{--                <!-- </div> -->--}}
 
