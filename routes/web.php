@@ -24,6 +24,11 @@ Route::middleware([
 //            ->name('positions.show');
 
     //    passes ID.  If ID is not included (i.e. /positions instead of /positions/12345) the the default ID of 9999999999 is passed and can be a trigger
-    Route::get('/positions','App\Http\Controllers\PositionController@shownoid')->name('positions.shownoid');
-    Route::get('/positions/{id?}','App\Http\Controllers\PositionController@show')->name('positions.show');
+    Route::get('/positions', 'App\Http\Controllers\PositionController@shownoid')->name('positions.shownoid');
+    Route::get('/positions/{id?}', 'App\Http\Controllers\PositionController@show')->name('positions.show');
+
+    Route::get('/postest', 'App\Http\Controllers\PostestController@shownoid')->name('postest.shownoid');
+    Route::get('/postest/{id?}', 'App\Http\Controllers\PostestController@show')->name('postest.show');
+
+
 });
