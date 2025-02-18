@@ -147,7 +147,7 @@
                             {{ csrf_field() }}
 
                         </div>
-                        <div class="col-span5"
+                        <div class="col-span5">
                         "col-md-3">
                         <table class="table table-condensed">
                             <col width="3">
