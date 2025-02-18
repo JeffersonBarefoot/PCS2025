@@ -5,7 +5,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <style>
-        .anbdiv {
+        .appnavdiv {
             border: 5px outset red;
             background-color: lightblue;
             text-align: center;

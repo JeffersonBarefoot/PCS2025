@@ -31,12 +31,13 @@
 <body>
 
 <div class="container-fluid">
+
     <div class="row">
         <div class="col">
             <form action={{route('positions.show',$position->id)}} method="get">
                 <div class="row">
                     <div class="col-md-3" style="background-color:yellow">
-
+                        datanavdiv - datanavbar.blade.php
 
                         <!-- ************************** -->
                         <!-- ************************** -->

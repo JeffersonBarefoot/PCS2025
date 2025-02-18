@@ -1,9 +1,9 @@
 <body>
 
-<div class="anbdiv">
-    TopNavigation<br><br>
+<div class="appnavdiv">
+    appnavdiv - TopNavigation<br><br>
 
-    Hello World, this is Position<br><br>
+    Hello World, this is Position...<br><br>
     <br><br>
     {{"Positon ID:  ".$id}}<br>
     {{"Position Description:  ".$position->descr}}<br><br>
