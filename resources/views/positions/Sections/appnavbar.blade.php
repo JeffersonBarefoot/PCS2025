@@ -1,6 +1,6 @@
-<body>
+{{--<body>--}}
 
-<div class="appnavdiv">
+
     appnavdiv - TopNavigation<br><br>
 
     Hello World, this is Position...<br><br>
@@ -13,6 +13,6 @@
         {{ __('Back to the Dashboard') }}
     </x-nav-link>
     <br><br>
-</div>
 
-</body>
+
+{{--</body>--}}
