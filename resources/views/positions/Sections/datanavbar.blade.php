@@ -1,33 +1,33 @@
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel 5.8 & MySQL CRUD Tutorial</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
-    <script>$(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });</script>
+{{--<head>--}}
+{{--    <meta name="viewport" content="width=device-width, initial-scale=1.0">--}}
+{{--    <title>Laravel 5.8 & MySQL CRUD Tutorial</title>--}}
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>--}}
+{{--    <script>$(document).ready(function () {--}}
+{{--            $('[data-toggle="tooltip"]').tooltip();--}}
+{{--        });</script>--}}
 
-    <style>
-        {
-            box-sizing: border-box
-        ;
-        }
+{{--    <style>--}}
+{{--        {--}}
+{{--            box-sizing: border-box--}}
+{{--        ;--}}
+{{--        }--}}
 
-        /* Create two equal columns that floats next to each other */
-        .column {
-            float: left;
+{{--        /* Create two equal columns that floats next to each other */--}}
+{{--        .column {--}}
+{{--            float: left;--}}
 
-            padding: 30px;
-            /*height: 300px;  Should be removed. Only for demonstration */
-        }
+{{--            padding: 30px;--}}
+{{--            /*height: 300px;  Should be removed. Only for demonstration */--}}
+{{--        }--}}
 
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-    </style>
-</head>
+{{--        /* Clear floats after the columns */--}}
+{{--        .row:after {--}}
+{{--            content: "";--}}
+{{--            display: table;--}}
+{{--            clear: both;--}}
+{{--        }--}}
+{{--    </style>--}}
+{{--</head>--}}
 <body>
 {{--<div class="container-fluid">--}}
 {{--        <div class="row">--}}
@@ -147,58 +147,48 @@
                             {{ csrf_field() }}
 
                         </div>
-                        <div class="col-span5">
-                        "col-md-3">
-                        <table class="table table-condensed">
-                            <col width="3">
-                            <col width="3">
-                            <col width="80">
-                            <col width="80">
-                            <col width="200">
-                            @foreach($positionsnavbar as $position)
+                        <div class="col-*">
+                            <table class="table table-condensed">
+                                <col width="3">
+                                <col width="3">
+                                <col width="80">
+                                <col width="80">
+                                <col width="200">
+                                @foreach($positionsnavbar as $position)
 
-                                <tr>
-                                    <td>
-                                        @if ($position->active=='I')
-                                            <span class="glyphicon glyphicon-remove" style="color:grey"
-                                                  data-toggle="tooltip"
-                                                  title="Inactive"></span>
-                                        @endif
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            @if ($position->active=='I')
+                                                  <i class="bi-x-circle-fill" style="color:black" data-toggle="tooltip" title="Inactive"></i>
+                                            @endif
+                                        </td>
 
-                                    <td>
-                                        @if ($position->curstatus=='VACANT')
-                                            <span class="glyphicon glyphicon-stop" style="color:gainsboro"
-                                                  data-toggle="tooltip"
-                                                  title="Vacant"></span>
-                                        @endif
-                                        @if ($position->curstatus=='PARTIALLY FILLED')
-                                            <span class="glyphicon glyphicon-stop" style="color:gold"
-                                                  data-toggle="tooltip"
-                                                  title="Paritally Filled"></span>
-                                        @endif
-                                        @if ($position->curstatus=='FILLED')
-                                            <span class="glyphicon glyphicon-stop" style="color:lime"
-                                                  data-toggle="tooltip"
-                                                  title="Filled"></span>
-                                        @endif
-                                        @if ($position->curstatus=='OVERFILLED')
-                                            <span class="glyphicon glyphicon-stop" style="color:crimson"
-                                                  data-toggle="tooltip"
-                                                  title="Overfilled"></span>
-                                        @endif
-                                    </td>
+                                        <td>
+                                            @if ($position->curstatus=='VACANT')
+                                                    <i class="bi-cloud-fill" style="color:blue" data-toggle="tooltip" title="Vacant"></i>
+                                            @endif
+                                            @if ($position->curstatus=='PARTIALLY FILLED')
+                                                    <i class="bi-circle-half" style="color:darkorange" data-toggle="tooltip" title="Partially Filled"></i>
+                                            @endif
+                                            @if ($position->curstatus=='FILLED')
+                                                    <i class="bi-person-check-fill" style="color:limegreen" data-toggle="tooltip" title="Filled"></i>
+                                            @endif
+                                            @if ($position->curstatus=='OVERFILLED')
+                                                    <i class="bi-triangle-fill" style="color:red" data-toggle="tooltip" title="Overfilled"></i>
+                                            @endif
+                                        </td>
 
-                                    <td height="25"><a
-                                            href={{route('positions.show',$position->id)}}>{{$position->company}}</td>
-                                    <td height="25"><a
-                                            href={{route('positions.show',$position->id)}}>{{$position->posno}}</td>
-                                    <td height="25"><a
-                                            href={{route('positions.show',$position->id)}}>{{$position->descr}}</td>
-                                </tr>
+                                        <td height="25"><a
+                                                href={{route('positions.show',$position->id)}}>{{$position->company}}
+                                        </td>
+                                        <td height="25"><a
+                                                href={{route('positions.show',$position->id)}}>{{$position->posno}}</td>
+                                        <td height="25"><a
+                                                href={{route('positions.show',$position->id)}}>{{$position->descr}}</td>
+                                    </tr>
 
-                            @endforeach
-                        </table>
+                                @endforeach
+                            </table>
 
     </form>
 </div>
