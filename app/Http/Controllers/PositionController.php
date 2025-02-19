@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Position;
 use Illuminate\View\View;
 use App\HPosition;
@@ -22,10 +23,7 @@ class PositionController extends Controller
     //***************************************************
     public function shownoid()
     {
-
-
         return view('positions.404');
-
     }
 
     //***************************************************
@@ -35,14 +33,18 @@ class PositionController extends Controller
     //***************************************************
     //***************************************************
     //***************************************************
-    public function show($id)
+    public function show($id, Request $request)
     {
+
+//        $request->flash();
 
         if (is_null($id)) {
             $id = 1;
         }
         $position = Position::find($id);
+//        dd($id);
 
+//        dd($position);
 
 // set parameters for the current TEAM to session variables
         $user = Auth::user();
@@ -196,7 +198,7 @@ class PositionController extends Controller
 
         // control whether in ReadOnly or Edit mode
         // switch is a toggle, so if you see SWITCH then detect current state and switch to other state
-//        $switcheditmode = $request->input('editmode');
+        $switcheditmode = $request->input('editmode');
         $readOnlyText = Session::get('readOnlyText');
         // dump($freshPosition);
         // dump($switcheditmode);
@@ -212,21 +214,21 @@ class PositionController extends Controller
             // have not change positions
             // if null, no change...leave as is
             // if "switch" then detect current mode and switch to other mode
-//            if ($switcheditmode=="switch"){
-//                if ($readOnlyText<>"readonly"){
+            if ($switcheditmode=="switch"){
+                if ($readOnlyText<>"readonly"){
 //                    // dump("1");
 //                    // currently in edit mode, switch to NOT in edit mode...set readonly and disabled texts
-//                    Session::put('readOnlyText', 'readonly');
-//                    Session::put('disabledText', 'disabled');
-//                    Session::put('editModeButtonText', 'Switch to Edit Mode');
-//                }else{
+                    Session::put('readOnlyText', 'readonly');
+                    Session::put('disabledText', 'disabled');
+                    Session::put('editModeButtonText', 'Switch to Edit Mode');
+                }else{
 //                    // dump("2");
 //                    // in edit mode...leave readonly and disabled texts as blank
-//                    Session::put('readOnlyText', '');
-//                    Session::put('disabledText', '');
-//                    Session::put('editModeButtonText', 'Leave Edit Mode');
-//                }
-//            }
+                    Session::put('readOnlyText', '');
+                    Session::put('disabledText', '');
+                    Session::put('editModeButtonText', 'Leave Edit Mode');
+                }
+            }
         }
         // dump($switcheditmode);
 
