@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PosSection2<br>
 <p>
     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="true" aria-controls="collapseExample">
@@ -11,3 +12,6 @@ PosSection2<br>
         In div:  [class="collapse show"]
     </div>
 </div>
+=======
+section 2
+>>>>>>> 6e16528f68980d2855eb9c7e50209f3e382183f4
