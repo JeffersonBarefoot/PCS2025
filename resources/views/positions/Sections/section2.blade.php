@@ -6,7 +6,7 @@ PosSection2<br>
 </p>
 <div class="collapse show" id="collapseExample2">
     <div class="card card-body">
-        UNHIDDEN BY DEFAULT!!!. <br>
+        UNHIDDEN BY DEFAULT!!! . <br>
         In Button:  [aria-expanded-"true"]<br>
         In div:  [class="collapse show"]
     </div>

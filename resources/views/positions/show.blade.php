@@ -228,7 +228,7 @@
                         <div class="row">
                             @include('positions.sections.section2')
                         </div>
-                        Row10 ***********************************************
+                        Row10  ***********************************************
             <div class="row">
                 <p>
                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection3" role="button"

@@ -216,7 +216,7 @@ PosSection1 view<br>
                     <table class="table table-condensed">
                         <thead>
                         <tr>
-                            <th width="45%">Vacancy Statistics</th>
+                            <th width="45%">Vacancy Statistics </th>
                             <th width="10%"></th>
                             <th width="40%"></th>
                             <th width="4%"></th>

@@ -2,7 +2,7 @@
 <head>
 
     <body>
-xyzgood version.  You posted a page that doesnt exist.....404....Positions:  Hello World!
+xyzgood version. You posted a page that doesnt exist.....404....Positions:  Hello World!
 
 </body>
 
