@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     {{--    <meta name="viewport" content="width=device-width, initial-scale=1">--}}
     {{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">--}}
-    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
+{{--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
     {{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>--}}
 
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -23,6 +24,14 @@
     <title></title>
 
 </head>
+
+<style>
+    .myDiv {
+        border: 5px outset red;
+        background-color: lightblue;
+        text-align: center;
+    }
+</style>
 
 <!-- set this to readonly to make this a show screen, or something else (blank, notreadonly, etc) to allow editing  -->
 <!-- note that for UNCHECKED radio buttons you have to use [disabled] instead of [readonly].  CHECKED radio buttons remain active-->
@@ -40,9 +49,9 @@
 <!-- ************************** -->
 <script>
 
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    })
+    // $(function () {
+    //     $('[data-toggle="tooltip"]').tooltip();
+    // })
 
     function initExpands() {
         sessionStorage.setItem("initialized", "expandStatus");
@@ -189,39 +198,37 @@
 {{--pt-5 = padding at top of 5 (large)--}}
 <div class="container-fluid">
     {{--    Row01--}}
-    <div class="row">
-        <div class="appnavdiv">
-            @include('positions.sections.appnavbar')
-        </div>
-    </div>
 
-    {{--    Row02--}}
+
+
+
+        Row02
     <div class="row">
-        {{--    Col03    --}}
+            Col03
         <div class="col-sm span-5">
-            {{--            <div class="container-fluid">--}}
-            {{--        Row04, Row05 (pulls in by include)--}}
+                        <div class="container-fluid">
+                    Row04, Row05 (pulls in by include)
             <div class="row">
                 <div class="col">
                     @include('positions.sections.datanavbar')
                 </div>
             </div>
         </div>
-        {{--        Col06--}}
+                Col06
         <div class="col">
-            {{--            --}}{{--            Row07--}}
-            {{--            <div class="row">--}}
-            {{--                @include('positions.sections.Titles')--}}
-            {{--            </div>--}}
-            {{--            --}}{{--            Row08--}}
-            {{--            <div class="row">--}}
-            {{--                @include('positions.sections.section1')--}}
-            {{--            </div>--}}
-            {{--            --}}{{--            Row09--}}
-            {{--            <div class="row">--}}
-            {{--                @include('positions.sections.section2')--}}
-            {{--            </div>--}}
-            {{--            Row10 ***********************************************--}}
+                                    Row07
+                        <div class="row">
+                            @include('positions.sections.Titles')
+                        </div>
+                                    Row08
+                        <div class="row">
+                            @include('positions.sections.section1')
+                        </div>
+                                    Row09
+                        <div class="row">
+                            @include('positions.sections.section2')
+                        </div>
+                        Row10 ***********************************************
             <div class="row">
                 <p>
                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection3" role="button"
@@ -236,7 +243,7 @@
                     </div>
                 </div>
             </div>
-            {{--            Row11 ***********************************************--}}
+                        Row11 ***********************************************
             <div class="row">
                 <p>
                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection3" role="button"
@@ -246,7 +253,7 @@
                 </p>
                 <div class="collapse" id="PosSection3">
                     <div class="card card-body">
-                        Some placeholder content for the collapse component. This panel is hidden by default but
+                        xxSome placeholder content for the collapse component. This panel is hidden by default but
                         revealed when the user activates the relevant trigger.
                     </div>
                 </div>
@@ -255,32 +262,32 @@
         </div>
     </div>
 </div>
-{{--    <div class="col-sm span-5">--}}
-{{--        <div class="row">--}}
-{{--                @include('positions.sections.section1')--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="col-sm span-5">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col">--}}
-{{--                @include('positions.sections.section2')--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="col-sm span-5">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col">--}}
-{{--                @include('positions.sections.section3')--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="col-sm span-5">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col">--}}
-{{--                @include('positions.sections.section4')--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div class="col-sm span-5">
+        <div class="row">
+                @include('positions.sections.section1')
+        </div>
+    </div>
+    <div class="col-sm span-5">
+        <div class="row">
+            <div class="col">
+                @include('positions.sections.section2')
+            </div>
+        </div>
+    </div>
+    <div class="col-sm span-5">
+        <div class="row">
+            <div class="col">
+                @include('positions.sections.section3')
+            </div>
+        </div>
+    </div>
+    <div class="col-sm span-5">
+        <div class="row">
+            <div class="col">
+                @include('positions.sections.section4')
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
