@@ -50,7 +50,7 @@
                         <h4 class="panel-title">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a data-toggle="collapse" href="#collapseRep01">Filter list to include:</a>
+                                    <a data-toggle="collapse" href="#collapseRep01">xxxx Filter list to include:</a>
                                 </div>
                             </div>
                         </h4>
@@ -165,13 +165,13 @@
 
                                         <td>
                                             @if ($position->curstatus=='VACANT')
-                                                    <i class="bi-cloud-fill" style="color:blue" data-toggle="tooltip" title="Vacant"></i>
+                                                    <i class="bi-square" style="color:lightgrey" data-toggle="tooltip" title="Vacant"></i>
                                             @endif
                                             @if ($position->curstatus=='PARTIALLY FILLED')
-                                                    <i class="bi-circle-half" style="color:darkorange" data-toggle="tooltip" title="Partially Filled"></i>
+                                                    <i class="bi-square-half" style="color:blue" data-toggle="tooltip" title="Partially Filled"></i>
                                             @endif
                                             @if ($position->curstatus=='FILLED')
-                                                    <i class="bi-person-check-fill" style="color:limegreen" data-toggle="tooltip" title="Filled"></i>
+                                                    <i class="bi-square-fill" style="color:limegreen" data-toggle="tooltip" title="Filled"></i>
                                             @endif
                                             @if ($position->curstatus=='OVERFILLED')
                                                     <i class="bi-triangle-fill" style="color:red" data-toggle="tooltip" title="Overfilled"></i>

@@ -406,7 +406,8 @@ if (!function_exists('AddColumns')) {
         ->setLabel($colHeader)
         ->setSortable($colSortable)
         // ->setCallback(function ($val,$formatDecimals) {return "$".(number_format($val, 2, '.', ','));})
-        ->setCallback(function ($val) {return (money_format('%(#12n',$val));})
+//            next line was uisng money_format, which is deprecated/removed.  Jeff altered this line 20250228
+        ->setCallback(function ($val) {return $val;})
         ->addFilter(
               (new FilterConfig)
                 ->setName('costvar')

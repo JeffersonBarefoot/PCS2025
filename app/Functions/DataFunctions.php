@@ -266,8 +266,8 @@ if (!function_exists('FormatMoney')) {
         setlocale(LC_MONETARY, 'en_US.UTF-8'); // proper locale code for US Dollar
 
         // return money_format('%i', $value); //returns "  USD 999,999.99  "
-        return money_format('%.2n', $value); //returns "  $999,999.99 "
-
+//        return money_format('%.2n', $value); //returns "  $999,999.99 "
+        return $value;
     }
 }
 
@@ -278,7 +278,11 @@ if (!function_exists('FormatDollars')) {
 
         // return money_format('%i', $value); //returns "  USD 999,999.99  "
         // return money_format('%.0n', $value); //returns "  $999,999.99 "
-        return money_format('%.2n', $value);
+
+//        "money_format" function removed from PHP8.  need to rewrite thes functions with NumberFormatter function
+//        JLB 20250228
+//        return money_format('%.2n', $value);
+        return $value;
 
     }
 }
