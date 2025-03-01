@@ -35,7 +35,7 @@
     <form action={{route('positions.show',$position->id)}} method="get">
         <div class="row">
             <div class="col-md-3" style="background-color:yellow">
-                datanavdiv - datanavbar.blade.php
+{{--                datanavdiv - datanavbar.blade.php--}}
 
                 <!-- ************************** -->
                 <!-- ************************** -->
@@ -175,6 +175,21 @@
                                             @endif
                                             @if ($position->curstatus=='OVERFILLED')
                                                     <i class="bi-triangle-fill" style="color:red" data-toggle="tooltip" title="Overfilled"></i>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            @if ($position->curstatus=='VACANT')
+                                                <i class="bi-cash-coin" style="color:lightgrey" data-toggle="tooltip" title="Vacant"></i>
+                                            @endif
+                                            @if ($position->curstatus=='PARTIALLY FILLED')
+                                                <i class="bi-cash-coin" style="color:blue" data-toggle="tooltip" title="Partially Filled"></i>
+                                            @endif
+                                            @if ($position->curstatus=='FILLED')
+                                                <i class="bi-cash-coin" style="color:limegreen" data-toggle="tooltip" title="Filled"></i>
+                                            @endif
+                                            @if ($position->curstatus=='OVERFILLED')
+                                                <i class="bi-cash-coin" style="color:red" data-toggle="tooltip" title="Overfilled"></i>
                                             @endif
                                         </td>
 

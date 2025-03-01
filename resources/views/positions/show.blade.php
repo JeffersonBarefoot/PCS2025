@@ -35,12 +35,12 @@
     {{--    Row01--}}
 
 
-    Row02
+{{--    Row02--}}
     <div class="row">
-        Col03
+{{--        Col03--}}
         <div class="col-sm span-5">
             <div class="container-fluid">
-                Row04, Row05 (pulls in by include)
+{{--                Row04, Row05 (pulls in by include)--}}
                 <div class="row">
                     <div class="col">
                         @include('positions.sections.datanavbar')
@@ -49,9 +49,9 @@
             </div>
 
             <div class="col">
-                Col06<br>
-                <<<<<<< HEAD<br>
-                Row07
+{{--                Col06<br>--}}
+{{--                <<<<<<< HEAD<br>--}}
+{{--                Row07--}}
                 <div class="row">
                     @include('positions.sections.Titles')
                 </div>
@@ -77,10 +77,10 @@
                 {{--            Row08 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 1, Layout Row 8 <br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 1, Layout Row 8 <br>--}}
                         {{--                    @dump($position)--}}
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection1" role="button"
+                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection1" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Position Status:
                             Currently
@@ -99,9 +99,9 @@
                 {{--            Row09 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 2, Layout Row 9<br>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection2" role="button"
+{{--                        ________________________________________<br>--}}
+{{--                        Section 2, Layout Row 9<br>--}}
+                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection2" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Budgets and FTEs
                         </a>
@@ -115,8 +115,8 @@
                 {{--            Row10 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 3, Layout Row 10<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 3, Layout Row 10<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection3" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Budget Variances
@@ -131,8 +131,8 @@
                 {{--                Row11 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 4, Layout Row 11<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 4, Layout Row 11<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection4" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Org Levels
@@ -151,8 +151,8 @@
                 {{--            Row12 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 5, Layout Row 12<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 5, Layout Row 12<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection5" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Reports To
@@ -167,8 +167,8 @@
                 {{--            Row13 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 6, Layout Row 13<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 6, Layout Row 13<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection6" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Incumbents
@@ -183,8 +183,8 @@
                 {{--            Row14 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 7, Layout Row 14<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 7, Layout Row 14<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection7" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Position History
@@ -199,8 +199,8 @@
                 {{--            Row15 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 8, Layout Row 15<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 8, Layout Row 15<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection8" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             User Defined Fields
@@ -215,8 +215,8 @@
                 {{--            Row16 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 9, Layout Row 16<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 9, Layout Row 16<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection9" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Funding Sources
@@ -231,8 +231,8 @@
                 {{--            Row17 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 10, Layout Row 17<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 10, Layout Row 17<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection10" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Succession Planning
@@ -247,8 +247,8 @@
                 {{--            Row18 ***********************************************--}}
                 <div class="row">
                     <p>
-                        ________________________________________<br>
-                        Section 11, Layout Row 18<br>
+{{--                        ________________________________________<br>--}}
+{{--                        Section 11, Layout Row 18<br>--}}
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#PosSection11" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             Allocations

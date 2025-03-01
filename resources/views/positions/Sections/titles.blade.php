@@ -1,4 +1,4 @@
-Pos Titles
+{{--Pos Titles--}}
 <!-- <div class="col-sm-8 offset-sm-0"> -->
 <div class="col-md-12">
     <h1 class="display-5">
