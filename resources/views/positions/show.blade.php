@@ -124,7 +124,7 @@
                     </p>
                     <div class="collapse" id="PosSection3">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+                            @include('positions.sections.section3')
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                             xxSome placeholder content for the collapse component. This panel is hidden by default but
                             revealed when the user activates the relevant trigger.
                             =======
-                            @include('positions.sections.section2')
+                            @include('positions.sections.section4')
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                     </p>
                     <div class="collapse" id="PosSection5">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+{{--                            @include('positions.sections.section5')--}}
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                     </p>
                     <div class="collapse" id="PosSection6">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+{{--                            @include('positions.sections.section6')--}}
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                     </p>
                     <div class="collapse" id="PosSection7">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+{{--                            @include('positions.sections.section7')--}}
                         </div>
                     </div>
                 </div>
@@ -208,7 +208,7 @@
                     </p>
                     <div class="collapse" id="PosSection8">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+{{--                            @include('positions.sections.section8')--}}
                         </div>
                     </div>
                 </div>
@@ -224,7 +224,7 @@
                     </p>
                     <div class="collapse" id="PosSection9">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+{{--                            @include('positions.sections.section9')--}}
                         </div>
                     </div>
                 </div>
@@ -240,7 +240,7 @@
                     </p>
                     <div class="collapse" id="PosSection10">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+{{--                            @include('positions.sections.section10')--}}
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                     </p>
                     <div class="collapse" id="PosSection11">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+{{--                            @include('positions.sections.section11')--}}
                         </div>
                     </div>
                 </div>
