@@ -35,7 +35,7 @@ xxsection1.blade.php*********************************<br>
 {{--        test2<br>--}}
 {{--        <div class="panel-body">--}}
 {{--            <!-- *************************** -->--}}
-{{--            <!-- Left div contains xxxxxxxxxxxxxxxxxxxxxx -->--}}
+{{--            <!-- Left div contains xxxxxxxxxxxxxxxxxxxxx -->--}}
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-condensed">
