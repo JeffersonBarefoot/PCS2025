@@ -21,7 +21,7 @@
 @include('positions.sections.script')
 
 <body>
-
+{{--@dump($request)--}}
 {{--{{ Form::model($position, array('route' => array('positions.update', $position->id), 'method' => 'PUT')) }}--}}
 
 <!-- *************************** -->
@@ -168,7 +168,7 @@
                     </p>
                     <div class="collapse" id="PosSection5">
                         <div class="card card-body">
-                            {{--                            @include('positions.sections.section5')--}}
+{{--                                                        @include('positions.sections.section5')--}}
                         </div>
                     </div>
                 </div>

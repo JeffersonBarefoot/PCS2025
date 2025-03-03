@@ -35,9 +35,10 @@ class PositionController extends Controller
     //***************************************************
     public function show($id, Request $request)
     {
-
-//        $request->flash();
-
+//dd($request);
+//Flashes the current input to the session so it's available during the user's next request to the application:
+        $request->flash();
+//dd($request);
         if (is_null($id)) {
             $id = 1;
         }
@@ -273,11 +274,247 @@ class PositionController extends Controller
 
 //dd($positionsnavbar);
 
+        //****************************
+        // I N C U M B E N T S
+        // gather all incumbents related to this position
 
-        return view('positions.show')
-            ->with("id", $id)
+        if (!empty($request->input('viewinchistid'))) {
+            $viewinchistid = $request->input('viewinchistid');
+
+            //what if this is a new incHistId?  Do we blank out the details, or return first record?
+            //jlb 20200225
+            SessionSet("ExpandIncumbentHistory","Y");
+        }
+        // see if we passed a new viewincid, so need to update the variable
+        // otherwise keep the one that we have been using
+        if (!empty($request->input('viewincid'))) {
+            $viewincid = $request->input('viewincid');
+            $viewinchistid = '';
+            SessionSet("ExpandIncumbentHistory","Y");
+        }
+
+        $incumbentCompany           = GetIncumbentFieldById($viewincid,'company');
+        $incumbentEmpno             = GetIncumbentFieldById($viewincid,'empno');
+        $incumbentsinposition       = GetIncumbents($company,$posno);
+        $activeincumbentsinposition = GetActiveIncumbents($company,$posno);
+        $viewincumbent              = GetIncumbentById($viewincid);
+        $viewIncumbentHistory       = GetHIncumbent($incumbentCompany,$incumbentEmpno,$company,$posno);
+        $activeincumbentcount       = $activeincumbentsinposition->count();
+
+        // determine whether viewing a CURRENT or HISTORY record
+        // this depends on which record in the middle DIV the user clicked on
+        if (substr($viewinchistid,0,7)=="CURRENT") {
+            // current record.  Strip out CURRENT designator and get record from Incumbents
+            $idlength                 = strlen($viewinchistid);
+            $viewinchistid            = substr($viewinchistid,7,$idlength-7);
+            $viewIncumbentDetails     = GetIncumbentById($viewinchistid);
+        } else {
+            // history record.  Get record from HIncumbents
+            $viewIncumbentDetails     = GetHIncumbentRecordById($viewinchistid);
+        }
+
+        // build a text element that can be displayed on the incumbents tab
+        $activeincumbentlist = '';
+        foreach ($activeincumbentsinposition as $ActInc){
+            $activeincumbentlist = $activeincumbentlist.substr($ActInc->fname,0,1).' '.$ActInc->lname.', ' ;
+        }
+
+//****************************
+        // P O S I T I O N   H I S T O R Y
+        $posHistRecs = \DB::table('hpositions')
+            ->where('posno','=',$posno)
+            ->where('company','=',$company)
+            ->orderby('historyend','desc')
+            ->get();
+        $positionhistorycount = $posHistRecs->count();
+
+        // see if we need to show a specific position history record
+        if (!empty($request->input('viewposhistid'))) {
+
+            $viewposhistid = $request->input('viewposhistid');
+
+            $viewPositionHistoryDetails = \DB::table('hpositions')
+                ->where('id','=',$viewposhistid)
+                ->get();
+
+            SessionSet("ExpandPositionHistory","Y");
+
+            //what if this is a new incHistId?  Do we blank out the details, or return first record?
+            //jlb 20200225
+
+        } else {
+
+            // if a position history record id is not available, still need a blank table to avoid errors
+            $viewPositionHistoryDetails = \DB::table('hpositions')
+                ->where('id','=','blanktable')
+                ->get();
+
+            SessionSet("ExpandPositionHistory","N");
+
+        }
+
+// dump($viewPositionHistoryDetails);
+
+// dump("6:  ".getTimestamp());
+
+        //****************************
+        // REPORTS TO data
+        // "reports to" position is directly available in the positions table
+
+        // check to see if reportsdirto was included in the request string.  If so, reset the Reports To Fields
+        if (!empty($request->input('reportsdirto'))) {
+            //dump('requested a new reports to');
+            $reportsdirtoid = $request->input('reportsdirto');
+
+            $reportsdirtocursor = \DB::table('positions')
+                ->where('id','=',$reportsdirtoid)
+                ->get();
+
+            foreach ($reportsdirtocursor as $rdt){
+                $rdtcompany=$rdt->company;
+                $rdtposno=$rdt->posno;
+                $rdtdescr=$rdt->descr;
+
+                $position->reptocomp=$rdtcompany;
+                $position->reptoposno=$rdtposno;
+                $position->reptodesc=$rdtdescr;
+                $position->save();
+            }
+        }
+
+        // check to see if reportsdirto was included in the request string.  If so, reset the Reports To Fields
+        if (!empty($request->input('reportsindirto'))) {
+            //dump('requested a new reports to');
+            $reportsindirtoid = $request->input('reportsindirto');
+
+            $reportsindirtocursor = \DB::table('positions')
+                ->where('id','=',$reportsindirtoid)
+                ->get();
+
+            foreach ($reportsindirtocursor as $rit){
+                $ritcompany=$rit->company;
+                $ritposno=$rit->posno;
+                $ritdescr=$rit->descr;
+
+                $position->reptocom2=$ritcompany;
+                $position->reptopos2=$ritposno;
+                $position->reptodesc2=$ritdescr;
+                $position->save();
+            }
+        }
+
+
+        // Direct Reports will reference this position in their positions.reptocomp / reptoposno
+        // Dotted lines will have this position number in reptocom2 / reptopos2
+        $directReports = \DB::table('positions')
+            ->where('reptoposno','=',$posno)
+            ->where('reptocomp','=',$company)
+            ->orderby("descr")
+            ->get();
+
+        $indirectReports = \DB::table('positions')
+            ->where('reptopos2','=',$posno)
+            ->where('reptocom2','=',$company)
+            ->orderby("descr")
+            ->get();
+
+        $dirRepCount = count($directReports);
+        $indirRepCount = count($indirectReports);
+
+        // get a collection of position names to use as a list to select "reports to" positions
+        // will only need this in "editable" queries
+        $reportsToSource = \DB::table('positions')
+            ->select('id','company','posno','descr')
+            ->where('company','=',$company)
+            ->orderby("descr")
+            ->get();
+
+
+
+//dump($dirRepCount);
+// dump("$posno");
+// dump("$company");
+// dump($directReports);
+// dump($viewincumbent);
+// $user = Auth::user();
+// $id = Auth::id();
+// dump($id);
+// dump($user->currentTeam->name);
+// dump($user->currentTeam->id);
+
+//experiment with session variables, 2020-01-01
+        Session::put('mykey', '12345');
+        Session::put('expandIncumbents', 'xHere is how you return a session variable into a blade...JLB 200113');
+//TestOnclickFunction();
+
+//######################
+// IMPORT Data
+// execute these lines to import sample data
+//######################
+// importpositions('');
+// importhpositions('');
+// importincumbents('');
+// importhincumbents('');
+// SeedPositionHistory(2,10);
+
+//######################
+//######################
+//######################
+//######################
+//######################
+// test functionality to export to Csv
+// Seems to have worked.  Saves file to C:\Users\Jeffe\Homestead\Projects\spark-installer\PowerPCS-Spark\public
+// $positions = position::get()->toArray();
+// // dd($positions);
+// //  UPDATE:  now saves to C:\Users\Jeffe\Homestead\Projects\spark-installer\PowerPCS-Spark\FileExports\TEAM00001
+// $fp = fopen('../FileExports/TEAM00001/xxxfile.' . getTimestamp() .  '.csv', 'w');
+// // $fp = fopen('xxxfile.csv', 'w');
+// foreach ($positions as $pos) {
+//   // dd($pos);
+//     fputcsv($fp, $pos);
+// }
+// fclose($fp);
+//######################
+//######################
+//######################
+//######################
+//######################
+// dump($viewIncumbentHistory);
+        // save all session variables prior to returning to the blade
+        Session::put('reportsDirTo', '');
+        Session::put('reportsIndirTo', '');
+        Session::put('viewincid', $viewincid);
+        Session::put('viewinchistid', $viewinchistid);
+        Session::put('viewPosHistId', '');
+
+        dump("7:  ".getTimestamp());
+
+
+//        return view('positions.show')
+//            ->with("id", $id)
+//            ->with(compact('position'))
+//            ->with(compact('positionsnavbar'));
+
+        //****************************
+        // R E T U R N   T O   positions.show
+        return View('positions.show')
             ->with(compact('position'))
-            ->with(compact('positionsnavbar'));
+            ->with(compact('viewincumbent'))
+            ->with(compact('viewIncumbentHistory'))
+            ->with(compact('viewIncumbentDetails'))
+            ->with(compact('posHistRecs'))
+            ->with(compact('viewPositionHistoryDetails'))
+            ->with(compact('positionsnavbar'))
+            ->with(compact('incumbentsinposition'))
+            ->with(compact('directReports'))
+            ->with(compact('indirectReports'))
+            ->with(compact('reportsToSource'))
+            ->with("id", $id)
+            ->with('dirRepCount',$dirRepCount)
+            ->with('indirRepCount',$indirRepCount)
+            ->with('activeincumbentcount',$activeincumbentcount)
+            ->with('activeincumbentlist',$activeincumbentlist)
+            ->with('positionhistorycount',$positionhistorycount);
 
 
     }
