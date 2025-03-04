@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('personal_team');
             $table->timestamps();
+            $table->string('Level1Desc',50)->default('Location');
+            $table->string('Level2Desc',50)->default('Department');
+            $table->string('Level3Desc',50)->default('...not used...');
+            $table->string('Level4Desc',50)->default('...not used...');
+            $table->string('Level5Desc',50)->default('...not used...');
         });
     }
 
