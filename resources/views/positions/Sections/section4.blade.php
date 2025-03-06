@@ -30,12 +30,12 @@
 {{--    <!-- <div class="panel-body">Full Time Equivalent Calculation -->--}}
 {{--    <div class="panel-body">--}}
 
-{{--        <?php $level1Description = sessionGet('level1Desc') ?>--}}
+        <?php $level1Description = sessionGet('level1Desc') ?>
 {{--        <?php $level2Description = sessionGet('level2Desc') ?>--}}
 {{--        <?php $level3Description = sessionGet('level3Desc') ?>--}}
 {{--        <?php $level4Description = sessionGet('level4Desc') ?>--}}
 {{--        <?php $level5Description = sessionGet('level5Desc') ?>--}}
-                <?php $level1Description = "check me" ?>
+{{--                <?php $level1Description = "check me" ?>--}}
                 <?php $level2Description = "check me" ?>
                 <?php $level3Description = "check me" ?>
                 <?php $level4Description = "check me" ?>
