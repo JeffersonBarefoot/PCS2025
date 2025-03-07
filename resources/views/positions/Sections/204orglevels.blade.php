@@ -29,7 +29,7 @@
 {{--<div id="collapseOrgLevels" class="panel-collapse collapse">--}}
 {{--    <!-- <div class="panel-body">Full Time Equivalent Calculation -->--}}
 {{--    <div class="panel-body">--}}
-
+<body>
         <?php $level1Description = sessionGet('level1Desc') ?>
 {{--        <?php $level2Description = sessionGet('level2Desc') ?>--}}
 {{--        <?php $level3Description = sessionGet('level3Desc') ?>--}}
@@ -95,3 +95,4 @@
         </div>
 {{--    </div>--}}
 {{--</div>--}}
+</body>

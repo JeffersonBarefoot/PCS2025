@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-@include('positions.sections.head')
+@include('positions.Sections.001head')
 
 {{--<style>--}}
 {{--    .myDiv {--}}
@@ -18,7 +18,7 @@
 <?php $expandPositionHistory = Session::get('ExpandPositionHistory') ?>
 <?php $expandIncumbentHistory = Session::get('ExpandIncumbentHistory') ?>
 
-@include('positions.sections.script')
+@include('positions.Sections.002script')
 
 <body>
 {{--@dump($request)--}}
@@ -34,7 +34,7 @@
     {{--    --}}{{--    Row01  AppNavBar--}}
 
     <div class="row-12">
-        @include('positions.sections.appnavbar')
+        @include('positions.Sections.102appnavbar')
     </div>
 
     {{--    --}}{{--    Row02 all contents except app navbar--}}
@@ -46,40 +46,20 @@
             {{--                Row04 DataNavBar filters, Row05 DataNavBar records (pulls in by include)--}}
             <div class="row">
                 <div class="col">
-                    @include('positions.sections.datanavbar')
+                    @include('positions.Sections.103datanavbar')
                 </div>
             </div>
             {{--            </div>--}}
         </div>
 
         <div class="col">
-            top of col 06<br>
-            {{--                Col06<br>--}}
-            {{--                <<<<<<< HEAD<br>--}}
-            {{--                Row07--}}
             <div class="row">
-                @include('positions.sections.Titles')
+                @include('positions.Sections.101Titles')
             </div>
-            {{--                Row08--}}
-            {{--                <div class="row">--}}
-            {{--                    before--}}
-            {{--                    @include('positions.sections.section1')--}}
-            {{--                    after--}}
-            {{--                </div>--}}
-            {{--                Row09--}}
-            {{--                <div class="row">--}}
-            {{--                    @include('positions.sections.section2')--}}
-            {{--                </div>--}}
-            {{--                Row10 ***********************************************--}}
-            {{--                =======--}}
-            {{--                --}}{{--            --}}{{----}}{{--            Row07--}}
-            {{--                <div class="row">--}}
-            {{--                    ***Titles, Layout Row 7<br>--}}
-            {{--                    @include('positions.sections.Titles')--}}
-            {{--                </div>--}}
 
             {{--column c6--}}
             <div class="col">
+
                 {{--            Row08 ***********************************************--}}
                 <div class="row">
                     <p>
@@ -99,9 +79,10 @@
                         </a>
                     </p>
                     <div class="collapse" id="PosSection1">
-                        @include('positions.sections.section1')
+                        @include('positions.Sections.201Status')
                     </div>
                 </div>
+
                 {{--            Row09 ***********************************************--}}
                 <div class="row">
                     <p>
@@ -114,26 +95,28 @@
                     </p>
                     <div class="collapse" id="PosSection2">
                         <div class="card card-body">
-                            @include('positions.sections.section2')
+                            @include('positions.Sections.202budgets')
                         </div>
                     </div>
                 </div>
-                {{--            Row10 ***********************************************--}}
-                <div class="row">
-                    <p>
-                        {{--                        ________________________________________<br>--}}
-                        {{--                        Section 3, Layout Row 10<br>--}}
-                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection3" role="button"
-                           aria-expanded="false" aria-controls="collapseExample">
-                            Budget Variances
-                        </a>
-                    </p>
-                    <div class="collapse" id="PosSection3">
-                        <div class="card card-body">
-                            @include('positions.sections.section3')
-                        </div>
-                    </div>
-                </div>
+
+{{--                --}}{{--            Row10 ***********************************************--}}
+{{--                <div class="row">--}}
+{{--                    <p>--}}
+{{--                        --}}{{--                        ________________________________________<br>--}}
+{{--                        --}}{{--                        Section 3, Layout Row 10<br>--}}
+{{--                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection3" role="button"--}}
+{{--                           aria-expanded="false" aria-controls="collapseExample">--}}
+{{--                            Budget Variances--}}
+{{--                        </a>--}}
+{{--                    </p>--}}
+{{--                    <div class="collapse" id="PosSection3">--}}
+{{--                        <div class="card card-body">--}}
+{{--                            @include('positions.Sections.203budvar')--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
                 {{--                Row11 ***********************************************--}}
                 <div class="row">
                     <p>
@@ -152,10 +135,11 @@
                             but
                             revealed when the user activates the relevant trigger.
                             =======
-                            @include('positions.sections.section4')
+                            @include('positions.Sections.204orglevels')
                         </div>
                     </div>
                 </div>
+
                 {{--            Row12 ***********************************************--}}
                 <div class="row">
                     <p>
@@ -168,12 +152,12 @@
                     </p>
                     <div class="collapse" id="PosSection5">
                         <div class="card card-body">
-                            @include('positions.sections.section5')
+                            @include('positions.Sections.205reportsto')
                         </div>
                     </div>
                 </div>
+
                 {{--            Row13 ***********************************************--}}
-                {{--                @dump(" line 176")--}}
                 <div class="row">
                     <p>
                         {{--                        ________________________________________<br>--}}
@@ -185,10 +169,11 @@
                     </p>
                     <div class="collapse" id="PosSection6">
                         <div class="card card-body">
-                            @include('positions.sections.section6')
+                            @include('positions.Sections.206Incum')
                         </div>
                     </div>
                 </div>
+
                 {{--            Row14 ***********************************************--}}
                 <div class="row">
                     <p>
@@ -201,76 +186,80 @@
                     </p>
                     <div class="collapse" id="PosSection7">
                         <div class="card card-body">
-                            @include('positions.sections.section7')
+                            @include('positions.Sections.207poshist')
                         </div>
                     </div>
                 </div>
-                {{--            Row15 ***********************************************--}}
-                <div class="row">
-                    <p>
-                        {{--                        ________________________________________<br>--}}
-                        {{--                                                Section 8, Layout Row 15<br>--}}
-                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection8" role="button"
-                           aria-expanded="false" aria-controls="collapseExample">
-                            User Defined Fields
-                        </a>
-                    </p>
-                    <div class="collapse" id="PosSection8">
-                        <div class="card card-body">
-                            @include('positions.sections.section8')
-                        </div>
-                    </div>
-                </div>
-                {{--            Row16 ***********************************************--}}
-                <div class="row">
-                    <p>
-                        {{--                        ________________________________________<br>--}}
-                        {{--                        Section 9, Layout Row 16<br>--}}
-                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection9" role="button"
-                           aria-expanded="false" aria-controls="collapseExample">
-                            Funding Sources
-                        </a>
-                    </p>
-                    <div class="collapse" id="PosSection9">
-                        <div class="card card-body">
-                            @include('positions.sections.section9')
-                        </div>
-                    </div>
-                </div>
-                {{--            Row17 ***********************************************--}}
-                <div class="row">
-                    <p>
-                        {{--                        ________________________________________<br>--}}
-                        {{--                        Section 10, Layout Row 17<br>--}}
-                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection10"
-                           role="button"
-                           aria-expanded="false" aria-controls="collapseExample">
-                            Succession Planning
-                        </a>
-                    </p>
-                    <div class="collapse" id="PosSection10">
-                        <div class="card card-body">
-                            @include('positions.sections.section10')
-                        </div>
-                    </div>
-                </div>
-                {{--            Row18 ***********************************************--}}
-                <div class="row">
-                    <p>
-                        {{--                        ________________________________________<br>--}}
-                        {{--                        Section 11, Layout Row 18<br>--}}
-                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection11"
-                           role="button"
-                           aria-expanded="false" aria-controls="collapseExample">
-                            Allocations
-                        </a>
-                    </p>
-                    <div class="collapse" id="PosSection11">
-                        <div class="card card-body">
-                            @include('positions.sections.section11')
-                        </div>
-                    </div>
-                </div>
+
+{{--                --}}{{--            Row15 ***********************************************--}}
+{{--                <div class="row">--}}
+{{--                    <p>--}}
+{{--                        --}}{{--                        ________________________________________<br>--}}
+{{--                        --}}{{--                                                Section 8, Layout Row 15<br>--}}
+{{--                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection8" role="button"--}}
+{{--                           aria-expanded="false" aria-controls="collapseExample">--}}
+{{--                            User Defined Fields--}}
+{{--                        </a>--}}
+{{--                    </p>--}}
+{{--                    <div class="collapse" id="PosSection8">--}}
+{{--                        <div class="card card-body">--}}
+{{--                            @include('positions.Sections.208userdef')--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                --}}{{--            Row16 ***********************************************--}}
+{{--                <div class="row">--}}
+{{--                    <p>--}}
+{{--                        --}}{{--                        ________________________________________<br>--}}
+{{--                        --}}{{--                        Section 9, Layout Row 16<br>--}}
+{{--                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection9" role="button"--}}
+{{--                           aria-expanded="false" aria-controls="collapseExample">--}}
+{{--                            Funding Sources--}}
+{{--                        </a>--}}
+{{--                    </p>--}}
+{{--                    <div class="collapse" id="PosSection9">--}}
+{{--                        <div class="card card-body">--}}
+{{--                            @include('positions.Sections.209funding')--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                --}}{{--            Row17 ***********************************************--}}
+{{--                <div class="row">--}}
+{{--                    <p>--}}
+{{--                        --}}{{--                        ________________________________________<br>--}}
+{{--                        --}}{{--                        Section 10, Layout Row 17<br>--}}
+{{--                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection10"--}}
+{{--                           role="button"--}}
+{{--                           aria-expanded="false" aria-controls="collapseExample">--}}
+{{--                            Succession Planning--}}
+{{--                        </a>--}}
+{{--                    </p>--}}
+{{--                    <div class="collapse" id="PosSection10">--}}
+{{--                        <div class="card card-body">--}}
+{{--                            @include('positions.Sections.210succession')--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                --}}{{--            Row18 ***********************************************--}}
+{{--                <div class="row">--}}
+{{--                    <p>--}}
+{{--                        --}}{{--                        ________________________________________<br>--}}
+{{--                        --}}{{--                        Section 11, Layout Row 18<br>--}}
+{{--                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection11"--}}
+{{--                           role="button"--}}
+{{--                           aria-expanded="false" aria-controls="collapseExample">--}}
+{{--                            Allocations--}}
+{{--                        </a>--}}
+{{--                    </p>--}}
+{{--                    <div class="collapse" id="PosSection11">--}}
+{{--                        <div class="card card-body">--}}
+{{--                            @include('positions.Sections.211alloc')--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
 
             </div>
