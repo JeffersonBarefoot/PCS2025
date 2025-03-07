@@ -287,3 +287,5 @@
                         @endforeach
             </tr> -->
         </table>
+    </div>
+</div>

@@ -168,11 +168,12 @@
                     </p>
                     <div class="collapse" id="PosSection5">
                         <div class="card card-body">
-{{--                                                        @include('positions.sections.section5')--}}
+                            @include('positions.sections.section5')
                         </div>
                     </div>
                 </div>
                 {{--            Row13 ***********************************************--}}
+{{--                @dump(" line 176")--}}
                 <div class="row">
                     <p>
                         {{--                        ________________________________________<br>--}}
@@ -184,7 +185,7 @@
                     </p>
                     <div class="collapse" id="PosSection6">
                         <div class="card card-body">
-                            {{--                            @include('positions.sections.section6')--}}
+                                                        @include('positions.sections.section6')
                         </div>
                     </div>
                 </div>
@@ -200,7 +201,7 @@
                     </p>
                     <div class="collapse" id="PosSection7">
                         <div class="card card-body">
-                            {{--                            @include('positions.sections.section7')--}}
+                                                        @include('positions.sections.section7')
                         </div>
                     </div>
                 </div>
@@ -208,7 +209,7 @@
                 <div class="row">
                     <p>
                         {{--                        ________________________________________<br>--}}
-                        {{--                        Section 8, Layout Row 15<br>--}}
+{{--                                                Section 8, Layout Row 15<br>--}}
                         <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection8" role="button"
                            aria-expanded="false" aria-controls="collapseExample">
                             User Defined Fields
@@ -216,7 +217,7 @@
                     </p>
                     <div class="collapse" id="PosSection8">
                         <div class="card card-body">
-                            {{--                            @include('positions.sections.section8')--}}
+                                                        @include('positions.sections.section8')
                         </div>
                     </div>
                 </div>
@@ -232,7 +233,7 @@
                     </p>
                     <div class="collapse" id="PosSection9">
                         <div class="card card-body">
-                            {{--                            @include('positions.sections.section9')--}}
+                                                        @include('positions.sections.section9')
                         </div>
                     </div>
                 </div>
@@ -249,7 +250,7 @@
                     </p>
                     <div class="collapse" id="PosSection10">
                         <div class="card card-body">
-                            {{--                            @include('positions.sections.section10')--}}
+                                                        @include('positions.sections.section10')
                         </div>
                     </div>
                 </div>
@@ -266,15 +267,15 @@
                     </p>
                     <div class="collapse" id="PosSection11">
                         <div class="card card-body">
-                            {{--                            @include('positions.sections.section11')--}}
+                                                        @include('positions.sections.section11')
                         </div>
                     </div>
                 </div>
 
 
             </div>
-{{--                </div>--}}
-{{--            </div>--}}
+        </div>
+    </div>
 
 </body>
 </html>
