@@ -303,8 +303,8 @@ if (!function_exists('ImportPositions')) {
   //***************************************************
   function ImportPositions($incomingFile)
   {
-
-    $fileToProcess = '../storage/app/importFiles/'.$incomingFile;
+dump($incomingFile);
+    $fileToProcess = '/storage/app/importFiles/'.$incomingFile;
 
     dump($fileToProcess);
 

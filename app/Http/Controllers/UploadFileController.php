@@ -27,8 +27,10 @@ class UploadFileController extends Controller
           $teamId=$user->currentTeam->id;
           $newFileName = 'setupPosi_Team='.$teamId.'_'.getTimestamp().'.csv';
           $newFileName2 = $newFileName;
-          $request->importFileName1->storeAs('importFiles',$newFileName);
+          $request->importFileName1->storeAs('storage.app.importFiles',$newFileName);
           // dump($newFileName);
+          dump($request->importFileName1);
+          dump($newFileName2);
           ImportPositions($newFileName2);
       }
 

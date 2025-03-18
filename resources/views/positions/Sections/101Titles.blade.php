@@ -9,11 +9,12 @@
             <input type="text" class="form-control" name="descr" value="{{$position->descr}}">
         @endif
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <small>{{$position->company}} / {{$position->posno}}</small></h1>
+        <small>{{$position->company}} / {{$position->posno}}</small>
+    </h1>
     <a href={{route('positions.show',$position->id)}}?editmode=switch>{{Session::get('editModeButtonText')}}
         test</a><br>
-{{--    <a href={{route('positions.create')}}>Add New Position </a><br>--}}
-{{--    <a href={{ route('verifydestroy') }}?positiontodelete={{$position->id}}>Delete This Position </a><br>--}}
-{{--    <button type="Save Changes" class="btn btn-primary">Update</button>--}}
+    {{--    <a href={{route('positions.create')}}>Add New Position </a><br>--}}
+    {{--    <a href={{ route('verifydestroy') }}?positiontodelete={{$position->id}}>Delete This Position </a><br>--}}
+    {{--    <button type="Save Changes" class="btn btn-primary">Update</button>--}}
 
 </div>

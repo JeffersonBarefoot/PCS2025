@@ -30,5 +30,7 @@ Route::middleware([
     Route::get('/postest', 'App\Http\Controllers\PostestController@shownoid')->name('postest.shownoid');
     Route::get('/postest/{id?}', 'App\Http\Controllers\PostestController@show')->name('postest.show');
 
+    Route::post('/uploadfile',     'App\Http\Controllers\UploadFileController@uploadfile')->name('uploadfile');
+
 
 });

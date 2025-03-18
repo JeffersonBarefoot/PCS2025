@@ -26,6 +26,7 @@
     "autoload": {
         "files": [
             "app/Functions/DataFunctions.php",
+            "app/Functions/ImportFunctions.php",
             "app/Functions/UtilityFunctions.php"
         ],
         "psr-4": {

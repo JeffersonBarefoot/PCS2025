@@ -28,14 +28,14 @@
 {{--        }--}}
 {{--    </style>--}}
 {{--</head>--}}
-<body>
+{{--<body>--}}
 {{--<div class="container-fluid">--}}
 {{--        <div class="row">--}}
 <div class="col">
     <form action={{route('positions.show',$position->id)}} method="get">
         <div class="row">
             <div class="col-md-3" style="background-color:yellow">
-{{--                datanavdiv - 103datanavbar.blade.php--}}
+                {{--                datanavdiv - 103datanavbar.blade.php--}}
 
                 <!-- ************************** -->
                 <!-- ************************** -->
@@ -56,7 +56,7 @@
                         </h4>
                     </div>
                     <div id="collapseRep01" class="panel-collapse">
-                        <div class="panel-body">
+                        <div class="card card-body">
 
                             <?php $posNavbarCompanyQuery = Session::get('posNavbarCompanyQuery') ?>
                             <?php $posNavbarPosnoQuery = Session::get('posNavbarPosnoQuery') ?>
@@ -147,65 +147,76 @@
                             {{ csrf_field() }}
 
                         </div>
-                        <div class="col-*">
-                            <table class="table table-condensed">
-                                <col width="3">
-                                <col width="3">
-                                <col width="80">
-                                <col width="80">
-                                <col width="200">
-                                @foreach($positionsnavbar as $position)
+                        <table class="table table-condensed">
+                            <col width="3">
+                            <col width="3">
+                            <col width="80">
+                            <col width="80">
+                            <col width="200">
+                            @foreach($positionsnavbar as $position)
 
-                                    <tr>
-                                        <td>
-                                            @if ($position->active=='I')
-                                                  <i class="bi-x-circle-fill" style="color:black" data-toggle="tooltip" title="Inactive"></i>
-                                            @endif
-                                        </td>
+                                <tr>
+                                    <td>
+                                        @if ($position->active=='I')
+                                            <i class="bi-x-circle-fill" style="color:black" data-toggle="tooltip"
+                                               title="Inactive"></i>
+                                        @endif
+                                    </td>
 
-                                        <td>
-                                            @if ($position->curstatus=='VACANT')
-                                                    <i class="bi-square" style="color:lightgrey" data-toggle="tooltip" title="Vacant"></i>
-                                            @endif
-                                            @if ($position->curstatus=='PARTIALLY FILLED')
-                                                    <i class="bi-square-half" style="color:blue" data-toggle="tooltip" title="Partially Filled"></i>
-                                            @endif
-                                            @if ($position->curstatus=='FILLED')
-                                                    <i class="bi-square-fill" style="color:limegreen" data-toggle="tooltip" title="Filled"></i>
-                                            @endif
-                                            @if ($position->curstatus=='OVERFILLED')
-                                                    <i class="bi-triangle-fill" style="color:red" data-toggle="tooltip" title="Overfilled"></i>
-                                            @endif
-                                        </td>
+                                    <td>
+                                        @if ($position->curstatus=='VACANT')
+                                            <i class="bi-square" style="color:lightgrey" data-toggle="tooltip"
+                                               title="Vacant"></i>
+                                        @endif
+                                        @if ($position->curstatus=='PARTIALLY FILLED')
+                                            <i class="bi-square-half" style="color:blue" data-toggle="tooltip"
+                                               title="Partially Filled"></i>
+                                        @endif
+                                        @if ($position->curstatus=='FILLED')
+                                            <i class="bi-square-fill" style="color:limegreen" data-toggle="tooltip"
+                                               title="Filled"></i>
+                                        @endif
+                                        @if ($position->curstatus=='OVERFILLED')
+                                            <i class="bi-triangle-fill" style="color:red" data-toggle="tooltip"
+                                               title="Overfilled"></i>
+                                        @endif
+                                    </td>
 
-                                        <td>
-                                            @if ($position->curstatus=='VACANT')
-                                                <i class="bi-cash-coin" style="color:lightgrey" data-toggle="tooltip" title="Vacant"></i>
-                                            @endif
-                                            @if ($position->curstatus=='PARTIALLY FILLED')
-                                                <i class="bi-cash-coin" style="color:blue" data-toggle="tooltip" title="Partially Filled"></i>
-                                            @endif
-                                            @if ($position->curstatus=='FILLED')
-                                                <i class="bi-cash-coin" style="color:limegreen" data-toggle="tooltip" title="Filled"></i>
-                                            @endif
-                                            @if ($position->curstatus=='OVERFILLED')
-                                                <i class="bi-cash-coin" style="color:red" data-toggle="tooltip" title="Overfilled"></i>
-                                            @endif
-                                        </td>
+                                    <td>
+                                        @if ($position->curstatus=='VACANT')
+                                            <i class="bi-cash-coin" style="color:lightgrey" data-toggle="tooltip"
+                                               title="Vacant"></i>
+                                        @endif
+                                        @if ($position->curstatus=='PARTIALLY FILLED')
+                                            <i class="bi-cash-coin" style="color:blue" data-toggle="tooltip"
+                                               title="Partially Filled"></i>
+                                        @endif
+                                        @if ($position->curstatus=='FILLED')
+                                            <i class="bi-cash-coin" style="color:limegreen" data-toggle="tooltip"
+                                               title="Filled"></i>
+                                        @endif
+                                        @if ($position->curstatus=='OVERFILLED')
+                                            <i class="bi-cash-coin" style="color:red" data-toggle="tooltip"
+                                               title="Overfilled"></i>
+                                        @endif
+                                    </td>
 
-                                        <td height="25"><a
-                                                href={{route('positions.show',$position->id)}}>{{$position->company}}
-                                        </td>
-                                        <td height="25"><a
-                                                href={{route('positions.show',$position->id)}}>{{$position->posno}}</td>
-                                        <td height="25"><a
-                                                href={{route('positions.show',$position->id)}}>{{$position->descr}}</td>
-                                    </tr>
+                                    <td height="25"><a
+                                            href={{route('positions.show',$position->id)}}>{{$position->company}}
+                                    </td>
+                                    <td height="25"><a
+                                            href={{route('positions.show',$position->id)}}>{{$position->posno}}</td>
+                                    <td height="25"><a
+                                            href={{route('positions.show',$position->id)}}>{{$position->descr}}</td>
+                                </tr>
 
-                                @endforeach
-                            </table>
-
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
-</body>
+{{--</body>--}}
 
