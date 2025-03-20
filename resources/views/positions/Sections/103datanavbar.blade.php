@@ -31,10 +31,11 @@
 {{--<body>--}}
 {{--<div class="container-fluid">--}}
 {{--        <div class="row">--}}
+{{--<div class="col">--}}
 <div class="col">
     <form action={{route('positions.show',$position->id)}} method="get">
         <div class="row">
-            <div class="col-md-3" style="background-color:yellow">
+            <div class="col">
                 {{--                datanavdiv - 103datanavbar.blade.php--}}
 
                 <!-- ************************** -->
@@ -50,7 +51,7 @@
                         <h4 class="panel-title">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a data-toggle="collapse" href="#collapseRep01">xxxx Filter list to include:</a>
+                                    <a data-toggle="collapse" href="#collapseRep01">xxxxyz Filter list to include:</a>
                                 </div>
                             </div>
                         </h4>
@@ -147,6 +148,7 @@
                             {{ csrf_field() }}
 
                         </div>
+                    </div>
                         <table class="table table-condensed">
                             <col width="3">
                             <col width="3">
@@ -215,7 +217,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+{{--        </div>--}}
     </form>
 </div>
 {{--</body>--}}
