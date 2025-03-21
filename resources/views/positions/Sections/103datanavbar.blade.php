@@ -17,7 +17,13 @@
                         <h4 class="panel-title">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a data-toggle="collapse" href="#collapseFilter01">Filter list to include:</a>
+                                    <a data-bs-toggle="collapse"
+                                       aria-expanded="true"
+                                       data-bs-target="#collapseFilter01"
+                                       role="button"
+                                       aria-controls="collapseExample">
+                                        Filter list to include:
+                                    </a>
                                 </div>
                             </div>
                         </h4>

@@ -11,4 +11,12 @@ export default defineConfig({
     build: {
         outDir: 'public/build',
     },
+    server: { // from https://github.com/laravel/framework/discussions/46928 JLB 20250320
+        watch: {
+            ignored: [
+                '**/vendor/**', // <----- WORKS PERFECTLY
+                '**/storage/**', // <----- WORKS PERFECTLY
+            ],
+        },
+    },
 });

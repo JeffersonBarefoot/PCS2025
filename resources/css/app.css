@@ -5,3 +5,7 @@
 [x-cloak] {
     display: none;
 }
+
+.card {
+    background-color: red;
+}

@@ -21,7 +21,7 @@
 @include('positions.Sections.002script')
 
 <body>
-{{--<h1 style="color:blue;text-align:center;">This is a heading</h1>--}}
+<h1>This is a heading</h1>
 {{--<main class="mt-6">--}}
 <div class="container-fluid p-2 m-5 bg-gray-100 text-gray-600">
     <div class="row  p-1 m-1">
@@ -77,7 +77,7 @@
                             {{--                        ________________________________________<br>--}}
                             {{--                        Section 1, Layout Row 8 <br>--}}
                             {{--                    @dump($position)--}}
-                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection1"
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#PosSection1"
                                role="button"
                                aria-expanded="false" aria-controls="collapseExample">
                                 Position Status:

@@ -25,8 +25,9 @@
   * Classes list:
   */
 
-  use App\Models\Post;
-  use App\Position;
+use App\Models\Position;
+use App\Models\Post;
+//  use App\Position;
   use App\HPosition;
   use App\Incumbent;
   use App\HIncumbent;
@@ -304,12 +305,17 @@ if (!function_exists('ImportPositions')) {
   function ImportPositions($incomingFile)
   {
 dump($incomingFile);
-    $fileToProcess = '/storage/app/importFiles/'.$incomingFile;
+    $fileToProcess = 'app/private/'.$incomingFile;
+      $fileToProcess = storage_path('app/private/' . $incomingFile);
+
+
+
+    //      $fileToProcess = $incomingFile;
 
     dump($fileToProcess);
 
 
-    if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE) {
+    if (($handle = fopen($fileToProcess, 'r' )) !== FALSE) {
 
       // extract headers so we can see what fields are being imported
       // the 2000 is the max line length, and is optional ("slightly slower")

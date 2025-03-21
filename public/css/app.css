@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+.card {
+    background-color: greenyellow;
+}
+
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: red;
+    margin-left: 20px;
+}
