@@ -20,6 +20,16 @@
 
 @include('positions.Sections.002script')
 
+<?php $level1Description = sessionGet('level1Desc') ?>
+<?php $level2Description = sessionGet('level2Desc') ?>
+<?php $level3Description = sessionGet('level3Desc') ?>
+<?php $level4Description = sessionGet('level4Desc') ?>
+<?php $level5Description = sessionGet('level5Desc') ?>
+
+
+
+
+
 <body>
 <h1>This is a heading</h1>
 {{--<main class="mt-6">--}}

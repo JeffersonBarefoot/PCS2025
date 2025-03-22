@@ -26,11 +26,14 @@
   */
 
 use App\Models\Position;
+use App\Models\HPosition;
+use App\Models\Incumbent;
+use App\Models\HIncumbent;
 use App\Models\Post;
 //  use App\Position;
-  use App\HPosition;
-  use App\Incumbent;
-  use App\HIncumbent;
+//  use App\HPosition;
+//  use App\Incumbent;
+//  use App\HIncumbent;
   use Illuminate\Support\Facades\Schema\columns;
   use Illuminate\Support\Facades\DB;
 
@@ -304,18 +307,8 @@ if (!function_exists('ImportPositions')) {
   //***************************************************
   function ImportPositions($incomingFile)
   {
-dump($incomingFile);
-    $fileToProcess = 'app/private/'.$incomingFile;
       $fileToProcess = storage_path('app/private/' . $incomingFile);
-
-
-
-    //      $fileToProcess = $incomingFile;
-
-    dump($fileToProcess);
-
-
-    if (($handle = fopen($fileToProcess, 'r' )) !== FALSE) {
+      if (($handle = fopen($fileToProcess, 'r' )) !== FALSE) {
 
       // extract headers so we can see what fields are being imported
       // the 2000 is the max line length, and is optional ("slightly slower")
@@ -392,7 +385,7 @@ if (!function_exists('ImportHPositions')) {
   function ImportHPositions($incomingFile)
   {
 
-    $fileToProcess = '../storage/app/importFiles/'.$incomingFile;
+      $fileToProcess = storage_path('app/private/' . $incomingFile);
     if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE) {
 
       // extract headers so we can see what fields are being imported
@@ -469,8 +462,9 @@ if (!function_exists('ImportIncumbents')) {
   //***************************************************
   function ImportIncumbents($incomingFile)
   {
-    $fileToProcess = '../storage/app/importFiles/'.$incomingFile;
-    if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE) {
+      $fileToProcess = storage_path('app/private/' . $incomingFile);
+//    if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE)
+    if (($handle = fopen($fileToProcess, 'r' )) !== FALSE) {
 
       // extract headers so we can see what fields are being imported
       $header = fgetcsv($handle, 2000, ',');
@@ -545,7 +539,7 @@ if (!function_exists('ImportHIncumbents')) {
   //***************************************************
   function ImportHIncumbents($incomingFile)
   {
-    $fileToProcess = '../storage/app/importFiles/'.$incomingFile;
+      $fileToProcess = storage_path('app/private/' . $incomingFile);
     if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE) {
 
       // extract headers so we can see what fields are being imported

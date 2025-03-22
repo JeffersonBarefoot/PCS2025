@@ -63,8 +63,8 @@ class CreatePcincumhTable extends Migration
           $table->string('sex',10);
           $table->string('education',30);
           $table->string('historyreason',4000)->default('');
-          $table->date('historystart');
-          $table->date('historyend');
+          $table->date('historystart')->default('2000-01-01');
+          $table->date('historyend')->default('2999-12-31');
         });
     }
 

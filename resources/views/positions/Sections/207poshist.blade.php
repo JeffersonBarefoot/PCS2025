@@ -214,16 +214,16 @@
                     <td>{{round($vphd->ftehours,3)}}</td>
                     <td></td>
                     <td>Budg Pay Rate</td>
-                    <td>{{formatdollars($vphd->payrate)}}</td>
+{{--                    <td>{{formatdollars($vphd->payrate)}}</td>--}}
                 </tr>
 
                 <tr>
                     <td>FTEs for Position</td>
-                    <td>{{round($vphd->fulltimeequiv,3)}}</td>
+{{--                    <td>{{round($vphd->fulltimeequiv,3)}}</td>--}}
                     <td><img src="/images/ArrowRight.jpg" width="50" height="15">
                     </td>
                     <td>FTEs for Position</td>
-                    <td>{{round($vphd->fulltimeequiv,3)}}</td>
+{{--                    <td>{{round($vphd->fulltimeequiv,3)}}</td>--}}
                 </tr>
 
                 <tr>
@@ -231,7 +231,7 @@
                     <td></td>
                     <td></td>
                     <td>Budg Annual Cost</td>
-                    <td>{{formatdollars($vphd->budgsal)}}</td>
+{{--                    <td>{{formatdollars($vphd->budgsal)}}</td>--}}
                 </tr>
 
 
@@ -245,6 +245,14 @@
                         <th width="25%"></th>
                     </tr>
                     </thead>
+
+
+
+{{--                        <?php $level1Description = sessionGet('level1Desc') ?>--}}
+
+
+
+
 
                     <tr>
                         <td>{{$level1Description}}</td>

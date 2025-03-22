@@ -24,22 +24,10 @@ class UploadFileController extends Controller
             // file name is passed in $request as importFileName
             // storeAs([folder],[saveAsName]) is specifying then subfolder to save the upload in...so storage\app\importFiles\*.*
             $user = auth()->user();
-            dump($user);
             $teamId = $user->currentTeam->id;
-            dump($teamId);
             $newFileName = 'setupPosi_Team=' . $teamId . '_' . getTimestamp() . '.csv';
             $newFileName2 = $newFileName;
-//            $newFileName2 = "TestFileName";
-
-//            $request->importFileName1->storeAs('storage.app.importFiles',$newFileName);
             $request->importFileName1->storeAs($newFileName);
-//            $request->importFileName1->storeAs("TestFileName");
-
-
-
-            dump($newFileName);
-            dump($request->importFileName1);
-            dump($newFileName2);
             ImportPositions($newFileName2);
         }
 
@@ -51,7 +39,7 @@ class UploadFileController extends Controller
             $teamId = $user->currentTeam->id;
             $newFileName = 'setupPosH_Team=' . $teamId . '_' . getTimestamp() . '.csv';
             $newFileName2 = $newFileName;
-            $request->importFileName2->storeAs('importFiles', $newFileName);
+            $request->importFileName2->storeAs($newFileName);
             ImportHPositions($newFileName2);
         }
 
@@ -63,7 +51,11 @@ class UploadFileController extends Controller
             $teamId = $user->currentTeam->id;
             $newFileName = 'setupIncu_Team=' . $teamId . '_' . getTimestamp() . '.csv';
             $newFileName2 = $newFileName;
-            $request->importFileName3->storeAs('importFiles', $newFileName);
+//            dump($user);
+//            dump($teamId);
+//            dump($newFileName);
+//            dump($newFileName2);
+            $request->importFileName3->storeAs($newFileName);
             ImportIncumbents($newFileName2);
         }
 
@@ -75,7 +67,7 @@ class UploadFileController extends Controller
             $teamId = $user->currentTeam->id;
             $newFileName = 'setupIncH_Team=' . $teamId . '_' . getTimestamp() . '.csv';
             $newFileName2 = $newFileName;
-            $request->importFileName4->storeAs('importFiles', $newFileName);
+            $request->importFileName4->storeAs($newFileName);
             ImportHIncumbents($newFileName2);
         }
 
@@ -88,7 +80,7 @@ class UploadFileController extends Controller
             $teamId = $user->currentTeam->id;
             $newFileName = 'setupIncH_Team=' . $teamId . '_' . getTimestamp() . '.csv';
             $newFileName2 = $newFileName;
-            $request->importFileName5->storeAs('importFiles', $newFileName);
+            $request->importFileName5->storeAs($newFileName);
             ImportIncumbentChanges($newFileName2);
         }
 
