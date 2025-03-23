@@ -8,16 +8,4 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    build: {
-        outDir: 'public/build',
-    },
-    server: { // from https://github.com/laravel/framework/discussions/46928 JLB 20250320
-        port: 5173,
-        watch: {
-            ignored: [
-                '**/vendor/**', // <----- WORKS PERFECTLY
-                '**/storage/**', // <----- WORKS PERFECTLY
-            ],
-        },
-    },
 });
