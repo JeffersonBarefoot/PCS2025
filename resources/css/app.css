@@ -6,6 +6,44 @@
     display: none;
 }
 
-.card {
-    background-color: red;
+/*.card {*/
+
+/*    xxx*/
+/*    background-color: greenyellow;*/
+/*}*/
+
+/* resources/css/app.css */
+/*body {*/
+/*    background-color: greenyellow;*/
+/*    font-family: 'Nunito', sans-serif;*/
+/*}*/
+
+/*h1 {*/
+/*    color: #333;*/
+/*}*/
+
+/* resources/css/app.css */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.test-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
 }
