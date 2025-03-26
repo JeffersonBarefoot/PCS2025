@@ -24,7 +24,7 @@
 
 /* resources/css/app.css */
 body {
-    background-color: #f0f0f0;
+    background-color: red;
     font-family: Arial, sans-serif;
 }
 
@@ -38,19 +38,20 @@ body {
 }
 
 h1 {
-    color: orange;
-    font-size: xxx-large;
+    color: greenyellow;
+    font-size: x
+    -large;
     background-color: lightblue;
     text-align: left;
 }
 
 p {
-    color: red;
+    color: redorange;
     font-size: 16px;
     line-height: 1.5;
 }
 
 .card {
-    background-color: orangered;
+    background-color: yellow;
 
 }
