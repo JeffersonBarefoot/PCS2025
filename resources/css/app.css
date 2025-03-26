@@ -38,7 +38,7 @@ body {
 }
 
 h1 {
-    color: black;
+    color: orange;
     font-size: xxx-large;
     background-color: lightblue;
     text-align: left;
@@ -51,6 +51,6 @@ p {
 }
 
 .card {
-    background-color: red;
+    background-color: blue;
 
 }
