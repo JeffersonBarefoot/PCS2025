@@ -17,18 +17,16 @@
                         <h4 class="panel-title">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a data-bs-toggle="collapse"
-                                       aria-expanded="true"
-                                       data-bs-target="#collapseFilter01"
+                                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseFilter01"
                                        role="button"
-                                       aria-controls="collapseExample">
-                                        Filter list to include:
+                                       aria-expanded="false" aria-controls="collapseExample">
+                                        Filter Positions
                                     </a>
                                 </div>
                             </div>
                         </h4>
                     </div>
-                    <div id="collapseFilter01" class="panel-collapse">
+                    <div id="collapseFilter01" class="collapse">
                         <div class="card card-body">
 
                             <?php $posNavbarCompanyQuery = Session::get('posNavbarCompanyQuery') ?>

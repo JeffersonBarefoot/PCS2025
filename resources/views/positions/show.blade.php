@@ -298,15 +298,15 @@
                     {{--                    </div>--}}
                     {{--                </div>--}}
 
-                    Row18 ***********************************************
+{{--                    Row18 ***********************************************--}}
                     <div class="row">
                         <p>
-                            ________________________________________<br>
-                            Section 11, Layout Row 18<br>
+{{--                            ________________________________________<br>--}}
+{{--                            Section 11, Layout Row 18<br>--}}
                             <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection11"
                                role="button"
                                aria-expanded="false" aria-controls="collapseExample">
-                                Allocations
+                                Tools
                             </a>
                         </p>
                         <div class="collapse" id="PosSection11">
