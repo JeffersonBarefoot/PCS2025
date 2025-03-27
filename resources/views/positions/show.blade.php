@@ -25,17 +25,7 @@
 <?php $level3Description = sessionGet('level3Desc') ?>
 <?php $level4Description = sessionGet('level4Desc') ?>
 <?php $level5Description = sessionGet('level5Desc') ?>
-
-
-
-
-
 <body>
-<h1>This is a heading - - - - - Not</h1>
-<div class="test-container">
-    <h1>Hello, Vite!</h1>
-    <p>This is a test paragraph to check CSS styling.</p>
-</div>
 {{--<main class="mt-6">--}}
 <div class="container-fluid p-2 m-5 bg-gray-100 text-gray-600">
     <div class="row  p-1 m-1">

@@ -6,25 +6,9 @@
     display: none;
 }
 
-/*.card {*/
-
-/*    xxx*/
-/*    background-color: greenyellow;*/
-/*}*/
-
-/* resources/css/app.css */
-/*body {*/
-/*    background-color: greenyellow;*/
-/*    font-family: 'Nunito', sans-serif;*/
-/*}*/
-
-/*h1 {*/
-/*    color: #333;*/
-/*}*/
-
-/* resources/css/app.css */
+/*Standard page body*/
 body {
-    background-color: yellow;
+    background-color: #d0d3d4 ;
     font-family: Arial, sans-serif;
 }
 
@@ -37,6 +21,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/*Standard page headers*/
 h1 {
     color: blue;
     font-size: large;
@@ -46,15 +31,47 @@ h1 {
 
 p {
     color: lightblue;
-    font-size: 16px;
+    font-size: 48px;
     line-height: 1.5;
 }
 
 .card {
-    background-color: lightgreen;
-
+    background-color: #f0f3f4;
 }
 
 .collapse {
     visibility: visible;
+}
+
+/*Collapsible Panels*/
+.panel-body {
+    visibility: visible;
+}
+
+.btn {
+    /*background-color: #d0d3d4;*/
+    background-color: pink;
+    color: dimgrey;
+    margin-top: 5;
+    margin-bottom: 5;
+    height: 38px;
+    width: 50%;
+    border-width: 3;
+}
+
+table, tbody, tr, th, td {
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+table {
+    border-width: 5;
+    border: #ff61f7;
+}
+
+.form-control {
+    background-color: whitesmoke;
+}
+
+th, td {
+    background-color: transparent;
 }

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col">
                 {{--        <div class="container-fluid">--}}
-                <table class="table-small text-bg-light">
+                <table class="table">
                     {{--        <div class="container-fluid">--}}
                     {{--            <table class="table table-small">--}}
                     <thead>
@@ -99,7 +99,7 @@
             <!-- *************************** -->
             <!-- Right div contains xxxxxxxxxxxxxxxxxxxxxx -->
             <div class="col">
-                <table class="table-small text-bg-light">
+                <table class="table">
                     <thead>
                     <tr>
                         <th width="45%">Reference Dates</th>
@@ -135,9 +135,9 @@
     </div>
 
 
-    <div class="row p-2 m-2">
+    <div class="row">
         <div class="col">
-            <table class="table table-condensed">
+            <table class="table">
                 <thead>
                 <tr>
                     <th width="30%">Capacity Status</th>
@@ -185,7 +185,7 @@
         </div>
 
         <div class="col-md-6">
-            <table class="table table-condensed">
+            <table class="table">
                 <thead>
                 <tr>
                     <th width="45%">Vacancy Statistics</th>

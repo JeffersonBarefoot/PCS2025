@@ -17,7 +17,7 @@
                         <h4 class="panel-title">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseFilter01"
+                                    <a class="btn" data-bs-toggle="collapse" href="#collapseFilter01"
                                        role="button"
                                        aria-expanded="false" aria-controls="collapseExample">
                                         Filter Positions
