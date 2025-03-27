@@ -6,55 +6,106 @@
     display: none;
 }
 
-/*.card {*/
+/*////////////DEFAULT VARIABLES/////////////*/
+/*This sets the color theme default colors, which can then be
+assigned to multiple classes of objects below*/
+:root {
+    --default-background-color: #d6dbdf;
+    --default-button-color: whitesmoke;
+    --default-button-background-color: darkgray;
+    --default-navtree-background-color: pink ;
+}
 
-/*    xxx*/
-/*    background-color: greenyellow;*/
-/*}*/
-
-/* resources/css/app.css */
-/*body {*/
-/*    background-color: greenyellow;*/
-/*    font-family: 'Nunito', sans-serif;*/
-/*}*/
-
-/*h1 {*/
-/*    color: #333;*/
-/*}*/
-
-/* resources/css/app.css */
-body {
-    background-color: yellow;
-    font-family: Arial, sans-serif;
+/*//////////////CONTAINERS//////////////*/
+.container-fluid{
+    padding: 0;
 }
 
 .test-container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: orange;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/*/////////////// TYPICAL HTML COMPONENTS ////////////////*/
+/*Standard page body*/
+body {
+    /*background-color: #d0d3d4 ;*/
+    background-color: var(--default-background-color);
+    font-family: Arial, sans-serif;
+}
+
+/*Standard page headers*/
 h1 {
     color: blue;
     font-size: large;
-    background-color: lightblue;
+    background-color: var(--default-background-color);
     text-align: left;
 }
 
 p {
     color: lightblue;
-    font-size: 16px;
+    font-size: 48px;
     line-height: 1.5;
 }
 
-.card {
-    background-color: lightgreen;
+.text-input-box {
+    /*background-color: var(--default-background-color);*/
+    /*background-color: orange;*/
+    height: 22px;
+    margin: 1px;
+    border-color: #888888;
+}
 
+
+/*///////////// COLLAPSIBLE SECTIONS //////////////*/
+.card {
+    background-color: var(--default-background-color);
 }
 
 .collapse {
     visibility: visible;
 }
+
+/*Collapsible Panels*/
+.panel-body {
+    visibility: visible;
+}
+
+/*///////////// MISC COMPONENTS ///////////////*/
+.btn {
+    background-color: var(--default-button-background-color);
+    /*background-color: pink;*/
+    color: var(--default-background-color);
+    margin-top: 0;
+    margin-bottom: 5px;
+    height: 38px;
+    width: 50%;
+    border-width: 3px;
+}
+
+/*////////// TABLES /////////////*/
+.table {
+    border: 2px solid;
+    border-spacing: 10px;
+    width:100%;
+    outline: magenta 80px;
+}
+table, tbody, tr, th, td {
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+td {
+    height: 22px;
+}
+
+/*////////// ONE OFF OBJECTS /////////////*/
+#datanavbar{
+    background-color: var(--default-navtree-background-color);
+    min-width: 400px;
+}
+
+
+

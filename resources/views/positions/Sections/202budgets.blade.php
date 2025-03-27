@@ -4,17 +4,17 @@ PosSection2<br>
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="30%">Full Time Equivalents</th>
-                <th width="30%"></th>
-                <th width="10%"></th>
-                <th width="10%"></th>
-                <th width="40%"></th>
+                <th width:30%>Full Time Equivalents</th>
+                <th width:30%></th>
+                <th width:10%></th>
+                <th width:10%></th>
+                <th width:40%></th>
             </tr>
             </thead>
 
             <tr>
                 <td>Annual FTE Basis</td>
-                <td><input type="text" class="form-control" name="annftehour" id="annftehour"
+                <td><input type="text" class="text-input-box" name="annftehour" id="annftehour"
                            value="{{$position->annftehour}}"
                            onChange="updateBudgetValues()" {{$readonly}}></td>
                 <td><span class="glyphicon glyphicon-question-sign fa-20x" data-toggle="tooltip"
@@ -29,11 +29,11 @@ PosSection2<br>
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="30%">Costs</th>
-                <th width="30%"></th>
-                <th width="10%"></th>
-                <th width="10%"></th>
-                <th width="40%"></th>
+                <th width:30%>Costs</th>
+                <th width:30%></th>
+                <th width:10%></th>
+                <th width:10%></th>
+                <th width:40%></th>
             </tr>
             </thead>
         </table>
@@ -44,8 +44,8 @@ PosSection2<br>
     <div class="col-md-6">
         <table class="table table-condensed">
             <tr>
-                <td width="30%">FTE Calculation Frequency</td>
-                <td width="30%"><input type="text" class="form-control" name="ftefreq" id="ftefreq"
+                <td width:30%>FTE Calculation Frequency</td>
+                <td width:30%><input type="text" class="text-input-box" name="ftefreq" id="ftefreq"
                                        value="{{$position->ftefreq}}"
                                        onChange="updateBudgetValues()" {{$readonly}}></td>
                 <td><span class="glyphicon glyphicon-question-sign fa-20x" data-toggle="tooltip"
@@ -58,7 +58,7 @@ PosSection2<br>
 
             <tr>
                 <td>FTE Hours</td>
-                <td><input type="text" class="form-control" id="ftehours" name="ftehours"
+                <td><input type="text" class="text-input-box" id="ftehours" name="  ftehours"
                            value="{{round($position->ftehours,3)}}"
                            onChange="updateBudgetValues()" {{$readonly}}></td>
                 <td><span class="glyphicon glyphicon-question-sign fa-20x" data-toggle="tooltip"
@@ -69,22 +69,22 @@ PosSection2<br>
 
             <tr>
                 <td>FTEs for this position</td>
-                <td><input type="text" class="form-control" id="fulltimeequiv" name="fulltimeequiv"
+                <td><input type="text" class="text-input-box" id="fulltimeequiv" name="fulltimeequiv"
                            value="{{round($position->fulltimeequiv,3)}}" readonly></td>
                 <td></td>
-                <td><img src="/images/ArrowRight.jpg" width="50" height="15"></td>
+                <td><img src="/public/images/ArrowRight.jpg" width="50" height="15"></td>
 
             </tr>
         </table>
     </div>
 
     <!-- *************************** -->
-    <!-- Right div contains xxxxxxxxxxxxxxxxxxxxxx -->
+    <!-- Right div contains  -->
     <div class="col-md-6">
         <table class="table table-condensed">
             <tr>
-                <td width="30%">Pay Frequency</td>
-                <td width="30%"><input type="text" class="form-control" id="payfreq" name="payfreq"
+                <td width:30%>Pay Frequency</td>
+                <td width:30%><input type="text" class="text-input-box" id="payfreq" name="payfreq"
                                        value="{{$position->payfreq}}"
                                        onChange="updateBudgetValues()" {{$readonly}}></td>
                 <td><span class="glyphicon glyphicon-question-sign fa-20x" data-toggle="tooltip"
@@ -92,8 +92,8 @@ PosSection2<br>
                           title="The frequency that, when combined with the budgeted pay rate, calculates the annual cost of ONE FULL TIME incumbent in this position.  Example:  $19.00 per hour, or $58,000 annually.
                         Options are H(ourly), W(eekly), B(iweekly - every other week), S(emi-Monthly, twice a month), M(onthly), or A(nnually)."
                     ></span></td>
-                <td width="10%"></td>
-                <td width="40%"></td>
+                <td width:10%></td>
+                <td width:40%></td>
             </tr>
             <!-- <tr>
               <td>Pay Frequency</td>
@@ -102,7 +102,7 @@ PosSection2<br>
             </tr> -->
             <tr>
                 <td>x Budgeted Pay Rate</td>
-                <td><input type="text" class="form-control" id="payrate" name="payrate"
+                <td><input type="text" class="text-input-box" id="payrate" name="payrate"
                            value="{{FormatDollars($position->payrate)}}"
                            onChange="updateBudgetValues()" {{$readonly}}></td>
                 <td><span class="glyphicon glyphicon-question-sign fa-20x" data-toggle="tooltip"
@@ -113,7 +113,7 @@ PosSection2<br>
 
             <tr>
                 <td>x Budgeted FTEs</td>
-                <td><input type="text" class="form-control" id="dummyfulltimeequiv"
+                <td><input type="text" class="text-input-box" id="dummyfulltimeequiv"
                            name="dummyfulltimeequiv" value="{{round($position->fulltimeequiv,3)}}"
                            readonly></td>
                 <td></td>
@@ -121,7 +121,7 @@ PosSection2<br>
 
             <tr>
                 <td>= Budgeted Annual Cost</td>
-                <td><input type="text" class="form-control" id="budgsal" name="budgsal"
+                <td><input type="text" class="text-input-box" id="budgsal" name="budgsal"
                            value="{{FormatDollars($position->budgsal)}}" readonly></td>
                 <td></td>
             </tr>

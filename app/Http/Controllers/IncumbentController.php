@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\incumbent;
-use App\hincumbent;
+use App\Models\incumbent;
+use App\Models\hincumbent;
 use Session;
 use Auth;
 use Illuminate\Support\Facades\Schema\columns;

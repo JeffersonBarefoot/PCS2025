@@ -6,7 +6,7 @@
         @if ($readonly=='readonly')
             {{$position->descr}}
         @else
-            <input type="text" class="form-control" name="descr" value="{{$position->descr}}">
+            <input type="text" class="text-input-box" name="descr" value="{{$position->descr}}">
         @endif
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <small>{{$position->company}} / {{$position->posno}}</small>

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Position;
 use Illuminate\View\View;
-use App\HPosition;
-use App\Incumbent;
+use App\Models\HPosition;
+use App\Models\Incumbent;
 use Session;
 use Auth;
 use Illuminate\Support\Facades\Schema\columns;
@@ -54,7 +54,7 @@ class PositionController extends Controller
         Session::put('level3Desc', $user->currentTeam->Level3Desc);
         Session::put('level4Desc', $user->currentTeam->Level4Desc);
         Session::put('level5Desc', $user->currentTeam->Level5Desc);
-         dump($user->currentTeam->Level1Desc);
+//         dump($user->currentTeam->Level1Desc);
 
         // if sess var positionID is null, then this is a fresh launch.  Save the current ID to the session variable
         $sessionPositionID = Session::get('positionID');
@@ -487,7 +487,7 @@ class PositionController extends Controller
         Session::put('viewinchistid', $viewinchistid);
         Session::put('viewPosHistId', '');
 
-        dump("7:  ".getTimestamp());
+//        dump("7:  ".getTimestamp());
 
 
 //        return view('positions.show')

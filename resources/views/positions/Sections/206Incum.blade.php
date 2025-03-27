@@ -5,12 +5,12 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="40%">Started</th>
-                <th width="10%">Status</th>
-                <th width="10%">FTE</th>
-                <th width="40%">Name</th>
-                <!-- <th width="15%"></th>
-                <th width="30%"></th> -->
+                <th width:40%>Started</th>
+                <th width:10%>Status</th>
+                <th width:10%>FTE</th>
+                <th width:40%>Name</th>
+                <!-- <th width:15%></th>
+                <th width:30%></th> -->
             </tr>
             </thead>
 
@@ -41,10 +41,10 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="40%">Record Created</th>
-                <th width="10%">Status</th>
-                <th width="10%">FTE</th>
-                <th width="40%">Ann Cost</th>
+                <th width:40%>Record Created</th>
+                <th width:10%>Status</th>
+                <th width:10%>FTE</th>
+                <th width:40%>Ann Cost</th>
             </tr>
             </thead>
             <tr>
@@ -87,11 +87,11 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="25%">Status</th>
-                <th width="25%"></th>
-                <th width="0%"></th>
-                <th width="25%"></th>
-                <th width="25%"></th>
+                <th width:25%>Status</th>
+                <th width:25%></th>
+                <th width:0%></th>
+                <th width:25%></th>
+                <th width:25%></th>
             </tr>
             </thead>
             @foreach($viewIncumbentDetails as $IncDet)
@@ -124,11 +124,11 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="25%">Budget</th>
-                <th width="25%"></th>
-                <th width="0%"></th>
-                <th width="25%"></th>
-                <th width="25%"></th>
+                <th width:25%>Budget</th>
+                <th width:25%></th>
+                <th width:0%></th>
+                <th width:25%></th>
+                <th width:25%></th>
             </tr>
             </thead>
 
@@ -168,11 +168,11 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="25%">Organization</th>
-                <th width="25%"></th>
-                <th width="0%"></th>
-                <th width="25%"></th>
-                <th width="25%"></th>
+                <th width:25%>Organization</th>
+                <th width:25%></th>
+                <th width:0%></th>
+                <th width:25%></th>
+                <th width:25%></th>
             </tr>
             </thead>
 
@@ -212,11 +212,11 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="25%">Data Updates</th>
-                <th width="25%"></th>
-                <th width="0%"></th>
-                <th width="25%"></th>
-                <th width="25%"></th>
+                <th width:25%>Data Updates</th>
+                <th width:25%></th>
+                <th width:0%></th>
+                <th width:25%></th>
+                <th width:25%></th>
             </tr>
             </thead>
 

@@ -46,7 +46,7 @@
                 <table class="table table-condensed">
                     <tr>
                         <td>{{$level1Description}}</td>
-                        <td><input type="text" class="form-control" name="Level1"
+                        <td><input type="text" class="text-input-box" name="Level1"
                                    value="{{$position->level1}}" {{$readonly}}></td>
                         <td width="10%">
                         <td width="10%">
@@ -55,25 +55,25 @@
 
                     <tr>
                         <td>{{$level2Description}}</td>
-                        <td><input type="text" class="form-control" name="Level2"
+                        <td><input type="text" class="text-input-box" name="Level2"
                                    value="{{$position->level2}}" {{$readonly}}></td>
                     </tr>
 
                     <tr>
                         <td>{{$level3Description}}</td>
-                        <td><input type="text" class="form-control" name="Level3"
+                        <td><input type="text" class="text-input-box" name="Level3"
                                    value="{{$position->level3}}" {{$readonly}}></td>
                     </tr>
 
                     <tr>
                         <td>{{$level4Description}}</td>
-                        <td><input type="text" class="form-control" name="Level4"
+                        <td><input type="text" class="text-input-box" name="Level4"
                                    value="{{$position->level4}}" {{$readonly}}></td>
                     </tr>
 
                     <tr>
                         <td>{{$level5Description}}</td>
-                        <td><input type="text" class="form-control" name="Level5"
+                        <td><input type="text" class="text-input-box" name="Level5"
                                    value="{{$position->level5}}" {{$readonly}}></td>
                     </tr>
                 </table>

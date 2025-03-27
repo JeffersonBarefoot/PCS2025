@@ -5,9 +5,9 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="1%"></th>
-                <th width="68%">Reports Directly To:</th>
-                <th width="30%">
+                <th width:1%></th>
+                <th width:68%>Reports Directly To:</th>
+                <th width:30%>
 
 
                     @if ($readonly == "")
@@ -66,7 +66,7 @@
     </div>
 
     </th>
-    <th width="1%"></th>
+    <th width:1%></th>
     </tr>
     </thead>
     <tr>
@@ -88,9 +88,9 @@
     <table class="table table-condensed">
         <thead>
         <tr>
-            <th width="1%"></th>
-            <th width="68%">Reports Indirectly To:</th>
-            <th width="30%">
+            <th width:1%></th>
+            <th width:68%>Reports Indirectly To:</th>
+            <th width:30%>
 
 
                 @if ($readonly == "")
@@ -149,7 +149,7 @@
 </div>
 
 </th>
-<th width="1%"></th>
+<th width:1%></th>
 </tr>
 </thead>
 <tr>
