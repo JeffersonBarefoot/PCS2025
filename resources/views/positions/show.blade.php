@@ -94,7 +94,7 @@
                                 {{ ucwords(strtolower($position->curstatus)) }}
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection1">
+                        <div class="collapse show" id="PosSection1">
                             <div class="card">
                                 <div class="card-body">
                                     @include('positions.Sections.201Status')
@@ -151,12 +151,6 @@
                         </p>
                         <div class="collapse" id="PosSection4">
                             <div class="card card-body">
-                                <<<<<<< HEAD
-                                xxSome placeholder content for the collapse component. This panel is hidden by
-                                default
-                                but
-                                revealed when the user activates the relevant trigger.
-                                =======
                                 @include('positions.Sections.204orglevels')
                             </div>
                         </div>

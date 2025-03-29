@@ -55,7 +55,7 @@ class PositionController extends Controller
         Session::put('level4Desc', $user->currentTeam->Level4Desc);
         Session::put('level5Desc', $user->currentTeam->Level5Desc);
 //         dump($user->currentTeam->Level1Desc);
-         dump($user->currentTeam);
+//         dump($user->currentTeam);
 
         // if sess var positionID is null, then this is a fresh launch.  Save the current ID to the session variable
         $sessionPositionID = Session::get('positionID');
