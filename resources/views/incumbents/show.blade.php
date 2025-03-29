@@ -15,7 +15,7 @@
 {{--<!-- note that for UNCHECKED radio buttons you have to use [disabled] instead of [readonly].  CHECKED radio buttons remain active-->--}}
 <?php $readonly = Session::get('readOnlyText') ?>
 <?php $disabled = Session::get('disabledText') ?>
-<?php $expandPositionHistory = Session::get('ExpandPositionHistory') ?>
+<?php $expandincumbentHistory = Session::get('ExpandincumbentHistory') ?>
 <?php $expandIncumbentHistory = Session::get('ExpandIncumbentHistory') ?>
 
 @include('Common.002script')
@@ -30,7 +30,7 @@
 <div class="container-fluid p-2 m-5 bg-gray-100 text-gray-600">
     <div class="row  p-1 m-1">
         {{--@dump($request)--}}
-        {{--{{ Form::model($position, array('route' => array('positions.update', $position->id), 'method' => 'PUT')) }}--}}
+        {{--{{ Form::model($incumbent, array('route' => array('incumbents.update', $incumbent->id), 'method' => 'PUT')) }}--}}
 
         <!-- *************************** -->
         <!-- ************************** -->
@@ -59,7 +59,7 @@
                 {{--                Row04 DataNavBar filters, Row05 DataNavBar records (pulls in by include)--}}
                 <div class="row">
                     <div class="col">
-                        @include('positions.Sections.103datanavbar')
+                        @include('incumbents.Sections.103datanavbar')
                     </div>
                 </div>
                 {{--            </div>--}}
@@ -67,9 +67,9 @@
             </div>
 
             <div class="col sm-9  p-5 m-1">
-                {{--                        XXX TOP OF DATA COLUMN...all position specific data in collapsible panels--}}
+                {{--                        XXX TOP OF DATA COLUMN...all incumbent specific data in collapsible panels--}}
                 <div class="row">
-                    @include('positions.Sections.101Titles')
+                    @include('incumbents.Sections.101Titles')
                 </div>
 
                 {{--column c6--}}
@@ -80,24 +80,24 @@
                         <p>
                             {{--                        ________________________________________<br>--}}
                             {{--                        Section 1, Layout Row 8 <br>--}}
-                            {{--                    @dump($position)--}}
+                            {{--                    @dump($incumbent)--}}
                             <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#PosSection1"
                                role="button"
                                aria-expanded="false" aria-controls="collapseExample">
-                                Position Status:
+                                incumbent Status:
                                 Currently
-                                @if ($position->active=="A")
+                                @if ($incumbent->active=="A")
                                     Active,
                                 @else
                                     Inactive,
                                 @endif
-                                {{ ucwords(strtolower($position->curstatus)) }}
+                                {{ ucwords(strtolower($incumbent->curstatus)) }}
                             </a>
                         </p>
                         <div class="collapse" id="PosSection1">
                             <div class="card">
                                 <div class="card-body">
-                                    @include('positions.Sections.201Status')
+                                    @include('incumbents.Sections.201Status')
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                         </p>
                         <div class="collapse" id="PosSection2">
                             <div class="card card-body">
-                                @include('positions.Sections.202budgets')
+{{--                                @include('incumbents.Sections.202budgets')--}}
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                     {{--                    </p>--}}
                     {{--                    <div class="collapse" id="PosSection3">--}}
                     {{--                        <div class="card card-body">--}}
-                    {{--                            @include('positions.Sections.203budvar')--}}
+                    {{--                            @include('incumbents.Sections.203budvar')--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
                     {{--                </div>--}}
@@ -157,7 +157,7 @@
                                 but
                                 revealed when the user activates the relevant trigger.
                                 =======
-                                @include('positions.Sections.204orglevels')
+{{--                                @include('incumbents.Sections.204orglevels')--}}
                             </div>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
                         <div class="collapse" id="PosSection5">
                             <div class="card">
                                 <div class="card card-body">
-                                    @include('positions.Sections.205reportsto')
+{{--                                    @include('incumbents.Sections.205reportsto')--}}
                                 </div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                         </p>
                         <div class="collapse" id="PosSection6">
                             <div class="card card-body">
-                                @include('positions.Sections.206Incum')
+{{--                                @include('incumbents.Sections.206Incum')--}}
                             </div>
                         </div>
                     </div>
@@ -208,12 +208,12 @@
                             <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection7"
                                role="button"
                                aria-expanded="false" aria-controls="collapseExample">
-                                Position History
+                                incumbent History
                             </a>
                         </p>
                         <div class="collapse" id="PosSection7">
                             <div class="card card-body">
-                                @include('positions.Sections.207poshist')
+{{--                                @include('incumbents.Sections.207poshist')--}}
                             </div>
                         </div>
                     </div>
@@ -230,7 +230,7 @@
                     {{--                    </p>--}}
                     {{--                    <div class="collapse" id="PosSection8">--}}
                     {{--                        <div class="card card-body">--}}
-                    {{--                            @include('positions.Sections.208userdef')--}}
+                    {{--                            @include('incumbents.Sections.208userdef')--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
                     {{--                </div>--}}
@@ -247,7 +247,7 @@
                     {{--                    </p>--}}
                     {{--                    <div class="collapse" id="PosSection9">--}}
                     {{--                        <div class="card card-body">--}}
-                    {{--                            @include('positions.Sections.209funding')--}}
+                    {{--                            @include('incumbents.Sections.209funding')--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
                     {{--                </div>--}}
@@ -265,7 +265,7 @@
                     {{--                    </p>--}}
                     {{--                    <div class="collapse" id="PosSection10">--}}
                     {{--                        <div class="card card-body">--}}
-                    {{--                            @include('positions.Sections.210succession')--}}
+                    {{--                            @include('incumbents.Sections.210succession')--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
                     {{--                </div>--}}
@@ -283,7 +283,7 @@
                     {{--                    </p>--}}
                     {{--                    <div class="collapse" id="PosSection11">--}}
                     {{--                        <div class="card card-body">--}}
-                    {{--                            @include('positions.Sections.211alloc')--}}
+                    {{--                            @include('incumbents.Sections.211alloc')--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
                     {{--                </div>--}}
@@ -301,7 +301,7 @@
                         </p>
                         <div class="collapse" id="PosSection11">
                             <div class="card card-body">
-                                @include('positions.Sections.900importtools')
+{{--                                @include('incumbents.Sections.900importtools')--}}
                             </div>
                         </div>
                     </div>

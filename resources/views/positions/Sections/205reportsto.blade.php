@@ -175,10 +175,12 @@
 <!-- "divider section with lines" -->
 <div class="row">
     <div class="col-md-5" align="center">
-        <img src="/images/ArrowUp.jpg" width="15" height="50">
+        <span style='font-size:70px;'>&uarr;</span>
     </div>
     <div class="col-md-1"></div>
-    <div class="col-md-5"></div>
+    <div class="col-md-5" align="left">
+        <span style='font-size:70px;'>&#8663;</span>
+    </div>
     <div class="col-md-1"></div>
 </div>
 
@@ -202,7 +204,7 @@
         </table>
     </div>
     <div class="col-md-7" align="left">
-        <img src="/images/ArrowDottedUpUp.jpg" width="50" height="120">
+{{--        <img src="/images/ArrowDottedUpUp.jpg" width="50" height="120">--}}
     </div>
 </div>
 
@@ -211,10 +213,12 @@
 <!-- "divider section with lines" -->
 <div class="row">
     <div class="col-md-5" align="center">
-        <img src="/images/ArrowUp.jpg" width="15" height="50">
+        <span style='font-size:70px;'>&uarr;</span>
     </div>
     <div class="col-md-1"></div>
-    <div class="col-md-5"></div>
+    <div class="col-md-5" align="left">
+        <span style='font-size:70px;'>&#8662;</span>
+    </div>
     <div class="col-md-1"></div>
 </div>
 

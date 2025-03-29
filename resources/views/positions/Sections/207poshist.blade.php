@@ -4,11 +4,11 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="25%">Most recent changes</th>
-                <th width="25%"></th>
-                <th width="0%"></th>
-                <th width="25%"></th>
-                <th width="25%"></th>
+                <th width:25%>Most recent changes</th>
+                <th width:25%></th>
+                <th width:0%></th>
+                <th width:25%></th>
+                <th width:25%></th>
             </tr>
             </thead>
         </table>
@@ -26,12 +26,12 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width="15%">From</th>
-                <th width="8%">Active</th>
-                <th width="8%">Filled?</th>
-                <th width="8%">Budg FTEs</th>
-                <th width="19%">Budg Sal</th>
-                <th width="1%"></th>
+                <th width:15%>From</th>
+                <th width:8%>Active</th>
+                <th width:8%>Filled?</th>
+                <th width:8%>Budg FTEs</th>
+                <th width:19%>Budg Sal</th>
+                <th width:1%></th>
             </tr>
             </thead>
             @foreach($posHistRecs as $posHistRecs)
@@ -81,11 +81,11 @@
             <table class="table table-condensed">
                 <thead>
                 <tr>
-                    <th width="25%">Status</th>
-                    <th width="25%"></th>
-                    <th width="0%"></th>
-                    <th width="25%"></th>
-                    <th width="25%"></th>
+                    <th width:25%>Status</th>
+                    <th width:25%></th>
+                    <th width:0%></th>
+                    <th width:25%></th>
+                    <th width:25%></th>
                 </tr>
                 </thead>
 
@@ -137,7 +137,7 @@
                 <tr>
                     <td>Last Vacant:</td>
                     <td>{{$vphd->last_vac}}</td>
-                    <td style="white-space: nowrap;">@if ($vphd->curstatus=='VACANT')
+                    <td style="white-space: nowrap;>@if ($vphd->curstatus=='VACANT')
                             *** Status:  Vacant
                         @endif</td>
                     <td></td>
@@ -177,11 +177,11 @@
             <table class="table table-condensed">
                 <thead>
                 <tr>
-                    <th width="25%">Budget</th>
-                    <th width="25%"></th>
-                    <th width="0%"></th>
-                    <th width="25%"></th>
-                    <th width="25%"></th>
+                    <th width:25%">Budget</th>
+                    <th width:25%></th>
+                    <th width:0%></th>
+                    <th width:25%></th>
+                    <th width:25%></th>
                 </tr>
                 </thead>
 
@@ -214,16 +214,17 @@
                     <td>{{round($vphd->ftehours,3)}}</td>
                     <td></td>
                     <td>Budg Pay Rate</td>
+                    <td>Fmt$$</td>
 {{--                    <td>{{formatdollars($vphd->payrate)}}</td>--}}
                 </tr>
 
                 <tr>
                     <td>FTEs for Position</td>
-{{--                    <td>{{round($vphd->fulltimeequiv,3)}}</td>--}}
+                    <td>{{round($vphd->fulltimeequiv,3)}}</td>
                     <td><img src="/images/ArrowRight.jpg" width="50" height="15">
                     </td>
                     <td>FTEs for Position</td>
-{{--                    <td>{{round($vphd->fulltimeequiv,3)}}</td>--}}
+                    <td>{{round($vphd->fulltimeequiv,3)}}</td>
                 </tr>
 
                 <tr>
@@ -231,6 +232,7 @@
                     <td></td>
                     <td></td>
                     <td>Budg Annual Cost</td>
+                    <td>Fmt$$</td>
 {{--                    <td>{{formatdollars($vphd->budgsal)}}</td>--}}
                 </tr>
 
@@ -238,11 +240,11 @@
                 <table class="table table-condensed">
                     <thead>
                     <tr>
-                        <th width="25%">Organization</th>
-                        <th width="25%"></th>
-                        <th width="0%"></th>
-                        <th width="25%"></th>
-                        <th width="25%"></th>
+                        <th width:25%>Organization</th>
+                        <th width:25%></th>
+                        <th width:0%></th>
+                        <th width:25%></th>
+                        <th width:25%></th>
                     </tr>
                     </thead>
 
@@ -257,9 +259,9 @@
                     <tr>
                         <td>{{$level1Description}}</td>
                         <td>{{$vphd->level1}}</td>
-                        <td width="10%">
-                        <td width="10%">
-                        <td width="10%">
+                        <td width:10%>
+                        <td width:10%>
+                        <td width:10%>
                     </tr>
 
                     <tr>
@@ -285,14 +287,14 @@
                 </table>
 
 
-                <table class="table table-condensed">
+                <table class="table table-condensed>
                     <thead>
                     <tr>
-                        <th width="25%">Reports to</th>
-                        <th width="25%"></th>
-                        <th width="0%"></th>
-                        <th width="25%"></th>
-                        <th width="25%"></th>
+                        <th width:25%>Reports to</th>
+                        <th width:25%></th>
+                        <th width:0%></th>
+                        <th width:25%></th>
+                        <th width:25%></th>
                     </tr>
                     </thead>
 
@@ -320,11 +322,11 @@
                 <table class="table table-condensed">
                     <thead>
                     <tr>
-                        <th width="25%">Changes made</th>
-                        <th width="25%"></th>
-                        <th width="0%"></th>
-                        <th width="25%"></th>
-                        <th width="25%"></th>
+                        <th width:25%>Changes made</th>
+                        <th width:25%></th>
+                        <th width:0%></th>
+                        <th width:25%></th>
+                        <th width:25%></th>
                     </tr>
                     </thead>
                 </table>

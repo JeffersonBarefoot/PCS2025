@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Log;
 
 class IncumbentController extends Controller
 {
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    //**   S H O W   ( N 0   I D )
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    public function shownoid()
+    {
+        return view('incumbents.404');
+    }
+
   /**
    * Display a listing of the resource.
    *
@@ -359,6 +371,8 @@ return redirect('/incumbents')->with('success', 'Incumbent saved!');
 // dump($viewIncumbentPositionHistory);
 // dump($reqincumbenthistoryid);
 // dd($IncHistRec);
+//      dump($incumbent);
+//      dump($session);
 // if(empty($IncHistRec)) {
 //   dd('empty');
 // } else {

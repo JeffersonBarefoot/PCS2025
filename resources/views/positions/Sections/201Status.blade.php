@@ -7,16 +7,16 @@
             <table class="table">
                 {{--        <div class="container-fluid">--}}
                 {{--            <table class="table table-small">--}}
-                <thead>
-                <tr>
-                    <th width: 35%>Settings</th>
-                    <th width: 5%></th>
-                    <th width: 15%></th>
-                    <th width: 15%></th>
-                    <th width: 30%></th>
-                </tr>
-                </thead>
-
+{{--                <thead>--}}
+{{--                <tr>--}}
+{{--                    <th width: 35%>Settings</th>--}}
+{{--                    <th width: 5%></th>--}}
+{{--                    <th width: 15%></th>--}}
+{{--                    <th width: 15%></th>--}}
+{{--                    <th width: 30%></th>--}}
+{{--                </tr>--}}
+{{--                </thead>--}}
+                <p></p-TableHeading>Status:</p>
                 <tr>
                     <td>Active Status</td>
                     <td></td>
@@ -100,15 +100,7 @@
         <!-- Right div contains  -->
         <div class="col">
             <table class="table">
-                <thead>
-                <tr>
-                    <th width: 45%>Reference Dates</th>
-                    <th width: 10%></th>
-                    <th width: 40%></th>
-                    <th width: 4%></th>
-                    <th width: 1%></th>
-                </tr>
-                </thead>
+                <p></p-TableHeading>Reference Dates:</p>
                 <tr>
                     <td>Established</td>
                     <td></td>
@@ -138,18 +130,10 @@
     <div class="row">
         <div class="col">
             <table class="table">
-                <thead>
-                <tr>
-                    <th width:30%>Capacity Status</th>
-                    <th width:30%></th>
-                    <th width:38%></th>
-                    <th width:1%></th>
-                    <th width:1%></th>
-                </tr>
-                </thead>
+                <p></p-TableHeading>Position Last Became:</p>
 
                 <tr>
-                    <td>Last Became Vacant</td>
+                    <td>Vacant</td>
                     <td><input type="date" class="text-input-box" name="last_vac"
                                value="{{$position->last_vac}}" {{$readonly}}></td>
                     <td>@if ($position->curstatus=='VACANT')
@@ -157,7 +141,7 @@
                         @endif</td>
                 </tr>
                 <tr>
-                    <td>Last Became Partially Filled</td>
+                    <td>Partially Filled</td>
                     <td><input type="date" class="text-input-box" name="last_par"
                                value="{{$position->last_par}}" {{$readonly}}></td>
                     <!-- <td><input type="text" class="text-input-box" name="last_par" value="{{$position->last_par}}" {{$readonly}}></td> -->
@@ -166,7 +150,7 @@
                         @endif</td>
                 </tr>
                 <tr>
-                    <td>Last Became Filled</td>
+                    <td>Filled</td>
                     <td><input type="date" class="text-input-box" name="last_fil"
                                value="{{$position->last_fil}}" {{$readonly}}></td>
                     <td>@if ($position->curstatus=='FILLED')
@@ -174,7 +158,7 @@
                         @endif</td>
                 </tr>
                 <tr>
-                    <td>Last Became Overfilled</td>
+                    <td>Overfilled</td>
                     <td><input type="date" class="text-input-box" name="last_ove"
                                value="{{$position->last_ove}}" {{$readonly}}></td>
                     <td>@if ($position->curstatus=='OVERFILLED')
@@ -186,15 +170,7 @@
 
         <div class="col-md-6">
             <table class="table">
-                <thead>
-                <tr>
-                    <th width:45%>Vacancy Statistics</th>
-                    <th width:10%></th>
-                    <th width:40%></th>
-                    <th width:4%></th>
-                    <th width:1%></th>
-                </tr>
-                </thead>
+                <p></p-TableHeading>Vacancy Statistics:</p>
             </table>
         </div>
     </div>

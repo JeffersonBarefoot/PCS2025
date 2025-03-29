@@ -11,6 +11,7 @@ use Session;
 use Auth;
 use Illuminate\Support\Facades\Schema\columns;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isNull;
 
 class PositionController extends Controller
 {
@@ -42,10 +43,9 @@ class PositionController extends Controller
         if (is_null($id)) {
             $id = 1;
         }
-        $position = Position::find($id);
-//        dd($id);
 
-//        dd($position);
+//        findOrFail either creates the $position object, or fails and routes to 404
+        $position = Position::findOrFail($id);
 
 // set parameters for the current TEAM to session variables
         $user = Auth::user();
@@ -55,6 +55,7 @@ class PositionController extends Controller
         Session::put('level4Desc', $user->currentTeam->Level4Desc);
         Session::put('level5Desc', $user->currentTeam->Level5Desc);
 //         dump($user->currentTeam->Level1Desc);
+         dump($user->currentTeam);
 
         // if sess var positionID is null, then this is a fresh launch.  Save the current ID to the session variable
         $sessionPositionID = Session::get('positionID');
@@ -495,6 +496,9 @@ class PositionController extends Controller
 //            ->with(compact('position'))
 //            ->with(compact('positionsnavbar'));
 
+
+
+dump(Session());
         //****************************
         // R E T U R N   T O   positions.show
         return View('positions.show')

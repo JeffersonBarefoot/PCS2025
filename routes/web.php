@@ -27,8 +27,8 @@ Route::middleware([
     Route::get('/positions', 'App\Http\Controllers\PositionController@shownoid')->name('positions.shownoid');
     Route::get('/positions/{id?}', 'App\Http\Controllers\PositionController@show')->name('positions.show');
 
-    Route::get('/postest', 'App\Http\Controllers\PostestController@shownoid')->name('postest.shownoid');
-    Route::get('/postest/{id?}', 'App\Http\Controllers\PostestController@show')->name('postest.show');
+    Route::get('/incumbents', 'App\Http\Controllers\IncumbentController@shownoid')->name('incumbents.shownoid');
+    Route::get('/incumbents/{id?}', 'App\Http\Controllers\IncumbentController@show')->name('incumbents.show');
 
     Route::post('/uploadfile',     'App\Http\Controllers\UploadFileController@uploadfile')->name('uploadfile');
 

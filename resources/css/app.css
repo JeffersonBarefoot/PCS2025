@@ -25,7 +25,7 @@ assigned to multiple classes of objects below*/
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: orange;
+    background-color: darkgray;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -47,8 +47,8 @@ h1 {
 }
 
 p {
-    color: lightblue;
-    font-size: 48px;
+    color: dimgray;
+    font-size: 20px;
     line-height: 1.5;
 }
 

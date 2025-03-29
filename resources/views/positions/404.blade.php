@@ -22,8 +22,8 @@
 </head>
 <body>
 <div class="test-container">
-    <h1>Hello, Vite!</h1>
-    <p>This is a test paragraph to check CSS styling.</p>
+    <h1>Error</h1>
+    <p>You are attempting a position that does not exist</p>
 </div>
 </body>
 </html>

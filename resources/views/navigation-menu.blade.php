@@ -15,7 +15,7 @@
                     <x-nav-link href="{{ route('positions.show') }}" :active="request()->routeIs('positions.show')">
                         {{ __('Positions') }}
                     </x-nav-link>
-{{--                    <a href='/positions.tools'>TOOLS</a>--}}
+                    <a href='/positions/4'>TOOLS</a>
                 </div>
             </div>
 NAVIGATION-MENU.BLADE - THIS IS THE NAVIGATION MENU THAT SHOWS CURRENT USER, TEAM, AND HAS A PLACE TO PUT NEW LINKS AT THE TOP ("DASHBOARD") 20250212@2314
