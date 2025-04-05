@@ -142,8 +142,57 @@
         document.getElementById("budgsal").setAttribute('value', nBudgSal);
     }
 
-    // <style>
-    //
-    // </style>
+    // These scripts successfully capture an un/collapsing element and save to Session
+    // var myCollapsible = document.getElementById(`collapse_bar`)
+{{--    var myCollapsible = document.getElementById(`PosSection1`);--}}
+{{--    var myVariable = "";--}}
+
+{{--    myCollapsible.addEventListener('shown.bs.collapse', function () {--}}
+{{--       {{Session::put("PSec1StatusCode","collapse show")}}--}}
+{{--//         $JEFFTEST = "COLLAPSE SHOW";--}}
+{{--        console.log("show");--}}
+{{--        myVariable = " COLLAPSE SHOW";--}}
+{{--    });--}}
+{{--    myCollapsible.addEventListener('hidden.bs.collapse', function () {--}}
+{{--        // $JEFFTEST = "COLLAPSE";--}}
+{{--        {{Session::put('PSec1StatusCode', 'collapse')}}--}}
+{{--    console.log('collapse');--}}
+{{--        myVariable = " COLLAPSE";--}}
+{{--    });--}}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var myCollapsible = document.getElementById('PosSection1');
+    if (myCollapsible) {
+        myCollapsible.addEventListener('shown.bs.collapse', function () {
+            updateSession('collapse show');
+        });
+        myCollapsible.addEventListener('hidden.bs.collapse', function () {
+            // console.log('collapse');
+            updateSession('collapse');
+        });
+    } else {
+        console.error('Element with ID "PosSection1" not found.');
+    }
+});
+
+    function updateSession(status) {
+        fetch('/update-collapse-status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ status: status })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Session updated:', data);
+            })
+            .catch((error) => {
+                // console.error('Error:', error);
+            });
+    }
+
+
 
 </script>

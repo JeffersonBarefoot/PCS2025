@@ -18,13 +18,16 @@
 <?php $expandPositionHistory = Session::get('ExpandPositionHistory') ?>
 <?php $expandIncumbentHistory = Session::get('ExpandIncumbentHistory') ?>
 
-@include('Common.002script')
+{{--@include('Common.002script')--}}
 
 <?php $level1Description = sessionGet('level1Desc') ?>
 <?php $level2Description = sessionGet('level2Desc') ?>
 <?php $level3Description = sessionGet('level3Desc') ?>
 <?php $level4Description = sessionGet('level4Desc') ?>
 <?php $level5Description = sessionGet('level5Desc') ?>
+
+<?php $PSec1StatusCode = sessionGet('PSec1StatusCode') ?>
+
 <body>
 {{--<main class="mt-6">--}}
 <div class="container-fluid p-2 m-5 bg-gray-100 text-gray-600">
@@ -75,6 +78,19 @@
                 {{--column c6--}}
                 <div class="col">
 
+                    <div class="accordion" id="my_accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading_bar">
+                                <button class="accordion-button collapsed bg-light my-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_bar" aria-expanded="false" aria-controls="collapse_bar">Bar</button>
+                            </h2>
+                            <div id="collapse_bar" class="accordion-collapse collapse" aria-labelledby="heading_bar" data-bs-parent="#my_accordion">
+                                <div class="accordion-body">
+                                    ...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {{--            Row08 ***********************************************--}}
                     <div class="row">
                         <p>
@@ -92,15 +108,24 @@
                                     Inactive,
                                 @endif
                                 {{ ucwords(strtolower($position->curstatus)) }}
+
                             </a>
                         </p>
-                        <div class="collapse show" id="PosSection1">
+{{--                    <div class="collapse show" id="PosSection1">--}}
+
+                        @if ($PSec1StatusCode=="collapse show")
+                            <div class="collapse show" id="PosSection1">
+                                @else
+                                    <div class="collapse" id="PosSection1">
+                             @endif
+
                             <div class="card">
                                 <div class="card-body">
                                     @include('positions.Sections.201Status')
                                 </div>
                             </div>
                         </div>
+{{--                        @dump($JEFFTEST)--}}
                     </div>
 
                     {{--            Row09 ***********************************************--}}
@@ -485,6 +510,9 @@
 
 {{--</main>--}}
 </body>
+
+@include('Common.002script')
+
 </html>
 
 

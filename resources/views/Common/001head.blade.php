@@ -25,8 +25,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     @vite('resources/css/app.css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <style>
         </style>
+
+{{--    {{$JEFFTEST="NEW"}}--}}
 
 </head>

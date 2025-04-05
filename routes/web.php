@@ -33,4 +33,6 @@ Route::middleware([
     Route::post('/uploadfile',     'App\Http\Controllers\UploadFileController@uploadfile')->name('uploadfile');
 
 
+//    Route::post('/update-collapse-status', 'App\Http\Controllers\PositionController@updateCollapseStatus')->name('updateCollapseStatus');
+    Route::post('/update-collapse-status', 'App\Http\Controllers\PositionController@updateCollapseStatus')->name('updateCollapseStatus');
 });

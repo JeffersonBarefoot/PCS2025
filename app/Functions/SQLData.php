@@ -831,32 +831,32 @@
 //   }
 // }
 //
-// if (!function_exists('sessionSet')) {
-//   function sessionSet($key,$value)
-//   {
-//     // example:  Session::put($key,$value);
-//     Session::put($key,$value);
-//     return true;
-//   }
-// }
-//
-// if (!function_exists('sessionGet')) {
-//   function sessionGet($key)
-//   {
-//     // example:  Session::put($key,$value);
-//     $getSessionValue = Session::get($key);
-//     return $getSessionValue;
-//   }
-// }
-//
-// if (!function_exists('sessionForgetOne')) {
-//   function sessionForgetOne($key)
-//   {
-//     // example:  Session::put($key,$value);
-//     Session::forget($key);
-//     return true;
-//   }
-// }
+ if (!function_exists('sessionSet')) {
+   function sessionSet($key,$value)
+   {
+     // example:  Session::put($key,$value);
+     Session::put($key,$value);
+     return true;
+   }
+ }
+
+ if (!function_exists('sessionGet')) {
+   function sessionGet($key)
+   {
+     // example:  Session::put($key,$value);
+     $getSessionValue = Session::get($key);
+     return $getSessionValue;
+   }
+ }
+
+ if (!function_exists('sessionForgetOne')) {
+   function sessionForgetOne($key)
+   {
+     // example:  Session::put($key,$value);
+     Session::forget($key);
+     return true;
+   }
+ }
 //
 // //***************************************************
 // //***************************************************

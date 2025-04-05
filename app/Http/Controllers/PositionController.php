@@ -15,6 +15,18 @@ use function PHPUnit\Framework\isNull;
 
 class PositionController extends Controller
 {
+
+    public function updateCollapseStatus(Request $request)
+    {
+
+        dump('Update Collapse Status in PositionController');
+
+        $status = $request->input('status');
+        Session::put('PSec1StatusCode', $status);
+
+        return response()->json(['status' => 'success']);
+    }
+
     //***************************************************
     //***************************************************
     //***************************************************
@@ -38,6 +50,10 @@ class PositionController extends Controller
     {
 //dd($request);
 //Flashes the current input to the session so it's available during the user's next request to the application:
+//       if (is_null($JEFFTEST)) {
+//           $JEFFTEST = "NEW FROM CONTROLLER";
+//       }
+        dump('Show in PositionController');
         $request->flash();
 //dd($request);
         if (is_null($id)) {
@@ -46,6 +62,8 @@ class PositionController extends Controller
 
 //        findOrFail either creates the $position object, or fails and routes to 404
         $position = Position::findOrFail($id);
+
+
 
 // set parameters for the current TEAM to session variables
         $user = Auth::user();
@@ -56,6 +74,8 @@ class PositionController extends Controller
         Session::put('level5Desc', $user->currentTeam->Level5Desc);
 //         dump($user->currentTeam->Level1Desc);
 //         dump($user->currentTeam);
+
+//        Decide whether panels should be collapsed or not
 
         // if sess var positionID is null, then this is a fresh launch.  Save the current ID to the session variable
         $sessionPositionID = Session::get('positionID');
@@ -445,7 +465,7 @@ class PositionController extends Controller
 
 //experiment with session variables, 2020-01-01
         Session::put('mykey', '12345');
-        Session::put('expandIncumbents', 'xHere is how you return a session variable into a blade...JLB 200113');
+        Session::put('expandIncumbents', 'xxHere is how you return a session variable into a blade...JLB 200113');
 //TestOnclickFunction();
 
 //######################
@@ -514,6 +534,7 @@ dump(Session());
             ->with(compact('indirectReports'))
             ->with(compact('reportsToSource'))
             ->with("id", $id)
+//            ->with("JEFFTEST",$JEFFTEST)
             ->with('dirRepCount',$dirRepCount)
             ->with('indirRepCount',$indirRepCount)
             ->with('activeincumbentcount',$activeincumbentcount)
