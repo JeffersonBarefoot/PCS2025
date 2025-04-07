@@ -148,18 +148,32 @@
 {{--    var myVariable = "";--}}
 
 {{--    myCollapsible.addEventListener('shown.bs.collapse', function () {--}}
-{{--       {{Session::put("PSec1StatusCode","collapse show")}}--}}
+{{--       {{Session::put("PSec201Show","collapse show")}}--}}
 {{--//         $JEFFTEST = "COLLAPSE SHOW";--}}
 {{--        console.log("show");--}}
 {{--        myVariable = " COLLAPSE SHOW";--}}
 {{--    });--}}
 {{--    myCollapsible.addEventListener('hidden.bs.collapse', function () {--}}
 {{--        // $JEFFTEST = "COLLAPSE";--}}
-{{--        {{Session::put('PSec1StatusCode', 'collapse')}}--}}
+{{--        {{Session::put('PSec201Show', 'collapse')}}--}}
 {{--    console.log('collapse');--}}
 {{--        myVariable = " COLLAPSE";--}}
 {{--    });--}}
 
+// ***********************************************************
+// ***********************************************************
+// Manage Collapse/Show status of various collapsible panels
+// Use JavaScript events to see if the status has changed
+// Push that through a Route, to the Controller, to save to Session Var
+// Pull the session Var into the blade and modify the collapse script as needed
+// ***********************************************************
+// ***********************************************************
+
+// See if the Session Vars already exist.  If not, this is the first time running in this session, so initialize them
+
+
+
+// See if the
 document.addEventListener('DOMContentLoaded', function () {
     var myCollapsible = document.getElementById('PosSection1');
     if (myCollapsible) {

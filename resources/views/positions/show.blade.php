@@ -26,7 +26,7 @@
 <?php $level4Description = sessionGet('level4Desc') ?>
 <?php $level5Description = sessionGet('level5Desc') ?>
 
-<?php $PSec1StatusCode = sessionGet('PSec1StatusCode') ?>
+<?php $PSec201Show = sessionGet('PSec201Show') ?>
 
 <body>
 {{--<main class="mt-6">--}}
@@ -113,7 +113,7 @@
                         </p>
 {{--                    <div class="collapse show" id="PosSection1">--}}
 
-                        @if ($PSec1StatusCode=="collapse show")
+                        @if ($PSec201Show=="collapse show")
                             <div class="collapse show" id="PosSection1">
                                 @else
                                     <div class="collapse" id="PosSection1">

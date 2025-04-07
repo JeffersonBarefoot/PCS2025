@@ -22,7 +22,7 @@ class PositionController extends Controller
         dump('Update Collapse Status in PositionController');
 
         $status = $request->input('status');
-        Session::put('PSec1StatusCode', $status);
+        Session::put('PSec201Show', $status);
 
         return response()->json(['status' => 'success']);
     }
@@ -72,6 +72,15 @@ class PositionController extends Controller
         Session::put('level3Desc', $user->currentTeam->Level3Desc);
         Session::put('level4Desc', $user->currentTeam->Level4Desc);
         Session::put('level5Desc', $user->currentTeam->Level5Desc);
+
+// See if the Session Vars for collapsing panels already exist.  If not, this is the first time running in this session, so initialize them
+        if (!Session::has("PSec201Show")) {
+            // if one doesn't exist then none exist.  Create and set them all to collapse
+            dump('PSec201Show doesnt exist in session');
+            Session::put('PSec201Show', 'new');
+        } else {
+            dump('PSec201Show exists in session');
+        }
 //         dump($user->currentTeam->Level1Desc);
 //         dump($user->currentTeam);
 
@@ -518,7 +527,7 @@ class PositionController extends Controller
 
 
 
-dump(Session());
+dump(Session::get("PSec201Show"));
         //****************************
         // R E T U R N   T O   positions.show
         return View('positions.show')
