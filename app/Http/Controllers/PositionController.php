@@ -65,7 +65,7 @@ class PositionController extends Controller
 
 
 
-// set parameters for the current TEAM to session variables
+// set parameters for the current TEAM to session variables..
         $user = Auth::user();
         Session::put('level1Desc', $user->currentTeam->Level1Desc);
         Session::put('level2Desc', $user->currentTeam->Level2Desc);
