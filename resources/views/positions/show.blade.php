@@ -26,7 +26,7 @@
 <?php $level4Description = sessionGet('level4Desc') ?>
 <?php $level5Description = sessionGet('level5Desc') ?>
 
-<?php $PSec201Show = sessionGet('PSec201Show') ?>
+<?php $P201Show = sessionGet('P201Show') ?>
 
 <body>
 {{--<main class="mt-6">--}}
@@ -81,9 +81,13 @@
                     <div class="accordion" id="my_accordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading_bar">
-                                <button class="accordion-button collapsed bg-light my-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_bar" aria-expanded="false" aria-controls="collapse_bar">Bar</button>
+                                <button class="accordion-button collapsed bg-light my-collapse" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse_bar" aria-expanded="false"
+                                        aria-controls="collapse_bar">Bar
+                                </button>
                             </h2>
-                            <div id="collapse_bar" class="accordion-collapse collapse" aria-labelledby="heading_bar" data-bs-parent="#my_accordion">
+                            <div id="collapse_bar" class="accordion-collapse collapse" aria-labelledby="heading_bar"
+                                 data-bs-parent="#my_accordion">
                                 <div class="accordion-body">
                                     ...
                                 </div>
@@ -111,21 +115,14 @@
 
                             </a>
                         </p>
-{{--                    <div class="collapse show" id="PosSection1">--}}
 
-                        @if ($PSec201Show=="collapse show")
-                            <div class="collapse show" id="PosSection1">
-                                @else
-                                    <div class="collapse" id="PosSection1">
-                             @endif
-
+                        <div class="{{ $P201Show ? 'collapse show' : 'collapse' }}" id="PosSection1">
                             <div class="card">
                                 <div class="card-body">
                                     @include('positions.Sections.201Status')
                                 </div>
                             </div>
                         </div>
-{{--                        @dump($JEFFTEST)--}}
                     </div>
 
                     {{--            Row09 ***********************************************--}}

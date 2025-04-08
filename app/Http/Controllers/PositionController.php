@@ -16,14 +16,23 @@ use function PHPUnit\Framework\isNull;
 class PositionController extends Controller
 {
 
+//    Receives parameter like "P201ShowT"
+//    ...then sets Session Variable P201Show to "true" (or false)
     public function updateCollapseStatus(Request $request)
     {
 
-        dump('Update Collapse Status in PositionController');
-
         $status = $request->input('status');
-        Session::put('PSec201Show', $status);
+        $sessionVar = substr($status, 0, 8);
+        $showStatus = substr($status,-1);
+        dump($showStatus);
 
+        if ($showStatus=="T") {
+            $showStatus = true;
+        } else {
+            $showStatus = false;
+        }
+
+        Session::put($sessionVar, $showStatus);
         return response()->json(['status' => 'success']);
     }
 
@@ -56,6 +65,7 @@ class PositionController extends Controller
         dump('Show in PositionController');
         $request->flash();
 //dd($request);
+
         if (is_null($id)) {
             $id = 1;
         }
@@ -74,13 +84,14 @@ class PositionController extends Controller
         Session::put('level5Desc', $user->currentTeam->Level5Desc);
 
 // See if the Session Vars for collapsing panels already exist.  If not, this is the first time running in this session, so initialize them
-        if (!Session::has("PSec201Show")) {
+        if (!Session::has("P201Show")) {
             // if one doesn't exist then none exist.  Create and set them all to collapse
             dump('PSec201Show doesnt exist in session');
-            Session::put('PSec201Show', 'new');
+            Session::put('P201Show', 'new');
         } else {
-            dump('PSec201Show exists in session');
+            dump('P201Show exists in session');
         }
+        dump(Session::get("P201Show"));
 //         dump($user->currentTeam->Level1Desc);
 //         dump($user->currentTeam);
 
@@ -527,7 +538,7 @@ class PositionController extends Controller
 
 
 
-dump(Session::get("PSec201Show"));
+dump(Session::get("P201Show"));
         //****************************
         // R E T U R N   T O   positions.show
         return View('positions.show')

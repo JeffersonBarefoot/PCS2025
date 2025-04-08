@@ -175,19 +175,23 @@
 
 // See if the
 document.addEventListener('DOMContentLoaded', function () {
-    var myCollapsible = document.getElementById('PosSection1');
-    if (myCollapsible) {
-        myCollapsible.addEventListener('shown.bs.collapse', function () {
-            updateSession('collapse show');
-        });
-        myCollapsible.addEventListener('hidden.bs.collapse', function () {
-            // console.log('collapse');
-            updateSession('collapse');
-        });
-    } else {
-        console.error('Element with ID "PosSection1" not found.');
+    function PanelShowListener(divId,sessionVar) {
+        var myCollapsible = document.getElementById(divId);
+        if (myCollapsible) {
+            myCollapsible.addEventListener('shown.bs.collapse', function () {
+                // updateSession('collapse show');
+                updateSession(sessionVar+"T");
+            });
+            myCollapsible.addEventListener('hidden.bs.collapse', function () {
+                // console.log('collapse');
+                // updateSession('collapse show');
+                updateSession(sessionVar+"F");
+            });
+        } else {
+            console.error('Element with ID "PosSection1" not found.');
+        }
     }
-});
+
 
     function updateSession(status) {
         fetch('/update-collapse-status', {
@@ -207,6 +211,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    // PanelShowListener(HtmlDivId, SessionVariableName)
+    PanelShowListener("PosSection1","P201Show");
+
+});
 
 
 </script>
