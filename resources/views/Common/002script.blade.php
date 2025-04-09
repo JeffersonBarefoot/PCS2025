@@ -213,6 +213,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // PanelShowListener(HtmlDivId, SessionVariableName)
     PanelShowListener("PosSection1","P201Show");
+    PanelShowListener("PosSection2","P202Show");
+    // PanelShowListener("PosSection3","P203Show");
+    PanelShowListener("PosSection4","P204Show");
+    PanelShowListener("PosSection5","P205Show");
+    PanelShowListener("PosSection6","P206Show");
+    PanelShowListener("PosSection7","P207Show");
+    // PanelShowListener("PosSection8","P208Show");
+    // PanelShowListener("PosSection9","P209Show");
+    // PanelShowListener("PosSection10","P210Show");
+    // PanelShowListener("PosSection11","P211Show");
+    PanelShowListener("PosSection11","P900Show");
 
 });
 

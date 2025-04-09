@@ -86,16 +86,22 @@ class PositionController extends Controller
 // See if the Session Vars for collapsing panels already exist.  If not, this is the first time running in this session, so initialize them
         if (!Session::has("P201Show")) {
             // if one doesn't exist then none exist.  Create and set them all to collapse
-            dump('PSec201Show doesnt exist in session');
-            Session::put('P201Show', 'new');
-        } else {
-            dump('P201Show exists in session');
+//            dump('PSec201Show doesnt exist in session');
+            Session::put('P201Show', false);
+            Session::put('P202Show', false);
+            Session::put('P203Show', false);
+            Session::put('P204Show', false);
+            Session::put('P205Show', false);
+            Session::put('P206Show', false);
+            Session::put('P207Show', false);
+            Session::put('P208Show', false);
+            Session::put('P209Show', false);
+            Session::put('P210Show', false);
+            Session::put('P211Show', false);
+            Session::put('P900Show', false);
         }
-        dump(Session::get("P201Show"));
-//         dump($user->currentTeam->Level1Desc);
-//         dump($user->currentTeam);
+//        dump(Session::get("P201Show"));
 
-//        Decide whether panels should be collapsed or not
 
         // if sess var positionID is null, then this is a fresh launch.  Save the current ID to the session variable
         $sessionPositionID = Session::get('positionID');
@@ -538,7 +544,7 @@ class PositionController extends Controller
 
 
 
-dump(Session::get("P201Show"));
+//dump(Session::get("P201Show"));
         //****************************
         // R E T U R N   T O   positions.show
         return View('positions.show')

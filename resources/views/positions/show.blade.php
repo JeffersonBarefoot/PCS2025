@@ -20,13 +20,27 @@
 
 {{--@include('Common.002script')--}}
 
+{{--Check session vars for org level descriptions - text --}}
 <?php $level1Description = sessionGet('level1Desc') ?>
 <?php $level2Description = sessionGet('level2Desc') ?>
 <?php $level3Description = sessionGet('level3Desc') ?>
 <?php $level4Description = sessionGet('level4Desc') ?>
 <?php $level5Description = sessionGet('level5Desc') ?>
 
+{{--Check session vars for collapsible panel show-status - true/false--}}
 <?php $P201Show = sessionGet('P201Show') ?>
+<?php $P202Show = sessionGet('P202Show') ?>
+<?php $P203Show = sessionGet('P203Show') ?>
+<?php $P204Show = sessionGet('P204Show') ?>
+<?php $P205Show = sessionGet('P205Show') ?>
+<?php $P206Show = sessionGet('P206Show') ?>
+<?php $P207Show = sessionGet('P207Show') ?>
+<?php $P208Show = sessionGet('P208Show') ?>
+<?php $P209Show = sessionGet('P209Show') ?>
+<?php $P210Show = sessionGet('P210Show') ?>
+<?php $P211Show = sessionGet('P211Show') ?>
+<?php $P900Show = sessionGet('P900Show') ?>
+
 
 <body>
 {{--<main class="mt-6">--}}
@@ -77,24 +91,6 @@
 
                 {{--column c6--}}
                 <div class="col">
-
-                    <div class="accordion" id="my_accordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading_bar">
-                                <button class="accordion-button collapsed bg-light my-collapse" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapse_bar" aria-expanded="false"
-                                        aria-controls="collapse_bar">Bar
-                                </button>
-                            </h2>
-                            <div id="collapse_bar" class="accordion-collapse collapse" aria-labelledby="heading_bar"
-                                 data-bs-parent="#my_accordion">
-                                <div class="accordion-body">
-                                    ...
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {{--            Row08 ***********************************************--}}
                     <div class="row">
                         <p>
@@ -136,7 +132,8 @@
                                 Budgets and FTEs
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection2">
+                        {{--                        <div class="collapse" id="PosSection2">--}}
+                        <div class="{{ $P202Show ? 'collapse show' : 'collapse' }}" id="PosSection2">
                             <div class="card card-body">
                                 @include('positions.Sections.202budgets')
                             </div>
@@ -171,7 +168,8 @@
                                 Org Levels
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection4">
+                        {{--                        <div class="collapse" id="PosSection4">--}}
+                        <div class="{{ $P204Show ? 'collapse show' : 'collapse' }}" id="PosSection4">
                             <div class="card card-body">
                                 @include('positions.Sections.204orglevels')
                             </div>
@@ -189,13 +187,14 @@
                                 Reports To
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection5">
-                            <div class="card">
-                                <div class="card card-body">
-                                    @include('positions.Sections.205reportsto')
-                                </div>
+                        {{--                        <div class="collapse" id="PosSection5">--}}
+                        {{--                            <div class="card">--}}
+                        <div class="{{ $P205Show ? 'collapse show' : 'collapse' }}" id="PosSection5">
+                            <div class="card card-body">
+                                @include('positions.Sections.205reportsto')
                             </div>
                         </div>
+
                     </div>
 
                     {{--            Row13 ***********************************************--}}
@@ -209,7 +208,8 @@
                                 Incumbents
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection6">
+{{--                        <div class="collapse" id="PosSection6">--}}
+                        <div class="{{ $P206Show ? 'collapse show' : 'collapse' }}" id="PosSection6">
                             <div class="card card-body">
                                 @include('positions.Sections.206Incum')
                             </div>
@@ -227,7 +227,8 @@
                                 Position History
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection7">
+{{--                        <div class="collapse" id="PosSection7">--}}
+                        <div class="{{ $P207Show ? 'collapse show' : 'collapse' }}" id="PosSection7">
                             <div class="card card-body">
                                 @include('positions.Sections.207poshist')
                             </div>
@@ -315,7 +316,8 @@
                                 Tools
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection11">
+{{--                        <div class="collapse" id="PosSection11">--}}
+                        <div class="{{ $P900Show ? 'collapse show' : 'collapse' }}" id="PosSection11">
                             <div class="card card-body">
                                 @include('positions.Sections.900importtools')
                             </div>
@@ -324,8 +326,6 @@
 
 
                 </div>
-                XXX BOTTOM OF DATA COLUMN
-                XXX BOTTOM OF CONTENT ROW
             </div>
 
         </div>
