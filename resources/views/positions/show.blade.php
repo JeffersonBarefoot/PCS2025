@@ -41,6 +41,7 @@
 <?php $P211Show = sessionGet('P211Show') ?>
 <?php $P900Show = sessionGet('P900Show') ?>
 
+{{--@dump($P201Show)--}}
 
 <body>
 {{--<main class="mt-6">--}}

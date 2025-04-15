@@ -62,7 +62,7 @@ class PositionController extends Controller
 //       if (is_null($JEFFTEST)) {
 //           $JEFFTEST = "NEW FROM CONTROLLER";
 //       }
-        dump('Show in PositionController');
+//        dump('Show in PositionController');
         $request->flash();
 //dd($request);
 
@@ -72,6 +72,7 @@ class PositionController extends Controller
 
 //        findOrFail either creates the $position object, or fails and routes to 404
         $position = Position::findOrFail($id);
+
 
 
 
@@ -102,6 +103,8 @@ class PositionController extends Controller
         }
 //        dump(Session::get("P201Show"));
 
+//try to understand auth and logins, April 2025
+//        dump($user);
 
         // if sess var positionID is null, then this is a fresh launch.  Save the current ID to the session variable
         $sessionPositionID = Session::get('positionID');

@@ -6,14 +6,35 @@
     display: none;
 }
 
+/*https://www.w3schools.com/colors/colors_palettes.asp, "Rustic Palettes"*/
+/*HEX: #e0e2e4 - light gray*/
+/*HEX: #c6bcb6 - light brown*/
+/*HEX: #96897f - med brown*/
+/*HEX: #625750 - dark brown*/
+
 /*////////////DEFAULT VARIABLES/////////////*/
 /*This sets the color theme default colors, which can then be
 assigned to multiple classes of objects below*/
 :root {
-    --default-background-color: #d6dbdf;
-    --default-button-color: whitesmoke;
-    --default-button-background-color: darkgray;
-    --default-navtree-background-color: pink ;
+    /*--default-background-color: #d6dbdf;*/
+    /*--default-button-color: whitesmoke;*/
+    /*--default-button-background-color: darkgray;*/
+    /*--default-navtree-background-color: pink ;*/
+
+    /*--default-background-color: #e0e2e4;*/
+    /*--default-button-color: #e0e2e4;*/
+    /*--default-button-background-color: #625750;*/
+    /*--default-navtree-background-color: #e0e2e4 ;*/
+
+    --default-background-color: whitesmoke;
+    --default-button-color: darkslategray;
+    --default-button-background-color: gainsboro;
+    --default-navtree-background-color: gainsboro ;
+    --default-header-text-color: darkgray ;
+    --default-title-text-color:  redorange;
+    --default-normal-text-color: orangered ;
+
+
 }
 
 /*//////////////CONTAINERS//////////////*/
@@ -40,14 +61,14 @@ body {
 
 /*Standard page headers*/
 h1 {
-    color: blue;
+    color: var(--default-header-text-color);
     font-size: large;
     background-color: var(--default-background-color);
     text-align: left;
 }
 
 p {
-    color: dimgray;
+    color: var(--default-title-text-color);
     font-size: 20px;
     line-height: 1.5;
 }
@@ -58,12 +79,14 @@ p {
     height: 22px;
     margin: 1px;
     border-color: #888888;
+    color: var(--default-normal-text-color);
 }
 
 
 /*///////////// COLLAPSIBLE SECTIONS //////////////*/
 .card {
     background-color: var(--default-background-color);
+    color:  var(--default-normal-text-color);
 }
 
 .collapse {
@@ -73,13 +96,13 @@ p {
 /*Collapsible Panels*/
 .panel-body {
     visibility: visible;
+    color:  var(--default-normal-text-color);
 }
 
 /*///////////// MISC COMPONENTS ///////////////*/
 .btn {
-    background-color: var(--default-button-background-color);
-    /*background-color: pink;*/
-    color: var(--default-background-color);
+    background-color: var(--default-button-background-color);  /*button main color*/
+    color: var(--default-button-color); /*button text color*/
     margin-top: 0;
     margin-bottom: 5px;
     height: 38px;
@@ -93,9 +116,11 @@ p {
     border-spacing: 10px;
     width:100%;
     outline: magenta 80px;
+    color:  var(--default-normal-text-color);
 }
 table, tbody, tr, th, td {
     background-color: rgba(0, 0, 0, 0.0) !important;
+    color:  var(--default-normal-text-color);
 }
 td {
     height: 22px;

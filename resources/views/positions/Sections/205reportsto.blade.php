@@ -175,6 +175,7 @@
 <!-- "divider section with lines" -->
 <div class="row">
     <div class="col-md-5" align="center">
+{{--        Unicode Arrows--}}
         <span style='font-size:70px;'>&uarr;</span>
     </div>
     <div class="col-md-1"></div>

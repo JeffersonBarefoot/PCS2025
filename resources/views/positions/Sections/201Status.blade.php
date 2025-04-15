@@ -44,7 +44,7 @@
                 </tr>
 
                 <tr>
-                    <td>Allow Multiple Incumbents:</td>
+                    <td>Allow Multiple Active Incumbents</td>
                     <td></td>
                     <div class="radio">
                         @if ($position->multincumb==1)

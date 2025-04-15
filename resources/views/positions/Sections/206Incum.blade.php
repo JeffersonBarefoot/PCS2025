@@ -1,20 +1,19 @@
 <!-- *************************** -->
 <!-- Left div contains list of all incumbents -->
 <div class="row">
-    <div class="col-md-3">Incumbents that have been in this position
+    <div class="col-md-4">Incumbents that have been in this position
         <table class="table table-condensed">
             <thead>
-            <tr>
-                <th width:40%>Started</th>
+{{--            <tr>--}}
+                <th width:35%>Started</th>
                 <th width:10%>Status</th>
                 <th width:10%>FTE</th>
-                <th width:40%>Name</th>
-                <!-- <th width:15%></th>
-                <th width:30%></th> -->
-            </tr>
+                <th width:35%>Name</th>
+                <th width:10%></th>
+{{--            </tr>--}}
             </thead>
 
-            <tr>
+{{--            <tr>--}}
             @foreach($incumbentsinposition as $incumbent)
                 <tr>
                     <td>{{$incumbent->posstart}}</td>
@@ -23,10 +22,16 @@
                     <td>
                         <a href={{route('positions.show',$position->id)}}?viewincid={{$incumbent->id}}>{{substr($incumbent->fname,0,1).' '.$incumbent->lname}}
                     </td>
+                    <td>
+                        <a href={{route('positions.show',$position->id)}} class="bi-list" data-toggle="tooltip" title="Incumbent history in this position"
+                    </td>
+                    <td>
+                        <a href='/incumbents/{{$incumbent->id}}' class="bi-file-earmark-person" data-toggle="tooltip" title="Incumbent master record"
+                    </td>
 
                 </tr>
                 @endforeach
-                </tr>
+{{--                </tr>--}}
 
         </table>
     </div>
@@ -80,7 +85,7 @@
 
     <!-- *************************** -->
     <!-- Right div contains details of selected incumbent -->
-    <div class="col-md-6">Details:
+    <div class="col-md-5">Details:
         @foreach($viewIncumbentDetails as $vd)
             {{$vd->fname.' '.$vd->lname.' @ '.$vd->trans_date.', annual cost '.FormatDollars($vd->ann_cost)}}
         @endforeach

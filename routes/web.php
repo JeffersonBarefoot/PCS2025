@@ -27,6 +27,7 @@ Route::middleware([
     Route::get('/positions', 'App\Http\Controllers\PositionController@shownoid')->name('positions.shownoid');
     Route::get('/positions/{id?}', 'App\Http\Controllers\PositionController@show')->name('positions.show');
 
+
     Route::get('/incumbents', 'App\Http\Controllers\IncumbentController@shownoid')->name('incumbents.shownoid');
     Route::get('/incumbents/{id?}', 'App\Http\Controllers\IncumbentController@show')->name('incumbents.show');
 
