@@ -1,7 +1,5 @@
 <!--suppress JSUnresolvedLibraryURL -->
 <head>
-
-    <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -17,7 +15,6 @@
 
      <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>xxLaravel</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -26,10 +23,4 @@
 
     @vite('resources/css/app.css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <style>
-        </style>
-
-{{--    {{$JEFFTEST="NEW"}}--}}
-
 </head>

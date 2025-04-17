@@ -6,10 +6,11 @@
             <thead>
 {{--            <tr>--}}
                 <th width:35%>Started</th>
-                <th width:10%>Status</th>
+                <th width:6%>Status</th>
                 <th width:10%>FTE</th>
                 <th width:35%>Name</th>
-                <th width:10%></th>
+                <th width:7%></th>
+                <th width:7%></th>
 {{--            </tr>--}}
             </thead>
 
@@ -20,15 +21,14 @@
                     <td>{{$incumbent->active_pos}}</td>
                     <td>{{round($incumbent->fulltimeequiv,3)}}</td>
                     <td>
-                        <a href={{route('positions.show',$position->id)}}?viewincid={{$incumbent->id}}>{{substr($incumbent->fname,0,1).' '.$incumbent->lname}}
-                    </td>
-                    <td>
-                        <a href={{route('positions.show',$position->id)}} class="bi-list" data-toggle="tooltip" title="Incumbent history in this position"
+                        {{substr($incumbent->fname,0,1).' '.$incumbent->lname}}
                     </td>
                     <td>
                         <a href='/incumbents/{{$incumbent->id}}' class="bi-file-earmark-person" data-toggle="tooltip" title="Incumbent master record"
                     </td>
-
+                    <td>
+                        <a href={{route('positions.show',$position->id)}}?viewincid={{$incumbent->id}} class="bi-box-arrow-right" data-toggle="tooltip" title="Incumbent history in this position"
+                    </td>
                 </tr>
                 @endforeach
 {{--                </tr>--}}

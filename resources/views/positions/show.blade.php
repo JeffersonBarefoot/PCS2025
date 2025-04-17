@@ -45,8 +45,9 @@
 
 <body>
 {{--<main class="mt-6">--}}
-<div class="container-fluid p-2 m-5 bg-gray-100 text-gray-600">
-    <div class="row  p-1 m-1">
+{{--<div class="container-fluid p-2 m-5 bg-gray-100 text-gray-600">--}}
+<div class="container-fluid-xxl padding-left: 2">
+    <div class="row">
         {{--@dump($request)--}}
         {{--{{ Form::model($position, array('route' => array('positions.update', $position->id), 'method' => 'PUT')) }}--}}
 
@@ -60,7 +61,7 @@
         {{--                XXXTOP OF CONTAINER--}}
         {{--    --}}{{--    Row01  AppNavBar--}}
 
-        <div class="row p-1 m-1">
+        <div class="row g-2">
             {{--                    XXXTOP OF APPNAVBAR ROW--}}
             @include('Common.102appnavbar')
             {{--                    XXXBOTTOM OF APPNAVBAR ROW--}}
@@ -71,7 +72,7 @@
             {{--                    XXX TOP OF CONTENT ROW--}}
 
             {{--        Col03 Data NavBar--}}
-            <div class="col-sm-3  p-1 m-1">
+            <div class="col-xxl-3 margin-left: 5px">
                 {{--                        XXX TOP OF NAVBAR COLUMN--}}
                 {{--            <div class="container-fluid">--}}
                 {{--                Row04 DataNavBar filters, Row05 DataNavBar records (pulls in by include)--}}
@@ -84,7 +85,7 @@
                 {{--                        XXX BOTTOM OF NAVBAR COLUMN--}}
             </div>
 
-            <div class="col sm-9  p-5 m-1">
+            <div class="col xxl-9  p-5 m-1">
                 {{--                        XXX TOP OF DATA COLUMN...all position specific data in collapsible panels--}}
                 <div class="row">
                     @include('positions.Sections.101Titles')

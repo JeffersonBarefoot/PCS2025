@@ -32,12 +32,12 @@ assigned to multiple classes of objects below*/
     --default-navtree-background-color: gainsboro ;
     --default-header-text-color: darkgray ;
     --default-title-text-color:  redorange;
-    --default-normal-text-color: orangered ;
+    --default-normal-text-color: darkslategray ;
 
 
 }
 
-/*//////////////CONTAINERS//////////////*/
+/*//////////////CONTAINERS, COLS, ROWS//////////////*/
 .container-fluid{
     padding: 0;
 }
@@ -104,10 +104,11 @@ p {
     background-color: var(--default-button-background-color);  /*button main color*/
     color: var(--default-button-color); /*button text color*/
     margin-top: 0;
-    margin-bottom: 5px;
-    height: 38px;
-    width: 50%;
+    margin-bottom: 2px;
+    height: 35px;
+    width: 100%;
     border-width: 3px;
+    text-align: left;
 }
 
 /*////////// TABLES /////////////*/

@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers;
 
-// require("vendor/autoload.php");
-
-use Cartalyst\DataGrid\DataHandlers\CollectionHandler;
-use Cartalyst\DataGrid\Environment;
-
 use Illuminate\Http\Request;
-use App\Position;
-use App\HPosition;
-use App\Incumbent;
-use App\Report;
-use App\ReportQueries;
+use App\Models\Position;
+use App\Models\HPosition;
+use App\Models\Incumbent;
+use App\Models\Report;
+use App\Models\ReportQueries;
 use Session;
 use Auth;
 use Illuminate\Support\Facades\Schema\columns;
 use Illuminate\Support\Facades\DB;
+
+// require("vendor/autoload.php");
+use Cartalyst\DataGrid\DataHandlers\CollectionHandler;
+use Cartalyst\DataGrid\Environment;
+
+//use Illuminate\Http\Request;
+
 
 // below are related to Nayjest Data Grid
 use App\User;
@@ -47,13 +49,13 @@ use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
 
 
+
+dump('test');
+
+
 class ReportController extends Controller
 {
-  /**
-   * Create a new controller instance.
-   *
-   * @return void
-   */
+
 
    public function index2($var = null)
       {
@@ -111,29 +113,18 @@ class ReportController extends Controller
         $reports = Report::all();
 
         $company = $request->input('company');
-        $report = $request->input('posno');
+        $posno = $request->input('posno');
         $descr = $request->input('descr');
         $reportsnavbar = Position::where('company','like',"%$company%")
                             ->where('posno','like',"%$posno%")
                             ->where('descr','like',"%$descr%")
                             ->get();
 
-//dd($positions);
-//dd($positionsnavbar);
-        //return view('positions.index', compact('positions'));
-//        ! @isset($company)
-//          $company=""
-//        @endisset
-//        $company = company;
-//        return view("positions.index")->withCompany($company);
-//$test = "test message";
-//$company = "ZSI";
-//dd($test);
-        return view("reports.index",
-          compact('reports'),
-          compact('reportsnavbar'));
+//        return view("reports.index",
+//          compact('reports'),
+//          compact('reportsnavbar'));
 
-        // return view("reports.index");
+
 
     }
 
@@ -204,35 +195,37 @@ class ReportController extends Controller
     //***************************************************
     //***************************************************
     //***************************************************
-    public function show($id,Request $request)
+    public function show($id, Request $request)
     {
+
+        dump("report show");
 
       if (is_null($id)) {
         $id=1;
       }
 
-//$viewinchistid = $request->input('viewinchistid');
-//$navbarcompany = $request->input('company');
+$viewinchistid = $request->input('viewinchistid');
+$navbarcompany = $request->input('company');
 $begcompany = $request->input('beg|positions||company|||');
-//dump($begcompany);
+dump($begcompany);
 $input = $request->all();
 
 //dump('$input');
 //dump($input);
-
-
-//dump('$request');
-//dump($request);
-
+//
+//
+////dump('$request');
+////dump($request);
+//
       $report = Report::find($id);
       // $reportid = $report->id;
       // find the report type, i.e. POS, from $report.group1
       $reporttype = $report->group1;
       $reportid = $report->reportid;
-
-      // dump($reporttype);
-
-
+//
+//      // dump($reporttype);
+//
+//
       // include all queries for this reporttype (all standard POS or POSH or INC queries), and for this specific report
       $reportqueries = \DB::table('reportqueries')
         ->where(function ($query) use ($reportid,$reporttype) {
@@ -310,38 +303,38 @@ $input = $request->all();
 
 $grid = "";
 $gridSummary = "";
+//
+//$query = BuildQuery($reportid,$reporttype,$input,$report);
+//$querySummary = "";
 
-$query = BuildQuery($reportid,$reporttype,$input,$report);
-$querySummary = "";
+//$CSVData = $query->get()->toArray();
+//sessionSet('CSVDataFromGrid',$CSVData);
+//
+//$grid = BuildReport($reportid,$reporttype,$input,$report,$query);
+//$gridSummary = BuildReportSummary($reportid,$reporttype,$input);
 
-$CSVData = $query->get()->toArray();
-sessionSet('CSVDataFromGrid',$CSVData);
-
-$grid = BuildReport($reportid,$reporttype,$input,$report,$query);
-$gridSummary = BuildReportSummary($reportid,$reporttype,$input);
-
-// dump('reportcontroller line 307');
-// dd(session()->all());
-// dump('Testing dump from ReportController.php');
+ dump('reportcontroller line 307');
+ dump(session()->all());
+ dump('Testing dump from ReportController.php');
 
       //****************************
       // R E T U R N   T O   reports.show
       return View('reports.show')
         // ->with(compact('dataGrid'))
-        ->with(compact('grid'))
-        ->with(compact('gridSummary'))
-        // ->with(compact('text'))
-        ->with(compact('report'))
-        ->with(compact('reportqueries'))
-        ->with(compact('reportdata'))
+//        ->with(compact('grid'))
+//        ->with(compact('gridSummary'))
+//        // ->with(compact('text'))
+//        ->with(compact('report'))
+//        ->with(compact('reportqueries'))
+//        ->with(compact('reportdata'))
         ->with(compact('availablereportsPOS'))
-        ->with(compact('availablereportsPOSH'))
-        ->with(compact('availablereportsINC'))
-        ->with(compact('availablereportsINCH'))
-        ->with(compact('availablereportsBUDG'))
-        ->with(compact('availablereportsVAC'))
-        ->with(compact('availablereportsRECR'));
-    }
+//        ->with(compact('availablereportsPOSH'))
+//        ->with(compact('availablereportsINC'))
+//        ->with(compact('availablereportsINCH'))
+//        ->with(compact('availablereportsBUDG'))
+//        ->with(compact('availablereportsVAC'))
+//        ->with(compact('availablereportsRECR'));
+   ; }
 
     /**
      * Show the form for editing the specified resource.

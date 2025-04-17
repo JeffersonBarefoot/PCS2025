@@ -31,6 +31,10 @@ Route::middleware([
     Route::get('/incumbents', 'App\Http\Controllers\IncumbentController@shownoid')->name('incumbents.shownoid');
     Route::get('/incumbents/{id?}', 'App\Http\Controllers\IncumbentController@show')->name('incumbents.show');
 
+//    Route::get('/reports', 'App\Http\Controllers\ReportController@show')->name('reports.show');
+    Route::get('/dumpGridToCsv',  'App\Http\Controllers\ReportController@dumpGridToCsv')->name('dumpGridToCsv');
+    Route::resource('reports',    'App\Http\Controllers\ReportController');
+
     Route::post('/uploadfile',     'App\Http\Controllers\UploadFileController@uploadfile')->name('uploadfile');
 
 
