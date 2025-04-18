@@ -46,7 +46,7 @@
 <body>
 {{--<main class="mt-6">--}}
 {{--<div class="container-fluid p-2 m-5 bg-gray-100 text-gray-600">--}}
-<div class="container-fluid-xxl padding-left: 2">
+<div class="container-fluid-xxl margin-left: 2; padding-left: 2;">
     <div class="row">
         {{--@dump($request)--}}
         {{--{{ Form::model($position, array('route' => array('positions.update', $position->id), 'method' => 'PUT')) }}--}}

@@ -50,7 +50,7 @@ use Nayjest\Grids\GridConfig;
 
 
 
-dump('test');
+//dump('test');
 
 
 class ReportController extends Controller
@@ -207,37 +207,35 @@ class ReportController extends Controller
 $viewinchistid = $request->input('viewinchistid');
 $navbarcompany = $request->input('company');
 $begcompany = $request->input('beg|positions||company|||');
-dump($begcompany);
+//dump($begcompany);
 $input = $request->all();
 
 //dump('$input');
-//dump($input);
+dd("test");
 //
 //
 ////dump('$request');
 ////dump($request);
 //
       $report = Report::find($id);
-      // $reportid = $report->id;
+       $reportid = $report->id;
       // find the report type, i.e. POS, from $report.group1
       $reporttype = $report->group1;
-      $reportid = $report->reportid;
+      $reportsortid = $report->reportid;
 //
-//      // dump($reporttype);
+       dump($reporttype);
+       dump($reportid);
 //
 //
       // include all queries for this reporttype (all standard POS or POSH or INC queries), and for this specific report
       $reportqueries = \DB::table('reportqueries')
-        ->where(function ($query) use ($reportid,$reporttype) {
-            $query->where('reportid','=',$reportid)
-              ->orwhere('reportid','=',$reporttype);
-            })
+        ->where('reportid','=',$reportid)
         ->where('active','=',"A")
         ->orderby("sortorder","asc")
         ->get();
 
         //dump('$reportqueries');
-        //dump($reportqueries);
+        dump($reportqueries);
 
       $availablereportsPOS = \DB::table('reports')
         ->where('active','=',"A")
@@ -246,6 +244,7 @@ $input = $request->all();
         ->orderby("group2","asc")
         ->orderby("sortorder","asc")
         ->get();
+      @dump($availablereportsPOS);
 
       $availablereportsPOSH = \DB::table('reports')
         ->where('active','=',"A")
@@ -304,8 +303,8 @@ $input = $request->all();
 $grid = "";
 $gridSummary = "";
 //
-//$query = BuildQuery($reportid,$reporttype,$input,$report);
-//$querySummary = "";
+$query = BuildQuery($reportid,$reporttype,$input,$report);
+$querySummary = "";
 
 //$CSVData = $query->get()->toArray();
 //sessionSet('CSVDataFromGrid',$CSVData);
@@ -313,28 +312,28 @@ $gridSummary = "";
 //$grid = BuildReport($reportid,$reporttype,$input,$report,$query);
 //$gridSummary = BuildReportSummary($reportid,$reporttype,$input);
 
- dump('reportcontroller line 307');
- dump(session()->all());
- dump('Testing dump from ReportController.php');
+// dump('reportcontroller line 307');
+// dump(session()->all());
+// dump('Testing dump from ReportController.php');
 
       //****************************
       // R E T U R N   T O   reports.show
       return View('reports.show')
         // ->with(compact('dataGrid'))
-//        ->with(compact('grid'))
-//        ->with(compact('gridSummary'))
+        ->with(compact('grid'))
+        ->with(compact('gridSummary'))
 //        // ->with(compact('text'))
-//        ->with(compact('report'))
-//        ->with(compact('reportqueries'))
+        ->with(compact('report'))
+        ->with(compact('reportqueries'))
 //        ->with(compact('reportdata'))
         ->with(compact('availablereportsPOS'))
-//        ->with(compact('availablereportsPOSH'))
-//        ->with(compact('availablereportsINC'))
-//        ->with(compact('availablereportsINCH'))
-//        ->with(compact('availablereportsBUDG'))
-//        ->with(compact('availablereportsVAC'))
-//        ->with(compact('availablereportsRECR'));
-   ; }
+        ->with(compact('availablereportsPOSH'))
+        ->with(compact('availablereportsINC'))
+        ->with(compact('availablereportsINCH'))
+        ->with(compact('availablereportsBUDG'))
+        ->with(compact('availablereportsVAC'))
+        ->with(compact('availablereportsRECR'));
+   }
 
     /**
      * Show the form for editing the specified resource.
@@ -427,16 +426,16 @@ $gridSummary = "";
    public function dumpGridToCsv()
    {
 
-     $fileCreated = fopen('../FileExports/TEAM00001/wxyzfile.' . getTimestamp() .  '.csv', 'w');
+//     $fileCreated = fopen('../FileExports/TEAM00001/wxyzfile.' . getTimestamp() .  '.csv', 'w');
      // $fp = fopen('xxxfile.csv', 'w');
 
      $CSVData = sessionGet('CSVDataFromGrid');
 
-     foreach ($CSVData as $exportRecord) {
-       // dd($pos);
-         fputcsv($fileCreated, $exportRecord);
-     }
-     fclose($fileCreated);
+//     foreach ($CSVData as $exportRecord) {
+//       // dd($pos);
+//         fputcsv($fileCreated, $exportRecord);
+//     }
+//     fclose($fileCreated);
 
      return redirect('/reports/2')->with('success', 'CSV Export File Created');
 

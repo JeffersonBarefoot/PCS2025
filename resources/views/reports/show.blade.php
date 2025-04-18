@@ -42,6 +42,9 @@
 <?php $P900Show = sessionGet('P900Show') ?>
 
 {{--@dump($P201Show)--}}
+<!-- <form method="post" action="/reports" enctype="multipart/form-data"> -->
+{{--<form action="{{route('reports.show',$report->id)}}" method="get">--}}
+    {{ csrf_field() }}
 
 <body>
 <div class="container-fluid-xxl padding-left: 2">
@@ -73,74 +76,87 @@
             <div class="col xxl-9  p-5 m-1">
                 {{--                        XXX TOP OF DATA COLUMN...all position specific data in collapsible panels--}}
                 <div class="row">
-{{--                    @include('positions.Sections.101Titles')--}}
+                    {{--                    @include('positions.Sections.101Titles')--}}
                 </div>
 
                 {{--column c6--}}
-                <div class="col">
-                    {{--            Row08 ***********************************************--}}
+                <div class="col color: divide-pink-400">
+                    {{--            Section 01 ***********************************************--}}
+                    <div class="row">
+                        <p>
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#RepSection1"
+                               role="button"
+                               aria-expanded="false" aria-controls="collapseExample">
+                                Report Parameters:
+                            </a>
+                        </p>
 
-
-                        <div class="{{ $P201Show ? 'collapse show' : 'collapse' }}" id="PosSection1">
+                        <div class="{{ $P201Show ? 'collapse show' : 'collapse' }}" id="RepSection1">
                             <div class="card">
                                 <div class="card-body">
-{{--                                    @include('positions.Sections.201Status')--}}
+                                    @include('reports.Sections.201')
+                                    {{--                                    @include('positions.Sections.201Status')--}}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {{--            Row09 ***********************************************--}}
+                    {{--            Section 02 ***********************************************--}}
                     <div class="row">
                         <p>
-                            {{--                        ________________________________________<br>--}}
-                            {{--                        Section 2, Layout Row 9<br>--}}
-                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection2"
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#RepSection2"
                                role="button"
                                aria-expanded="false" aria-controls="collapseExample">
-                                Budgets and FTEs
+                                Summary:
                             </a>
                         </p>
-                        {{--                        <div class="collapse" id="PosSection2">--}}
-                        <div class="{{ $P202Show ? 'collapse show' : 'collapse' }}" id="PosSection2">
-                            <div class="card card-body">
-{{--                                @include('positions.Sections.202budgets')--}}
+
+                        <div class="{{ $P201Show ? 'collapse show' : 'collapse' }}" id="RepSection2">
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('reports.Sections.202')
+                                    {{--                                    @include('positions.Sections.201Status')--}}
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {{--                --}}{{--            Row10 ***********************************************--}}
-                    {{--                <div class="row">--}}
-                    {{--                    <p>--}}
-                    {{--                        --}}{{--                        ________________________________________<br>--}}
-                    {{--                        --}}{{--                        Section 3, Layout Row 10<br>--}}
-                    {{--                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection3" role="button"--}}
-                    {{--                           aria-expanded="false" aria-controls="collapseExample">--}}
-                    {{--                            Budget Variances--}}
-                    {{--                        </a>--}}
-                    {{--                    </p>--}}
-                    {{--                    <div class="collapse" id="PosSection3">--}}
-                    {{--                        <div class="card card-body">--}}
-                    {{--                            @include('positions.Sections.203budvar')--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
-                    {{--                </div>--}}
-
-                    {{--                Row11 ***********************************************--}}
+                    {{--            Section 03 ***********************************************--}}
                     <div class="row">
                         <p>
-                            {{--                        ________________________________________<br>--}}
-                            {{--                        Section 4, Layout Row 11<br>--}}
-                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection4"
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#RepSection3"
                                role="button"
                                aria-expanded="false" aria-controls="collapseExample">
-                                Org Levels
+                                Report Summary:
                             </a>
                         </p>
-                        {{--                        <div class="collapse" id="PosSection4">--}}
-                        <div class="{{ $P204Show ? 'collapse show' : 'collapse' }}" id="PosSection4">
-                            <div class="card card-body">
-{{--                                @include('positions.Sections.204orglevels')--}}
+
+                        <div class="{{ $P201Show ? 'collapse show' : 'collapse' }}" id="RepSection3">
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('reports.Sections.203')
+                                    {{--                                    @include('positions.Sections.201Status')--}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{--            Section 04 ***********************************************--}}
+                    <div class="row">
+                        <p>
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#RepSection4"
+                               role="button"
+                               aria-expanded="false" aria-controls="collapseExample">
+                                Report Detail:
+                            </a>
+                        </p>
+
+                        <div class="{{ $P201Show ? 'collapse show' : 'collapse' }}" id="RepSection4">
+                            <div class="card">
+                                <div class="card-body">
+                                    @include('reports.Sections.204')
+                                    {{--                                    @include('positions.Sections.201Status')--}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -148,6 +164,58 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function initExpands() {
+
+            sessionStorage.setItem("initialized", "expandStatus");
+        }
+
+        function expandStatus() {
+            var x = document.getElementById("p2").getAttribute("aria-expanded");
+            if (x == " class='panel-collapse collapse' id='collapse1' ") {
+                x = " class='panel-collapse' id='collapse1' ";
+            } else {
+                x = " class='panel-collapse collapse' id='collapse1' ";
+            }
+
+            // document.getElementById("p2").setAttribute("aria-expanded", x);
+            // document.getElementById("p2").innerHTML = "aria-expanded =" + x;
+
+            if (typeof (Storage) !== "undefined") {
+                if (sessionStorage.expandStatus) {
+                    // sessionStorage.expandStatus = Number(sessionStorage.clickcount)+2;
+                    sessionStorage.expandStatus = x;
+                }
+                // } else {
+                //   sessionStorage.expandStatus = 1;
+                // }
+                document.getElementById("demo123").innerHTML = x;
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+            }
+        }
+
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+    </script>
 
 </body>
 

@@ -27,7 +27,9 @@
         "files": [
             "app/Functions/DataFunctions.php",
             "app/Functions/ImportFunctions.php",
-            "app/Functions/UtilityFunctions.php"
+            "app/Functions/UtilityFunctions.php",
+            "app/Functions/ReportFunctions.php",
+            "app/Functions/SQLData.php"
         ],
         "psr-4": {
             "App\\": "app/",
