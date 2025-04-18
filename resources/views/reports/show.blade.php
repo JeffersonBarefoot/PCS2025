@@ -40,10 +40,12 @@
 <?php $P210Show = sessionGet('P210Show') ?>
 <?php $P211Show = sessionGet('P211Show') ?>
 <?php $P900Show = sessionGet('P900Show') ?>
+<?php $R201Show = sessionGet('R201Show') ?>
+
 
 {{--@dump($P201Show)--}}
 <!-- <form method="post" action="/reports" enctype="multipart/form-data"> -->
-{{--<form action="{{route('reports.show',$report->id)}}" method="get">--}}
+<form action="{{route('reports.show',$report->id)}}" method="get">
     {{ csrf_field() }}
 
 <body>
@@ -91,7 +93,7 @@
                             </a>
                         </p>
 
-                        <div class="{{ $P201Show ? 'collapse show' : 'collapse' }}" id="RepSection1">
+                        <div class="{{ $R201Show ? 'collapse show' : 'collapse' }}" id="RepSection1">
                             <div class="card">
                                 <div class="card-body">
                                     @include('reports.Sections.201')

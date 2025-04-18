@@ -39,6 +39,46 @@ class PositionController extends Controller
     //***************************************************
     //***************************************************
     //***************************************************
+    //**   C R E A T E
+    //**   This works together with STORE to add a new record
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    public function create()
+    {
+        return view('positions.create');
+    }
+
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    //**   S T O R E
+    //**   This works together with CREATE to add a new record
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    public function store(Request $request)
+    {
+        dump('positioncontroller.store');
+
+        $request->validate([
+            'company'=>'required',
+            'posno'=>'required',
+            'descr'=>'required'
+        ]);
+
+        $position = new Position([
+            'company' => $request->get('company'),
+            'posno' => $request->get('posno'),
+            'descr' => $request->get('descr')
+        ]);
+        $position->save();
+        return redirect('/positions/1')->with('success', 'Position saved!');
+    }
+
+    //***************************************************
+    //***************************************************
+    //***************************************************
     //**   S H O W   ( N 0   I D )
     //***************************************************
     //***************************************************
@@ -100,6 +140,7 @@ class PositionController extends Controller
             Session::put('P210Show', false);
             Session::put('P211Show', false);
             Session::put('P900Show', false);
+            Session::put('R201Show', false);
         }
 //        dump(Session::get("P201Show"));
 

@@ -260,7 +260,7 @@ if (!function_exists('BuildReportSummary')) {
             ->selectRaw('count(*) as count, sum(budgsal) as sumbudgsal, positions.company, positions.level1,positions.level2')
             ->groupBy('positions.company','positions.level1','positions.level2');
             // ->where('positions.Active', '=', 'A');
-
+dump($querySummary);
           break;
 
         case "POSH":

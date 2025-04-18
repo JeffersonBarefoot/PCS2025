@@ -224,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // PanelShowListener("PosSection10","P210Show");
     // PanelShowListener("PosSection11","P211Show");
     PanelShowListener("PosSection11","P900Show");
+    PanelShowListener("RepSection1","R201Show");
 
 });
 

@@ -3,7 +3,8 @@
         <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Go To The Dashboard<br></a>
         <a href='/positions/4'>Go To Position #4<br></a>
         <a href='/incumbents/57'>Go To Incumbent #57<br></a>
-        <a href='/reports/1'>Go To Reports</a>
+        <a href='/reports/1'>Go To Reports<br></a>
+        <a style="margin: 19px;" href="{{ route('positions.create')}}" class="btn btn-primary">New position</a>
     </div>
     <div class="col-xxl-4">
     </div>

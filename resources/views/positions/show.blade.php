@@ -40,6 +40,8 @@
 <?php $P210Show = sessionGet('P210Show') ?>
 <?php $P211Show = sessionGet('P211Show') ?>
 <?php $P900Show = sessionGet('P900Show') ?>
+<?php $R201Show = sessionGet('R201Show') ?>
+
 
 {{--@dump($P201Show)--}}
 
