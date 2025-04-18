@@ -1,14 +1,13 @@
 
 <?php
 
-
 use App\Models\Post;
-use App\Position;
-use App\HPosition;
-use App\Incumbent;
-use App\HIncumbent;
-use App\Report;
-use App\ReportQueries;
+use App\Models\Position;
+use App\Models\HPosition;
+use App\Models\Incumbent;
+use App\Models\HIncumbent;
+use App\Models\Report;
+use App\Models\ReportQueries;
 use Illuminate\Support\Facades\Schema\columns;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
