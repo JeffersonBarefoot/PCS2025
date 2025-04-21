@@ -510,6 +510,7 @@
 {{--</div>--}}
 
 {{--</main>--}}
+</form>
 </body>
 
 @include('Common.002script')

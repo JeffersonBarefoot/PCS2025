@@ -60,6 +60,7 @@ class PositionController extends Controller
     public function store(Request $request)
     {
         dump('positioncontroller.store');
+        dump($request->all());
 
         $request->validate([
             'company'=>'required',
@@ -73,8 +74,137 @@ class PositionController extends Controller
             'descr' => $request->get('descr')
         ]);
         $position->save();
-        return redirect('/positions/1')->with('success', 'Position saved!');
+        return redirect('/positions/40')->with('success', 'Position saved!');
     }
+
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    //**   E D I T
+    //**   this works together with UPDATE to edit a single record
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    public function edit($id)
+    {
+        dump('positioncontroller.edit');
+        // dd('positioncontroller.edit');
+
+        if (is_null($id)) {
+            $id=1;
+        }
+
+        $position = \App\Models\position::find($id);
+
+        return view('positions.edit', compact('position'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    //**   U P D A T E
+    //**   this works together with EDIT to edit a single record
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    public function update($id = null , Request $request)
+//        public function update(Request $request, $id)
+        // public function update($id)
+    {
+
+        if (is_null($id)) {
+            $id=1;
+        }
+
+        // dump('positioncontroller.update');
+        // dd('positioncontroller.update');
+        UpdatePosition($id, $request);
+//        UpdatePosition($id);
+
+        // return redirect('/positions')->with('success', 'Position updated!');
+        // return View('positions.show') ->with $id;
+        // route('positions.show',$id);
+        return redirect(route('positions.show',$id));
+        // route('positions.show',$position->id)
+        // return redirect()->route('show',$id);
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    //**   V E R I F Y D E S T R O Y
+    //**   This works together with DESTROY to delete a record
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    public function verifydestroy(Request $request)
+    {
+
+        $positionToDestroy = $request->input('positiontodelete');
+
+        // $position = Position::find($positionToDestroy);
+        //
+        // dump($position);
+
+
+        $position = Position::find($positionToDestroy);
+
+        // dump('verifydestroy');
+        // dump($position);
+        // dump($positionToDestroy);
+        // dump('verifydestroy2');
+
+        return view('positions.destroy', compact('position'));
+
+        // return view('positions.destroy')
+        //   ->with('id',$positionToDestroy)
+        //   ->with(compact('position'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    //**   D E S T R O Y
+    //***************************************************
+    //***************************************************
+    //***************************************************
+    public function destroy($id)
+    {
+        // dd('positioncontroller.destroy');
+
+        dump('destroy');
+
+        $position = Position::find($id);
+        $position->delete();
+
+// this redirects to position #9.  Need to find first position for the team and go there instead
+// JLB 2021-01-26
+        return redirect('/positions/9')->with('success', 'Position deleted!');
+    }
+
 
     //***************************************************
     //***************************************************
@@ -301,7 +431,7 @@ class PositionController extends Controller
             // Do NOT want to be in edit mode...set readonly and disabled texts
             Session::put('readOnlyText', 'readonly');
             Session::put('disabledText', 'disabled');
-            Session::put('editModeButtonText', 'Switch to Edit Mode');
+            Session::put('editModeButtonText', 'Edit This Position');
         } else {
             // have not change positions
             // if null, no change...leave as is
@@ -312,13 +442,13 @@ class PositionController extends Controller
 //                    // currently in edit mode, switch to NOT in edit mode...set readonly and disabled texts
                     Session::put('readOnlyText', 'readonly');
                     Session::put('disabledText', 'disabled');
-                    Session::put('editModeButtonText', 'Switch to Edit Mode');
+                    Session::put('editModeButtonText', 'Edit This Position');
                 }else{
 //                    // dump("2");
 //                    // in edit mode...leave readonly and disabled texts as blank
                     Session::put('readOnlyText', '');
                     Session::put('disabledText', '');
-                    Session::put('editModeButtonText', 'Leave Edit Mode');
+                    Session::put('editModeButtonText', 'Leave edit mode, don\'t save changes');
                 }
             }
         }

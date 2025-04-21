@@ -1,24 +1,24 @@
 {{--@extends('layout')--}}
 
 {{--@section('bodysection')--}}
-this is a test
+this is a testxx
 
-<form method="post" action="{{ route('positions.store') }}">
-    <div class="form-group">
-        @csrf
-        <label for="company">Company:</label>
-        <input type="text" class="form-control" name="company"/>
-    </div>
-    <div class="form-group">
-        <label for="posno">Position Number</label>
-        <input type="text" class="form-control" name="posno"/>
-    </div>
-    <div class="form-group">
-        <label for="descr">Position Name / Description:</label>
-        <input type="text" class="form-control" name="descr"/>
-    </div>
-    <button type="submit" class="btn btn-primary">Add</button>
-</form>
+{{--<form method="post" action="{{ route('positions.store') }}">--}}
+{{--    <div class="form-group">--}}
+{{--        @csrf--}}
+{{--        <label for="company">Company:</label>--}}
+{{--        <input type="text" class="form-control" name="company"/>--}}
+{{--    </div>--}}
+{{--    <div class="form-group">--}}
+{{--        <label for="posno">Position Number</label>--}}
+{{--        <input type="text" class="form-control" name="posno"/>--}}
+{{--    </div>--}}
+{{--    <div class="form-group">--}}
+{{--        <label for="descr">Position Name / Description:</label>--}}
+{{--        <input type="text" class="form-control" name="descr"/>--}}
+{{--    </div>--}}
+{{--    <button type="submit" class="btn btn-primary">Add</button>--}}
+{{--</form>--}}
 
 
 {{--@endsection--}}
@@ -35,7 +35,7 @@ this is a test
 </style>
 <body>
   <div>
-    test
+{{--    test--}}
   </div>
 
   <div class="card uper">

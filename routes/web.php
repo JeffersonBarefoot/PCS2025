@@ -15,24 +15,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    //    Very simple route that doesn't return an ID, and just shows the HelloWorld version'
-//    Route::get('/positions', 'App\Http\Controllers\PositionController@show')->name('positions.show');
 
-    // this passes the ID, but doesn't account for a default ID if none is passed
-//        Route::get('/positions/{id?}',
-//    'App\Http\Controllers\PositionController@show')
-//            ->name('positions.show');
-
-    //    passes ID.  If ID is not included (i.e. /positions instead of /positions/12345) the the default ID of 9999999999 is passed and can be a trigger
-//    Route::get('/positions', 'App\Http\Controllers\PositionController@shownoid')->name('positions.shownoid');
-//    Route::get('/positions/{id?}', 'App\Http\Controllers\PositionController@show')->name('positions.show');
-//    Route::create('/positions', 'App\Http\Controllers\PositionController@create')->name('positions.create');
+    Route::get('/verifydestroy',  'App\Http\Controllers\PositionController@verifydestroy')->name('verifydestroy');
     Route::resource('positions', 'App\Http\Controllers\PositionController');
-
-
-
-    Route::get('/incumbents', 'App\Http\Controllers\IncumbentController@shownoid')->name('incumbents.shownoid');
-    Route::get('/incumbents/{id?}', 'App\Http\Controllers\IncumbentController@show')->name('incumbents.show');
+    Route::resource('incumbents', 'App\Http\Controllers\IncumbentController');
 
 //    Route::get('/reports', 'App\Http\Controllers\ReportController@show')->name('reports.show');
     Route::get('/dumpGridToCsv',  'App\Http\Controllers\ReportController@dumpGridToCsv')->name('dumpGridToCsv');
