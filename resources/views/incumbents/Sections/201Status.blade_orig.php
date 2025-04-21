@@ -1,5 +1,22 @@
 
 <body>
+<div class="row">
+    <!-- <div class="col-sm-8 offset-sm-0"> -->
+    {{--  @dump($dumprequest2)   --}}
+
+    <div class="col-md-12">
+        <h1 class="display-5">&nbsp;&nbsp;&nbsp;{{$incumbent->fname}}&nbsp{{$incumbent->lname}};<small>{{$incumbent->company}} / {{$incumbent->empno}}</small></h1>
+
+        <!-- SAVE EDIT CHANGES -->
+        <!-- Not working as of 2020-12-11 -->
+
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <br>
+        <br>
+    </div>
+</div>
 
 <!-- ************************** -->
 <!-- ************************** -->
@@ -124,7 +141,122 @@ Message 1
                     </tr>
                 </table>
 
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th width="25%">Budget</th>
+                        <th width="25%"></th>
+                        <th width="0%"></th>
+                        <th width="25%"></th>
+                        <th width="25%"></th>
+                    </tr>
+                    </thead>
 
+                    <tr>
+                        <td>Hourly Rate</td>
+                        <td>{{FormatMoney($IHR->unitrate)}}</td>
+                        <td></td>
+                        <td>Annualized Rate</td>
+                        <td>{{FormatDollars($IHR->annual)}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Pay Frequency</td>
+                        <td>{{$IHR->payfreq}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>FTEs in this Pos:</td>
+                        <td>{{round($IHR->fulltimeequiv,3)}}</td>
+                        <td></td>
+                        <td>Annual Cost</td>
+                        <td>{{FormatDollars($IHR->ann_cost)}}</td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th width="25%">Organization</th>
+                        <th width="25%"></th>
+                        <th width="0%"></th>
+                        <th width="25%"></th>
+                        <th width="25%"></th>
+                    </tr>
+                    </thead>
+
+                    <tr>
+                        <td>Org Level 1</td>
+                        <td>{{$IHR->level1}}</td>
+                        <td></td>
+                        <td>Org Level 4</td>
+                        <td>{{$IHR->level4}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Org Level 2</td>
+                        <td>{{$IHR->level2}}</td>
+                        <td></td>
+                        <td>Org Level 5</td>
+                        <td>{{$IHR->level5}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Org Level 3</td>
+                        <td>{{$IHR->level3}}</td>
+                        <td></td>
+                        <td>Primary Job</td>
+                        <td>{{$IHR->jobtitle}}</td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th width="25%">Data Updates</th>
+                        <th width="25%"></th>
+                        <th width="0%"></th>
+                        <th width="25%"></th>
+                        <th width="25%"></th>
+                    </tr>
+                    </thead>
+
+                    <tr>
+                        <td>Update Effective:</td>
+                        <td>{{$IHR->hrmsdate}}</td>
+                        <td></td>
+                        <td>Update Reason</td>
+                        <td>{{$IHR->hrmsreas}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Update Actual Date</td>
+                        <td>{{$IHR->trans_date}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
 
 
             @endforeach

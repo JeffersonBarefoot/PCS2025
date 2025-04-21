@@ -2,7 +2,7 @@
 
 <form action={{route('incumbents.show',$incumbent->id)}} method="get">
     <div class="row">
-        <div class="col-md-3" style="background-color:WhiteSmoke">
+        <div class="col">
 
 
             <!-- ************************** -->
