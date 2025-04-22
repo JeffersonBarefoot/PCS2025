@@ -29,7 +29,7 @@
 {{--<div id="collapseOrgLevels" class="panel-collapse collapse">--}}
 {{--    <!-- <div class="panel-body">Full Time Equivalent Calculation -->--}}
 {{--    <div class="panel-body">--}}
-<body>
+{{--<body>--}}
 {{--        <?php $level1Description = sessionGet('level1Desc') ?>--}}
 {{--        <?php $level2Description = sessionGet('level2Desc') ?>--}}
 {{--        <?php $level3Description = sessionGet('level3Desc') ?>--}}
@@ -46,7 +46,7 @@
                 <table class="table table-condensed">
                     <tr>
                         <td>{{$level1Description}}</td>
-                        <td><input type="text" class="text-input-box" name="Level1"
+                        <td><input type="text" class="text-input-box" name="level1"
                                    value="{{$position->level1}}" {{$readonly}}></td>
                         <td width="10%">
                         <td width="10%">
@@ -55,26 +55,27 @@
 
                     <tr>
                         <td>{{$level2Description}}</td>
-                        <td><input type="text" class="text-input-box" name="Level2"
+                        <td><input type="text" class="text-input-box" name="level2"
                                    value="{{$position->level2}}" {{$readonly}}></td>
                     </tr>
 
                     <tr>
                         <td>{{$level3Description}}</td>
-                        <td><input type="text" class="text-input-box" name="Level3"
+                        <td><input type="text" class="text-input-box" name="level3"
                                    value="{{$position->level3}}" {{$readonly}}></td>
                     </tr>
 
                     <tr>
                         <td>{{$level4Description}}</td>
-                        <td><input type="text" class="text-input-box" name="Level4"
+                        <td><input type="text" class="text-input-box" name="level4"
                                    value="{{$position->level4}}" {{$readonly}}></td>
                     </tr>
 
                     <tr>
                         <td>{{$level5Description}}</td>
-                        <td><input type="text" class="text-input-box" name="Level5"
+                        <td><input type="text" class="text-input-box" name="level5"
                                    value="{{$position->level5}}" {{$readonly}}></td>
+
                     </tr>
                 </table>
             </div>
@@ -95,4 +96,4 @@
         </div>
 {{--    </div>--}}
 {{--</div>--}}
-</body>
+{{--</body>--}}
