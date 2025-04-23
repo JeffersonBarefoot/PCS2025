@@ -30,7 +30,7 @@
 
 
         <body>
-        <div class="col-md-6">
+        <div class="col">
 
 
             {{--<main class="mt-6">--}}

@@ -5,7 +5,7 @@
         Welcome to your Jetstream application!
     </h1>
 
-    COMPONENTS.WELCOME.BLADE MAIN BODY OF AUTHENTICATED LANDING PAGE
+{{--    COMPONENTS.WELCOME.BLADE MAIN BODY OF AUTHENTICATED LANDING PAGE--}}
 
     <p class="mt-6 text-gray-500 dark:text-gray-400 leading-relaxed">
         Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
