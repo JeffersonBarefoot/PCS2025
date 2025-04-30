@@ -48,6 +48,9 @@ use Nayjest\Grids\FilterConfig;
 use Nayjest\Grids\Grid;
 use Nayjest\Grids\GridConfig;
 
+use \koolreport\core\source\processes\Group;
+use \koolreport\core\source\processes\Sort;
+use \koolreport\core\source\processes\Limit;
 
 
 //dump('test');
@@ -210,7 +213,7 @@ $begcompany = $request->input('beg|positions||company|||');
 //dump($begcompany);
 $input = $request->all();
 
-//dump('$input');
+//dump($navbarcompany);
 //dd("test");
 //
 //
@@ -235,7 +238,7 @@ $input = $request->all();
         ->get();
 
         //dump('$reportqueries');
-        dump($reportqueries);
+//        dump($reportqueries);
 
       $availablereportsPOS = \DB::table('reports')
         ->where('active','=',"A")
@@ -244,7 +247,7 @@ $input = $request->all();
         ->orderby("group2","asc")
         ->orderby("sortorder","asc")
         ->get();
-      @dump($availablereportsPOS);
+//      @dump($availablereportsPOS);
 
       $availablereportsPOSH = \DB::table('reports')
         ->where('active','=',"A")
@@ -309,8 +312,77 @@ $querySummary = "";
 //$CSVData = $query->get()->toArray();
 //sessionSet('CSVDataFromGrid',$CSVData);
 //
-//$grid = BuildReport($reportid,$reporttype,$input,$report,$query);
+$grid = BuildReport($reportid,$reporttype,$input,$report,$query);
 //$gridSummary = BuildReportSummary($reportid,$reporttype,$input);
+        dump($grid);
+
+
+        dump("made it!!");
+
+
+
+
+//        class SalesByCustomerx extends \koolreport\KoolReport
+        {
+//    public function settings()
+//        {
+//        return
+            array(
+        "dataSources" => array(
+        "sales" => array(
+        "connectionString" => "mysql:host=localhost;dbname=db_sales",
+        "username" => "root",
+        "password" => "",
+        "charset" => "utf8"
+        )
+        )
+        );
+//        }
+
+//        public
+//        function setup()
+//        {
+
+//            $positionsnavbar = position::where('company', 'like', "$navbarcompany%")
+//                ->where('posno', 'like', "$navbarposno%")
+//                ->where('descr', 'like', "%$navbardescr%")
+//                ->where('level1', 'like', "$navbarlevel1%")
+//                ->where('level2', 'like', "$navbarlevel2%")
+//                ->where('level3', 'like', "$navbarlevel3%")
+//                ->where('level4', 'like', "$navbarlevel4%")
+//                ->where('level5', 'like', "$navbarlevel5%")
+//                ->orderby("company")
+//                ->orderby("descr")
+//                ->get();
+
+            $positionsnavbar = position::where('company', 'like', "%SAMPLE%")
+                ->orderby("company")
+                ->orderby("descr")
+                ->get()
+                ->toArray();
+
+            dump($positionsnavbar);
+
+//            $this->src('positions')
+//                ->query("SELECT * FROM positions")
+//                ->pipe(new Group(array(
+//                    "by" => "posno",
+//                    "sum" => "ftehours"
+//                )))
+//                ->pipe(new Sort(array(
+//                    "posno" => "desc"
+//                )))
+//                ->pipe(new Limit(array(10)))
+//                ->pipe($this->dataStore('sales_by_customer'));
+//        }
+    }
+
+
+
+
+
+
+
 
 // dump('reportcontroller line 307');
 // dump(session()->all());
@@ -320,7 +392,7 @@ $querySummary = "";
       // R E T U R N   T O   reports.show
       return View('reports.show')
         // ->with(compact('dataGrid'))
-        ->with(compact('grid'))
+        ->with(compact('positionsnavbar'))
         ->with(compact('gridSummary'))
 //        // ->with(compact('text'))
         ->with(compact('report'))
