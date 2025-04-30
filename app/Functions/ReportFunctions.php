@@ -229,10 +229,10 @@ if (!function_exists('BuildReport')) {
 
 
       // render the grid, and send it to the HTML
-      $grid = new Grid($config);
-      $grid = $grid->render();
-
-      return $grid;
+//      $grid = new Grid($config);
+//      $grid = $grid->render();
+//
+//      return $grid;
     }
 }
 
@@ -515,20 +515,17 @@ if (!function_exists('AddFilters')) {
 
 // create an empty temp table to hold report parameters
 // "where id=-1" is intended to create a table with no records (id would never equal -1)....not sure how to do that otherwise
-DB::insert(
-  DB::raw( "CREATE TEMPORARY TABLE tempQueries as (
-    Select 000 as id
-      ,space(100) as tablename
-      , space(100) as fieldname
-      , space(100) as BegValue
-      , space(100) as EndValue
-      , space(100) as DataType
-      , space(300) as whereClause
-      from positions
-      where id=-1
-    )"
-  )
-);
+      DB::statement("
+    CREATE TEMPORARY TABLE tempQueries (
+        id INT,
+        tablename VARCHAR(100),
+        fieldname VARCHAR(100),
+        BegValue VARCHAR(100),
+        EndValue VARCHAR(100),
+        DataType VARCHAR(100),
+        whereClause VARCHAR(300)
+    )
+");
 
 $id = 0;
 
@@ -626,7 +623,7 @@ foreach ($exportQueryList as $WhereClause){
 }
 
 // drop the temp table...don't need it any more
-DB::update(DB::RAW('drop temporary table tempQueries'));
+      DB::statement('DROP TEMPORARY TABLE IF EXISTS tempQueries');
 
 }
 }
