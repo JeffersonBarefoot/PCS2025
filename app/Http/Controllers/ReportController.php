@@ -327,16 +327,16 @@ $grid = BuildReport($reportid,$reporttype,$input,$report,$query);
 //    public function settings()
 //        {
 //        return
-            array(
-        "dataSources" => array(
-        "sales" => array(
-        "connectionString" => "mysql:host=localhost;dbname=db_sales",
-        "username" => "root",
-        "password" => "",
-        "charset" => "utf8"
-        )
-        )
-        );
+//            array(
+//        "dataSources" => array(
+//        "sales" => array(
+//        "connectionString" => "mysql:host=localhost;dbname=db_sales",
+//        "username" => "root",
+//        "password" => "",
+//        "charset" => "utf8"
+//        )
+//        )
+//        );
 //        }
 
 //        public
