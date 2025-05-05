@@ -49,7 +49,7 @@
     {{ csrf_field() }}
 
 <body>
-<div class="container-fluid-xxl padding-left: 2">
+<div class="container-fluid-xxl margin-left: 2; padding-left: 2;">
     <div class="row">
         <div class="row g-2">
             {{--                    XXXTOP OF APPNAVBAR ROW--}}
@@ -62,7 +62,7 @@
             {{--                    XXX TOP OF CONTENT ROW--}}
 
             {{--        Col03 Data NavBar--}}
-            <div class="col-xxl-3 margin-left: 5px">
+            <div class="col-xxl-2 margin-left: 5px">
                 {{--                        XXX TOP OF NAVBAR COLUMN--}}
                 {{--            <div class="container-fluid">--}}
                 {{--                Row04 DataNavBar filters, Row05 DataNavBar records (pulls in by include)--}}
@@ -75,14 +75,14 @@
                 {{--                        XXX BOTTOM OF NAVBAR COLUMN--}}
             </div>
 
-            <div class="col xxl-9  p-5 m-1">
+            <div class="col xxl-10  p-5 m-1">
                 {{--                        XXX TOP OF DATA COLUMN...all position specific data in collapsible panels--}}
-                <div class="row">
-                    {{--                    @include('positions.Sections.101Titles')--}}
-                </div>
+{{--                <div class="row">--}}
+{{--                    --}}{{--                    @include('positions.Sections.101Titles')--}}
+{{--                </div>--}}
 
                 {{--column c6--}}
-                <div class="col color: divide-pink-400">
+                <div class="col">
                     {{--            Section 01 ***********************************************--}}
                     <div class="row">
                         <p>
@@ -137,7 +137,6 @@
                             <div class="card">
                                 <div class="card-body">
                                     @include('reports.Sections.203')
-                                    {{--                                    @include('positions.Sections.201Status')--}}
                                 </div>
                             </div>
                         </div>

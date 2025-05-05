@@ -212,7 +212,7 @@
                                 Incumbents
                             </a>
                         </p>
-{{--                        <div class="collapse" id="PosSection6">--}}
+                        {{--                        <div class="collapse" id="PosSection6">--}}
                         <div class="{{ $P206Show ? 'collapse show' : 'collapse' }}" id="PosSection6">
                             <div class="card card-body">
                                 @include('positions.Sections.206Incum')
@@ -231,7 +231,7 @@
                                 Position History
                             </a>
                         </p>
-{{--                        <div class="collapse" id="PosSection7">--}}
+                        {{--                        <div class="collapse" id="PosSection7">--}}
                         <div class="{{ $P207Show ? 'collapse show' : 'collapse' }}" id="PosSection7">
                             <div class="card card-body">
                                 @include('positions.Sections.207poshist')
@@ -320,20 +320,16 @@
                                 Tools
                             </a>
                         </p>
-{{--                        <div class="collapse" id="PosSection11">--}}
+                        {{--                        <div class="collapse" id="PosSection11">--}}
                         <div class="{{ $P900Show ? 'collapse show' : 'collapse' }}" id="PosSection11">
                             <div class="card card-body">
                                 @include('positions.Sections.900importtools')
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
         </div>
-        BOTTOM OF CONTAINER
     </div>
 </div>
 

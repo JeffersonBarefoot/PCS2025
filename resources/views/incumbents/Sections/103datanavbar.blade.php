@@ -1,5 +1,5 @@
-<body>
-
+{{--<body>--}}
+<div class="col" id="datanavbar">
 <form action={{route('incumbents.show',$incumbent->id)}} method="get">
     <div class="row">
         <div class="col">
@@ -18,7 +18,12 @@
                     <h4 class="panel-title">
                         <div class="row">
                             <div class="col-md-12">
-                                <a data-toggle="collapse" href="#collapseRep01">Filter list to include:</a>
+{{--                                <a data-toggle="collapse" href="#collapseRep01">Filter list to include:</a>--}}
+                                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseRep01"
+                                   role="button"
+                                   aria-expanded="false" aria-controls="collapseExample">
+                                    <div class="default-text">Filter List to Include:</div>
+                                </a>
                             </div>
                         </div>
                     </h4>
@@ -41,67 +46,65 @@
                         <?php $posNavbarLevel4Desc=Session::get('level4Desc') ?>
                         <?php $posNavbarLevel5Desc=Session::get('level5Desc') ?>
 
-                        <table class="table table-condensed">
-                            <col>
-                            <col>
+                        <table class="table table-responsive">
+{{--                            <col>--}}
+{{--                            <col>--}}
                             <tr>
-                                <td>Companies starting with:</td>
-                                <td><input type="text" class="form-control" style="font-size:11pt;" name="company" value={{ $posNavbarCompanyQuery }}></td>
+                                <td class="default-text">Companies starting with:</td>
+                                <td><input type="text" class="text-input-box"  name="company" value={{ $posNavbarCompanyQuery }}></td>
                             </tr>
 
                             <tr>
-                                <td>Employee Numbers containing:</td>
-                                <td><input type="text" class="form-control" name="empno" value={{ $posNavbarEmpnoQuery }}></td>
+                                <td class="default-text">Employee Numbers containing:</td>
+                                <td><input type="text" class="text-input-box"  name="empno" value={{ $posNavbarEmpnoQuery }}></td>
                             </tr>
 
                             <tr>
-                                <td>Last Names containing:</td>
-                                <td><input type="text" class="form-control" name="lname" value={{ $posNavbarLnameQuery }}></td>
+                                <td class="default-text">Last Names containing:</td>
+                                <td><input type="text" class="text-input-box"  name="lname" value={{ $posNavbarLnameQuery }}></td>
                             </tr>
 
                             <tr>
                                 @if ( $posNavbarLevel1Desc <> "" )
-                                    <td>{{$posNavbarLevel1Desc}}s starting with:</td>
-                                    <td><input type="text" class="form-control" style="font-size:11pt;" name="level1" value={{ $posNavbarLevel1Query }}></td>
+                                    <td class="default-text">{{$posNavbarLevel1Desc}}s starting with:</td>
+                                    <td><input type="text" class="text-input-box"  name="level1" value={{ $posNavbarLevel1Query }}></td>
                                 @endif
                             </tr>
 
                             <tr>
                                 @if ( $posNavbarLevel2Desc <> "" )
-                                    <td>{{$posNavbarLevel2Desc}}s starting with:</td>
-                                    <td><input type="text" class="form-control" style="font-size:11pt;" name="level2" value={{ $posNavbarLevel2Query }}></td>
+                                    <td class="default-text">{{$posNavbarLevel2Desc}}s starting with:</td>
+                                    <td><input type="text" class="text-input-box"  name="level2" value={{ $posNavbarLevel2Query }}></td>
                                 @endif
                             </tr>
 
 
                             <tr>
                                 @if ( $posNavbarLevel3Desc <> "" )
-                                    <td>{{$posNavbarLevel3Desc}}s starting with:</td>
-                                    <td><input type="text" class="form-control" style="font-size:11pt;" name="level3" value={{ $posNavbarLevel3Query }}></td>
+                                    <td class="default-text">{{$posNavbarLevel3Desc}}s starting with:</td>
+                                    <td><input type="text" class="text-input-box"  name="level3" value={{ $posNavbarLevel3Query }}></td>
                                 @endif
                             </tr>
 
                             <tr>
                                 @if ( $posNavbarLevel4Desc <> "" )
-                                    <td>{{$posNavbarLevel4Desc}}s starting with:</td>
-                                    <td><input type="text" class="form-control" style="font-size:11pt;" name="level4" value={{ $posNavbarLevel4Query }}></td>
+                                    <td class="default-text">{{$posNavbarLevel4Desc}}s starting with:</td>
+                                    <td><input type="text" class="text-input-box"  name="level4" value={{ $posNavbarLevel4Query }}></td>
                                 @endif
                             </tr>
 
                             <tr>
                                 @if ( $posNavbarLevel5Desc <> "" )
-                                    <td>{{$posNavbarLevel5Desc}}s starting with:</td>
-                                    <td><input type="text" class="form-control" style="font-size:11pt;" name="level5" value={{ $posNavbarLevel5Query }}></td>
+                                    <td class="default-text">{{$posNavbarLevel5Desc}}s starting with:</td>
+                                    <td><input type="text" class="text-input-box"  name="level5" value={{ $posNavbarLevel5Query }}></td>
                                 @endif
                             </tr>
-
-
-
-
                         </table>
 
                         <!-- <input type="submit" name="submit" value="Submit (blank queries return all records)"> -->
-                        <button type="submit" class="btn btn-primary btn-sm">Submit (blank fields return all positions)</button>
+                        <button type="submit" class="btn btn-secondary">
+                            <div class="default-text">Submit (blank fields return all positions)</div>
+                        </button>
                         <!-- <button type="reset" class="btn btn-primary btn-sm">Reset Queries</button> -->
     {{ csrf_field() }}
 
@@ -146,5 +149,5 @@
 
 </div>
 <script src="{{ asset('js/app.js') }}" type="text/js"></script>
-
-</body>
+</div>
+{{--</body>--}}

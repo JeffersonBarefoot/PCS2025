@@ -17,7 +17,7 @@
                         <h4 class="panel-title">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a class="btn" data-bs-toggle="collapse" href="#collapseFilter01"
+                                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseFilter01"
                                        role="button"
                                        aria-expanded="false" aria-controls="collapseExample">
                                         Filter Positions
@@ -45,8 +45,10 @@
                             <?php $posNavbarLevel5Desc = Session::get('level5Desc') ?>
 
                             <table class="table table-condensed">
-                                <col>
-                                <col>
+{{--                                <div class="col p-10">--}}
+{{--                                <div class="col p-2">--}}
+{{--                                <col width: 150>--}}
+{{--                                <col width: 50>--}}
                                 <tr>
                                     <td>Companies starting with:</td>
                                     <td><input type="text" class="text-input-box" style="font-size:11pt;"
@@ -111,7 +113,7 @@
                             </table>
 
                             <!-- <input type="submit" name="submit" value="Submit (blank queries return all records)"> -->
-                            <button type="submit" class="btn btn-primary btn-sm">Submit (blank fields return
+                            <button type="submit" class="btn btn-secondary">Submit (blank fields return
                                 all positions)
                             </button>
                             <!-- <button type="reset" class="btn btn-primary btn-sm">Reset Queries</button> -->

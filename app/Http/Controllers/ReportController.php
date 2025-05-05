@@ -201,7 +201,7 @@ class ReportController extends Controller
     public function show($id, Request $request)
     {
 
-        dump("report show");
+//        dump("report show");
 
       if (is_null($id)) {
         $id=1;
@@ -226,8 +226,8 @@ $input = $request->all();
       $reporttype = $report->group1;
       $reportsortid = $report->reportid;
 //
-       dump($reporttype);
-       dump($reportid);
+//       dump($reporttype);
+//       dump($reportid);
 //
 //
       // include all queries for this reporttype (all standard POS or POSH or INC queries), and for this specific report
@@ -238,7 +238,7 @@ $input = $request->all();
         ->get();
 
         //dump('$reportqueries');
-//        dump($reportqueries);
+        dump($reportqueries);
 
       $availablereportsPOS = \DB::table('reports')
         ->where('active','=',"A")
@@ -317,7 +317,7 @@ $grid = BuildReport($reportid,$reporttype,$input,$report,$query);
         dump($grid);
 
 
-        dump("made it!!");
+//        dump("made it!!");
 
 
 
@@ -360,8 +360,24 @@ $grid = BuildReport($reportid,$reporttype,$input,$report,$query);
                 ->orderby("descr")
                 ->get()
                 ->toArray();
+            // JLB 20250504 - THE CODE ABOVE WORKED FINE, but rewriting below in an attempt to understand how to pass parameters to kool report
+            $reportdata = position::where('id','>',0)
+                ->select('company','posno','curstatus','descr','budgsal')
+                ->where('company','<>','ZTI')
+                ->orderby('curstatus')
+                ->orderby('descr')
+                ->get();
+//            $reportdata = $reportdata->sortBy('descr');
 
-            dump($positionsnavbar);
+
+            $reportarray = $reportdata->toArray();
+
+
+
+
+
+
+//            dump($positionsnavbar);
 
 //            $this->src('positions')
 //                ->query("SELECT * FROM positions")
@@ -392,7 +408,7 @@ $grid = BuildReport($reportid,$reporttype,$input,$report,$query);
       // R E T U R N   T O   reports.show
       return View('reports.show')
         // ->with(compact('dataGrid'))
-        ->with(compact('positionsnavbar'))
+        ->with(compact('reportarray'))
         ->with(compact('gridSummary'))
 //        // ->with(compact('text'))
         ->with(compact('report'))

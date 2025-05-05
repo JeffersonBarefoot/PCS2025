@@ -26,7 +26,7 @@ assigned to multiple classes of objects below*/
     /*--default-button-background-color: #625750;*/
     /*--default-navtree-background-color: #e0e2e4 ;*/
 
-    --default-background-color: whitesmoke;
+    --default-background-color: #e0e2e4;
     --default-button-color: darkslategray;
     --default-button-background-color: gainsboro;
     --default-navtree-background-color: gainsboro ;
@@ -34,6 +34,14 @@ assigned to multiple classes of objects below*/
     --default-title-text-color:  redorange;
     --default-normal-text-color: darkslategray ;
 
+    /*--default-background-color: Black;*/
+    /*--default-button-color: Linen;*/
+    /*--default-button-background-color: Gray;*/
+    /*--default-navtree-background-color: Gray ;*/
+    /*--default-navtree-text-color: Linen ;*/
+    /*--default-header-text-color: Linen ;*/
+    /*--default-title-text-color:  Linen;*/
+    /*--default-normal-text-color: Linen ;*/
 
 }
 
@@ -59,7 +67,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/*Standard page headers*/
+/*Standard page components*/
 h1 {
     color: var(--default-header-text-color);
     font-size: large;
@@ -73,11 +81,17 @@ p {
     line-height: 1.5;
 }
 
+.default-text {
+    font-size: 10pt;
+ }
+
 .text-input-box {
     /*background-color: var(--default-background-color);*/
     /*background-color: orange;*/
     height: 22px;
+    width: 150px;
     margin: 1px;
+    font-size: 10pt;
     border-color: #888888;
     color: var(--default-normal-text-color);
 }
@@ -126,7 +140,7 @@ table, tbody, tr, th, td {
     color:  var(--default-normal-text-color);
 }
 td {
-    height: 22px;
+    height: 30px;
 }
 
 /*////////// ONE OFF OBJECTS /////////////*/

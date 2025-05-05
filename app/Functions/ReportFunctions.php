@@ -539,7 +539,7 @@ endforeach;
 
 // iterate through the values in the $input array
 foreach ($input as $key => $value){
-
+dump($key);
   $value = Arr::get($input,$key);
 
   // save the value out to a session variable so that we can pass the values back to the form when go to report.blade.show
@@ -575,8 +575,12 @@ foreach ($input as $key => $value){
   }
 }
 
+      dump(session()->all());
+
 $exportQueryList = \DB::table('tempQueries')
   ->get();
+
+dump($exportQueryList);
 
 foreach ($exportQueryList as $WhereClause){
   $WCTable=$WhereClause->tablename;
@@ -600,12 +604,12 @@ foreach ($exportQueryList as $WhereClause){
     // string-like / decimal-equals / date-equals / boolean-equals
     if ($WCType=='STRING'){
       $query = $query->where($WCTableField, 'like', $WCBegLike);
-      // dump($WCTableField);
-      // dump($WCBegLike);
+       dump($WCTableField);
+       dump($WCBegLike);
     } else {
       $query = $query->where($WCTableField, '=', $WCBeg);
-      // dump($WCTableField);
-      // dump($WCBeg);
+       dump($WCTableField);
+       dump($WCBeg);
     }
   }
 
@@ -621,6 +625,9 @@ foreach ($exportQueryList as $WhereClause){
     }
   }
 }
+
+//      dump($WCTableField);
+//      dump($WCBeg);
 
 // drop the temp table...don't need it any more
       DB::statement('DROP TEMPORARY TABLE IF EXISTS tempQueries');
