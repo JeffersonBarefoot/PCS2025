@@ -1,4 +1,5 @@
 <body>
+
 <div class="panel-body">
     {{$report->notes}}<br>
 
