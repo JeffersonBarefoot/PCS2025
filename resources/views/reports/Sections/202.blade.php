@@ -5,10 +5,10 @@
 
 <div>
     <br>Insert the gridSummary here...show.blade.php around row 222<br><br>
-    <!-- {!! $gridSummary !!} -->
+{{--     {!! $gridSummary !!} --}}
 
-    {{  dump($gridSummary)  }}
-    {!! $gridSummary !!}
+{{--    {{  dump($gridSummary)  }}--}}
+{{--    {!! $gridSummary !!}--}}
 </div>
 
 </body>

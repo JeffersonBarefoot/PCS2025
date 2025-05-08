@@ -26,6 +26,7 @@ assigned to multiple classes of objects below*/
     /*--default-button-background-color: #625750;*/
     /*--default-navtree-background-color: #e0e2e4 ;*/
 
+/*!*Normal Grey Dev Colors*!*/
     --default-background-color: #e0e2e4;
     --default-button-color: darkslategray;
     --default-button-background-color: gainsboro;
@@ -83,6 +84,7 @@ p {
 
 .default-text {
     font-size: 10pt;
+    color: var(--default-normal-text-color);
  }
 
 .text-input-box {

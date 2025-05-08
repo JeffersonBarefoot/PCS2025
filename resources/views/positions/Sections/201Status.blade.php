@@ -18,24 +18,23 @@
 {{--                </thead>--}}
                 <p></p-TableHeading>Status:</p>
                 <tr>
-                    <td>Active Status</td>
+                    <td  class="default-text">Active Status</td>
                     <td></td>
                     <div class="radio">
 
                         @if ($position->active=="A")
                             <td>
-                                <label><input type="radio" name="active" value="A"
-                                              checked>Active</label>
+                                <label  class="default-text"><input type="radio" name="active" value="A" checked>Active</label>
                             </td>
                             <td>
-                                <label><input type="radio" name="active" value="I" {{$disabled}}>Inactive</label>
+                                <label  class="default-text"><input type="radio" name="active" value="I" {{$disabled}}>Inactive</label>
                             </td>
                         @else
                             <td>
-                                <label><input type="radio" name="active" value="A" {{$disabled}}>Active</label>
+                                <label  class="default-text"><input type="radio" name="active" value="A" {{$disabled}}>Active</label>
                             </td>
                             <td>
-                                <label><input type="radio" name="active" value="I"
+                                <label  class="default-text"><input type="radio" name="active" value="I"
                                               checked>Inactive</label>
                             </td>
                         @endif
@@ -44,23 +43,23 @@
                 </tr>
 
                 <tr>
-                    <td>Allow Multiple Active Incumbents</td>
+                    <td  class="default-text">Allow Multiple Active Incumbents</td>
                     <td></td>
                     <div class="radio">
                         @if ($position->multincumb==1)
                             <td>
-                                <label><input type="radio" name="multincumb" value="1"
+                                <label  class="default-text"><input type="radio" name="multincumb" value="1"
                                               checked>Yes</label>
                             </td>
                             <td>
-                                <label><input type="radio" name="multincumb" value="0" {{$disabled}}>No</label>
+                                <label  class="default-text"><input type="radio" name="multincumb" value="0" {{$disabled}}>No</label>
                             </td>
                         @else
                             <td>
-                                <label><input type="radio" name="multincumb" value="1" {{$disabled}}>Yes</label>
+                                <label  class="default-text"><input type="radio" name="multincumb" value="1" {{$disabled}}>Yes</label>
                             </td>
                             <td>
-                                <label><input type="radio" name="multincumb" value="0"
+                                <label  class="default-text"><input type="radio" name="multincumb" value="0"
                                               checked>No</label>
                             </td>
                         @endif
@@ -75,19 +74,19 @@
 
                         @if ($position->funded=="Y")
                             <td>
-                                <label><input type="radio" name="funded" value="Y" checked>Yes</label>
+                                <label  class="default-text"><input type="radio" name="funded" value="Y" checked>Yes</label>
                             </td>
                             <td>
-                                <label><input type="radio" name="funded"
+                                <label  class="default-text"><input type="radio" name="funded"
                                               value="N" {{$disabled}}>No</label>
                             </td>
                         @else
                             <td>
-                                <label><input type="radio" name="funded"
+                                <label  class="default-text"><input type="radio" name="funded"
                                               value="Y" {{$disabled}}>Yes</label>
                             </td>
                             <td>
-                                <label><input type="radio" name="funded" value="N" checked>No</label>
+                                <label  class="default-text"><input type="radio" name="funded" value="N" checked>No</label>
                             </td>
                         @endif
                     </div>

@@ -18,6 +18,7 @@ class CreateReportcolumns extends Migration
         $table->timestamps();
         $table->unsignedbiginteger('reportid');
         $table->decimal('columnorder',5,0)->default(10);
+        $table->string('table',50)
         $table->string('field',30);
         $table->string('header',100);
         $table->string('sortable',1)->default('Y');
@@ -31,31 +32,31 @@ class CreateReportcolumns extends Migration
       });
 
       // Position Reports
-      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'10','field'=>'company','header'=>'Company'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'20','field'=>'posno','header'=>'Pos #'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'30','field'=>'descr','header'=>'Position'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'40','field'=>'level1','header'=>'Department'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'50','field'=>'curstatus','header'=>'Status'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'60','field'=>'budgsal','format'=>'R$,2','header'=>'Budg Salary'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'10','table'=>'positions',field'=>'company','header'=>'Company'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'20','table'=>'positions','field'=>'posno','header'=>'Pos #'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'30','table'=>'positions','field'=>'descr','header'=>'Position'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'40','table'=>'positions','field'=>'level1','header'=>'Department'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'50','table'=>'positions','field'=>'curstatus','header'=>'Status'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1000','columnorder'=>'60','table'=>'positions','field'=>'budgsal','format'=>'R$,2','header'=>'Budg Salary'],]);
 
-      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'10','field'=>'company','header'=>'Company'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'20','field'=>'posno','header'=>'Pos #'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'30','field'=>'descr','header'=>'Position'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'40','field'=>'level1','header'=>'Department'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'50','field'=>'curstatus','header'=>'Status'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'10','table'=>'positions','field'=>'company','header'=>'Company'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'20','table'=>'positions','field'=>'posno','header'=>'Pos #'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'30','table'=>'positions','field'=>'descr','header'=>'Position'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'40','table'=>'positions','field'=>'level1','header'=>'Department'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1010','columnorder'=>'50','table'=>'positions','field'=>'curstatus','header'=>'Status'],]);
 
-      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'10','field'=>'company','header'=>'Company'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'20','field'=>'posno','header'=>'Pos #'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'30','field'=>'descr','header'=>'Position'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'40','field'=>'level1','header'=>'Department'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'50','field'=>'curstatus','header'=>'Status'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'10','table'=>'positions','field'=>'company','header'=>'Company'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'20','table'=>'positions','field'=>'posno','header'=>'Pos #'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'30','table'=>'positions','field'=>'descr','header'=>'Position'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'40','table'=>'positions','field'=>'level1','header'=>'Department'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'1020','columnorder'=>'50','table'=>'positions','field'=>'curstatus','header'=>'Status'],]);
 
       // Incumbent Reports
-      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'10','field'=>'company','header'=>'Company'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'20','field'=>'posno','header'=>'Pos #'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'30','field'=>'lname','header'=>'Last Name'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'40','field'=>'level1','header'=>'Department'],]);
-      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'50','field'=>'fname','header'=>'First Name'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'10','table'=>'positions','field'=>'company','header'=>'Company'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'20','table'=>'positions','field'=>'posno','header'=>'Pos #'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'30','table'=>'positions','field'=>'lname','header'=>'Last Name'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'40','table'=>'positions','field'=>'level1','header'=>'Department'],]);
+      DB::table('reportcolumns')->insert([['reportid'=>'3000','columnorder'=>'50','table'=>'positions','field'=>'fname','header'=>'First Name'],]);
 
     }
 

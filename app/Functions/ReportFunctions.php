@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Models\Post;
@@ -50,185 +49,182 @@ use Nayjest\Grids\GridConfig;
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 if (!function_exists('BuildQuery')) {
-    function BuildQuery($reportId,$reportType,$input,$report)
+    function BuildQuery($reportId, $reportType, $input, $report)
 
     {
 
-      //######################################
-      // build $query
-      //######################################
-      switch ($reportType) {
-        case "POS":
-          $query = (new Position)
-            ->newQuery()
-            ->select('*');
-                        return $query;
-          break;
+        //######################################
+        // build $query
+        //######################################
+        switch ($reportType) {
+            case "POS":
+//                $query = (new Position)
+//                    ->newQuery()
+//                    ->select('*');
+//                return $query;
 
-        case "POSH":
-        $query = (new Position)
-          ->newQuery()
-          ->select('*')
-          ->join('hpositions', 'positions.posno', '=', 'hpositions.posno');
-                      return $query;
-        break;
-
-          break;
-
-        case "INC":
-          // code
-          $query = (new Incumbent)
-            ->newQuery()
-            ->select('incumbents.company as inccomp'
-                ,'positions.company as poscomp'
-                ,'incumbents.posno'
-                ,'incumbents.lname'
-                ,'unitrate'
-                ,DB::raw('(unitrate + 1) as newrate')
-                ,'positions.descr'
-                ,'positions.level1')
-            ->join('positions', 'incumbents.posno', '=', 'positions.posno')
-            ->where('positions.Active', '=', 'A');
-
-            return $query;
-
-          break;
-
-        case "INCH":
-          // code
+                // this worked 20250507, Kool Report
+                $query = (new Position)
+                    ->newQuery();
+                return $query;
 
 
-            return $query;
-          break;
 
-        case "BUDG":
-          // code
-          $query = (new Position)
-            ->newQuery()
-            ->select('positions.company as poscomp'
-                ,'positions.posno'
-                ,'positions.descr'
-                ,'positions.level1'
-                ,'positions.level2'
-                ,DB::raw("'|' as divider")
-                ,DB::raw("' ' as dividerspace")
-                ,DB::raw('sum(positions.budgsal) as budgcost')
-                ,DB::raw('sum(positions.fulltimeequiv) as budgfte')
-                ,DB::raw('sum(if(incumbents.ann_cost<>0,incumbents.ann_cost,0)) as actcost')
-                ,DB::raw('sum(if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as actfte')
-                ,DB::raw('sum(positions.fulltimeequiv-if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as ftevar')
-                ,DB::raw('sum(positions.budgsal-if(incumbents.fulltimeequiv<>0,incumbents.ann_cost,0)) as costvar')
-                ,DB::raw('count(incumbents.empno) as inccount')
-                )
-            ->leftjoin('incumbents', 'positions.id', '=', 'incumbents.posid')
-            ->groupBy('positions.company','positions.posno','positions.descr','positions.level1','positions.level2');
 
-            return $query;
-          break;
+            case "POSH":
+                $query = (new Position)
+                    ->newQuery()
+                    ->select('*')
+                    ->join('hpositions', 'positions.posno', '=', 'hpositions.posno');
+                return $query;
 
-        case "VAC":
-          // code
+            case "INC":
+                // code
+                $query = (new Incumbent)
+                    ->newQuery()
+                    ->select('incumbents.company as inccomp'
+                        , 'positions.company as poscomp'
+                        , 'incumbents.posno'
+                        , 'incumbents.lname'
+                        , 'unitrate'
+                        , DB::raw('(unitrate + 1) as newrate')
+                        , 'positions.descr'
+                        , 'positions.level1')
+                    ->join('positions', 'incumbents.posno', '=', 'positions.posno')
+                    ->where('positions.Active', '=', 'A');
 
-            return $query;
-          break;
+                return $query;
 
-        case "RECR":
-          // code
+            case "INCH":
+                // code
 
-            return $query;
-          break;
 
-        default:
+                return $query;
 
-            return $query;
-        return $query;
+            case "BUDG":
+                // code
+                $query = (new Position)
+                    ->newQuery()
+                    ->select('positions.company as poscomp'
+                        , 'positions.posno'
+                        , 'positions.descr'
+                        , 'positions.level1'
+                        , 'positions.level2'
+                        , DB::raw("'|' as divider")
+                        , DB::raw("' ' as dividerspace")
+                        , DB::raw('sum(positions.budgsal) as budgcost')
+                        , DB::raw('sum(positions.fulltimeequiv) as budgfte')
+                        , DB::raw('sum(if(incumbents.ann_cost<>0,incumbents.ann_cost,0)) as actcost')
+                        , DB::raw('sum(if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as actfte')
+                        , DB::raw('sum(positions.fulltimeequiv-if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as ftevar')
+                        , DB::raw('sum(positions.budgsal-if(incumbents.fulltimeequiv<>0,incumbents.ann_cost,0)) as costvar')
+                        , DB::raw('count(incumbents.empno) as inccount')
+                    )
+                    ->leftjoin('incumbents', 'positions.id', '=', 'incumbents.posid')
+                    ->groupBy('positions.company', 'positions.posno', 'positions.descr', 'positions.level1', 'positions.level2');
 
-      }
+                return $query;
+
+            case "VAC":
+                // code
+
+                return $query;
+
+            case "RECR":
+                // code
+
+                return $query;
+
+            default:
+
+                return $query;
+
+
+        }
     }
 }
 
 if (!function_exists('BuildReport')) {
-    function BuildReport($reportId,$reportType,$input,$report,$query){
-    // dd($query);
-    AddFilters($input,$query);
+    function BuildReport($reportId, $reportType, $input, $report, $query)
+    {
+        // dd($query);
+        dump($input);
+        AddFilters($input, $query);
 
-    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-      // instantiate grid configuration object, set data provider
-      $config = new GridConfig();
-      $dp = new EloquentDataProvider($query);
-      $config->setDataProvider($dp);
-      $config->setPageSize(20);
-
-
-      $config->setComponents([
+        // instantiate grid configuration object, set data provider
+        $config = new GridConfig();
+        $dp = new EloquentDataProvider($query);
+        $config->setDataProvider($dp);
+        $config->setPageSize(20);
 
 
-        (new THead)
-          ->setComponents([
-            // (new ColumnHeadersRow),
+        $config->setComponents([
 
-            // (new FiltersRow)
-            //     ->addComponents([]),
 
-             // (new OneCellRow)
-             //  ->setRenderSection(RenderableRegistry::SECTION_END)
-             //  ->setComponents([
-             //      // (new CsvExport)->setFileName($report->descr . date(' Y-m-d H-i-s')),
-             //      (new CsvExport)->setFileName($report->descr),
-             //      (new HtmlTag)
-             //         ->setAttributes(['class' => 'pull-right'])
-             //         ->addComponent(new ShowingRecords)
-             //      ]), //end ->setComponenets
+            (new THead)
+                ->setComponents([
+                    // (new ColumnHeadersRow),
 
-              // (new OneCellRow)
-              //  ->setRenderSection(RenderableRegistry::SECTION_END)
-              //  ->setComponents([
-              //      new Pager,
-              //    ]), //end ->setComponenets
-              //    (new ColumnHeadersRow),
+                    // (new FiltersRow)
+                    //     ->addComponents([]),
 
-              // Add a new pager control
-              // (new OneCellRow)
-              //  ->setRenderSection(RenderableRegistry::SECTION_END)
-              //  ->setComponents([
-              //      new Pager,
-              // ]), //end ->setComponenets
+                    // (new OneCellRow)
+                    //  ->setRenderSection(RenderableRegistry::SECTION_END)
+                    //  ->setComponents([
+                    //      // (new CsvExport)->setFileName($report->descr . date(' Y-m-d H-i-s')),
+                    //      (new CsvExport)->setFileName($report->descr),
+                    //      (new HtmlTag)
+                    //         ->setAttributes(['class' => 'pull-right'])
+                    //         ->addComponent(new ShowingRecords)
+                    //      ]), //end ->setComponenets
 
-              // Add column headers (including sorting arrows) and pager controller
-              // NOTE:  to print as a report, you have to NOT pass setSortable...the code behind the buttons messes up the printing
-              // ALSO:  Don't pass the PAGER, for the same reason
-              // So, to print need to pass the grid to a new, clean HTML page with not frills that will mess up the print job
-              (new OneCellRow)
-               ->setRenderSection(RenderableRegistry::SECTION_END)
-               ->setComponents([new ColumnHeadersRow,new Pager,new ShowingRecords,]), //end ->setComponenets
-                 // (new ColumnHeadersRow),
+                    // (new OneCellRow)
+                    //  ->setRenderSection(RenderableRegistry::SECTION_END)
+                    //  ->setComponents([
+                    //      new Pager,
+                    //    ]), //end ->setComponenets
+                    //    (new ColumnHeadersRow),
 
-          ]) //end ->setComponents
+                    // Add a new pager control
+                    // (new OneCellRow)
+                    //  ->setRenderSection(RenderableRegistry::SECTION_END)
+                    //  ->setComponents([
+                    //      new Pager,
+                    // ]), //end ->setComponenets
+
+                    // Add column headers (including sorting arrows) and pager controller
+                    // NOTE:  to print as a report, you have to NOT pass setSortable...the code behind the buttons messes up the printing
+                    // ALSO:  Don't pass the PAGER, for the same reason
+                    // So, to print need to pass the grid to a new, clean HTML page with not frills that will mess up the print job
+                    (new OneCellRow)
+                        ->setRenderSection(RenderableRegistry::SECTION_END)
+                        ->setComponents([new ColumnHeadersRow, new Pager, new ShowingRecords,]), //end ->setComponenets
+                    // (new ColumnHeadersRow),
+
+                ]) //end ->setComponents
         ]); //end $config->setComponents
 
-      // add columns from the AddColumns() custom function
-      AddColumns($config,$reportId);
-      // dump($config);
+        // add columns from the AddColumns() custom function
+        AddColumns($config, $reportId);
+        // dump($config);
 
-      // // dump data into an array so it is ready to be exported to Csv
-      // // $CSVData = $config::get()->toArray();
-      // $CSVData = $query->get()->toArray();
-      // // dd($CSVData);
-      //
-      // $fileCreated = fopen('../FileExports/TEAM00001/xxxfile.' . getTimestamp() .  '.csv', 'w');
-      // // $fp = fopen('xxxfile.csv', 'w');
-      // foreach ($CSVData as $exportRecord) {
-      //   // dd($pos);
-      //     fputcsv($fileCreated, $exportRecord);
-      // }
-      // fclose($fileCreated);
-
-
+        // // dump data into an array so it is ready to be exported to Csv
+        // // $CSVData = $config::get()->toArray();
+        // $CSVData = $query->get()->toArray();
+        // // dd($CSVData);
+        //
+        // $fileCreated = fopen('../FileExports/TEAM00001/xxxfile.' . getTimestamp() .  '.csv', 'w');
+        // // $fp = fopen('xxxfile.csv', 'w');
+        // foreach ($CSVData as $exportRecord) {
+        //   // dd($pos);
+        //     fputcsv($fileCreated, $exportRecord);
+        // }
+        // fclose($fileCreated);
 
 
-
-      // render the grid, and send it to the HTML
+        // render the grid, and send it to the HTML
 //      $grid = new Grid($config);
 //      $grid = $grid->render();
 //
@@ -236,115 +232,115 @@ if (!function_exists('BuildReport')) {
     }
 }
 
-  //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
-  //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
-  //
-  //  BUILD SUMMARY GRID
-  //
-  // build the REPORT.SHOW.BLADE summary report grid
-  // this is the grid that shows subtotals and counts, between the report parameters and the main report grid
-  //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
-  //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+//><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+//><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+//
+//  BUILD SUMMARY GRID
+//
+// build the REPORT.SHOW.BLADE summary report grid
+// this is the grid that shows subtotals and counts, between the report parameters and the main report grid
+//><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+//><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 if (!function_exists('BuildReportSummary')) {
-    function BuildReportSummary($reportId,$reportType,$input)
+    function BuildReportSummary($reportId, $reportType, $input)
     {
 
-      //######################################
-      // build $query
-      //######################################
-      switch ($reportType) {
-        case "POS":
-          // code for pos
-          $querySummary = (new Position)
-            ->newQuery()
-            ->selectRaw('count(*) as count, sum(budgsal) as sumbudgsal, positions.company, positions.level1,positions.level2')
-            ->groupBy('positions.company','positions.level1','positions.level2');
-            // ->where('positions.Active', '=', 'A');
-dump($querySummary);
-          break;
+        //######################################
+        // build $query
+        //######################################
+        switch ($reportType) {
+            case "POS":
+                // code for pos
+                $querySummary = (new Position)
+                    ->newQuery()
+                    ->selectRaw('count(*) as count, sum(budgsal) as sumbudgsal, positions.company, positions.level1,positions.level2')
+                    ->groupBy('positions.company', 'positions.level1', 'positions.level2');
+                // ->where('positions.Active', '=', 'A');
+                dump($querySummary);
+                break;
 
-        case "POSH":
-        $querySummary = (new Position)
-          ->newQuery()
-          ->select('*')
-          ->join('hpositions', 'positions.posno', '=', 'hpositions.posno');
+            case "POSH":
+                $querySummary = (new Position)
+                    ->newQuery()
+                    ->select('*')
+                    ->join('hpositions', 'positions.posno', '=', 'hpositions.posno');
 
-          break;
+                break;
 
-        case "INC":
-          // code
-          $querySummary = (new Incumbent)
-            ->newQuery()
-            ->selectRaw('count(*) as curstatus, positions.company, positions.level1,positions.level2')
-            ->groupBy('positions.company','positions.level1','positions.level2')
-            ->join('positions', 'incumbents.posno', '=', 'positions.posno')
-            ->where('positions.Active', '=', 'A');
+            case "INC":
+                // code
+                $querySummary = (new Incumbent)
+                    ->newQuery()
+                    ->selectRaw('count(*) as curstatus, positions.company, positions.level1,positions.level2')
+                    ->groupBy('positions.company', 'positions.level1', 'positions.level2')
+                    ->join('positions', 'incumbents.posno', '=', 'positions.posno')
+                    ->where('positions.Active', '=', 'A');
 
-          break;
+                break;
 
-        case "INCH":
-          // code
+            case "INCH":
+                // code
 
-          break;
+                break;
 
-          case "BUDG":
-            // code
-            $querySummary = (new Incumbent)
-              ->newQuery()
-              ->selectRaw('count(*) as curstatus, positions.company, positions.level1,positions.level2')
-              ->groupBy('positions.company','positions.level1','positions.level2')
-              ->join('positions', 'incumbents.posno', '=', 'positions.posno')
-              ->where('positions.Active', '=', 'A');
+            case "BUDG":
+                // code
+                $querySummary = (new Incumbent)
+                    ->newQuery()
+                    ->selectRaw('count(*) as curstatus, positions.company, positions.level1,positions.level2')
+                    ->groupBy('positions.company', 'positions.level1', 'positions.level2')
+                    ->join('positions', 'incumbents.posno', '=', 'positions.posno')
+                    ->where('positions.Active', '=', 'A');
 
-            break;
+                break;
 
-          default:
-      }
+            default:
+        }
 
-      AddFilters($input,$querySummary);
+        AddFilters($input, $querySummary);
 
-      // instantiate grid configuration object, set data provider
-      $configSummary = new GridConfig();
-      $dp = new EloquentDataProvider($querySummary);
-      $configSummary->setDataProvider($dp);
-      $configSummary->setPageSize(50);
+        // instantiate grid configuration object, set data provider
+        $configSummary = new GridConfig();
+        $dp = new EloquentDataProvider($querySummary);
+        $configSummary->setDataProvider($dp);
+        $configSummary->setPageSize(50);
 
-      $configSummary->setComponents([
+        $configSummary->setComponents([
 
-        (new THead)
-          ->setComponents([
-            // (new ColumnHeadersRow),
+            (new THead)
+                ->setComponents([
+                    // (new ColumnHeadersRow),
 
-            // (new FiltersRow)
-            //     ->addComponents([]),
+                    // (new FiltersRow)
+                    //     ->addComponents([]),
 
-             (new OneCellRow)
-              ->setRenderSection(RenderableRegistry::SECTION_END)
-              ->setComponents([
-                  (new CsvExport)->setFileName('my_report' . date('Y-m-d')),
-                  (new HtmlTag)
-                     ->setAttributes(['class' => 'pull-right'])
-                     ->addComponent(new ShowingRecords)
-                  ]), //end ->setComponenets
+                    (new OneCellRow)
+                        ->setRenderSection(RenderableRegistry::SECTION_END)
+                        ->setComponents([
+                            (new CsvExport)->setFileName('my_report' . date('Y-m-d')),
+                            (new HtmlTag)
+                                ->setAttributes(['class' => 'pull-right'])
+                                ->addComponent(new ShowingRecords)
+                        ]), //end ->setComponenets
 
-              (new OneCellRow)
-               ->setRenderSection(RenderableRegistry::SECTION_END)
-               ->setComponents([
-                   new Pager,
-                 ]), //end ->setComponenets
-                 (new ColumnHeadersRow),
-          ]) //end ->setComponents
+                    (new OneCellRow)
+                        ->setRenderSection(RenderableRegistry::SECTION_END)
+                        ->setComponents([
+                            new Pager,
+                        ]), //end ->setComponenets
+                    (new ColumnHeadersRow),
+                ]) //end ->setComponents
         ]); //end $config->setComponents
 
-      // add columns from the AddColumns() custom function
-      AddColumnSubs($configSummary,$reportId);
-      // dump($config);
+        // add columns from the AddColumns() custom function
+        AddColumnSubs($configSummary, $reportId);
+        // dump($config);
 
-      // render the grid, and send it to the HTML
-      $gridSummary = new Grid($configSummary);
-      $gridSummary = $gridSummary->render();
+        // render the grid, and send it to the HTML
+        $gridSummary = new Grid($configSummary);
+        $gridSummary = $gridSummary->render();
 
-      return $gridSummary;
+        return $gridSummary;
     }
 }
 
@@ -354,80 +350,79 @@ dump($querySummary);
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 if (!function_exists('AddColumns')) {
-  function AddColumns($config,$reportId)
-  {
-    $availablereportcolumns = \DB::table('reportcolumns')
-      ->where('reportid','=',$reportId)
-      ->orderby("columnorder","asc")
-      ->orderby("header","asc")
-      ->get();
+    function AddColumns($config, $reportId)
+    {
+        $availablereportcolumns = \DB::table('reportcolumns')
+            ->where('reportid', '=', $reportId)
+            ->orderby("columnorder", "asc")
+            ->orderby("header", "asc")
+            ->get();
 
 
+        foreach ($availablereportcolumns as $repcols) {
+            $colField = $repcols->field;
+            $colHeader = $repcols->header;
+            $colSortable = $repcols->sortable;
+            $colSortOrder = $repcols->sortorder;
+            $colGroupOrder = $repcols->grouporder;
+            $colSubtotal = $repcols->subtotal;
+            $colTotal = $repcols->total;
+            $colCount = $repcols->count;
+            $colHidden = $repcols->hidden;
+            $colFormat = $repcols->format;
 
 
-    foreach ($availablereportcolumns as $repcols){
-      $colField       =$repcols->field;
-      $colHeader      =$repcols->header;
-      $colSortable    =$repcols->sortable;
-      $colSortOrder   =$repcols->sortorder;
-      $colGroupOrder  =$repcols->grouporder;
-      $colSubtotal    =$repcols->subtotal;
-      $colTotal       =$repcols->total;
-      $colCount       =$repcols->count;
-      $colHidden      =$repcols->hidden;
-      $colFormat      =$repcols->format;
+            // dump($colSortable);
 
+            if ($colSortable == "Y") {
+                $colSortable = true;
+            } else {
+                $colSortable = false;
+            }
 
+            // dump($colSortable);
 
-      // dump($colSortable);
+            if (strlen($colFormat) <> 0) {
+                $formatColumn = "TRUE";
+            } else {
+                $formatColumn = "FALSE";
+            }
 
-      if ($colSortable == "Y") {
-        $colSortable = true;
-      } else {
-        $colSortable = false;
-      }
-
-      // dump($colSortable);
-
-      if (strlen($colFormat) <> 0) {
-        $formatColumn = "TRUE";
-          } else {
-        $formatColumn = "FALSE";
-      }
-
-      if ($formatColumn == "TRUE") {
+            if ($formatColumn == "TRUE") {
 
 
 // for setCallback functionality search for setCallback here: https://github.com/Nayjest/Grids
-      setlocale(LC_MONETARY, 'en_US.UTF-8');
-      $config->addColumn((new FieldConfig())
-        ->setName($colField)
-        ->setLabel($colHeader)
-        ->setSortable($colSortable)
-        // ->setCallback(function ($val,$formatDecimals) {return "$".(number_format($val, 2, '.', ','));})
+                setlocale(LC_MONETARY, 'en_US.UTF-8');
+                $config->addColumn((new FieldConfig())
+                    ->setName($colField)
+                    ->setLabel($colHeader)
+                    ->setSortable($colSortable)
+                    // ->setCallback(function ($val,$formatDecimals) {return "$".(number_format($val, 2, '.', ','));})
 //            next line was uisng money_format, which is deprecated/removed.  Jeff altered this line 20250228
-        ->setCallback(function ($val) {return $val;})
-        ->addFilter(
-              (new FilterConfig)
-                ->setName('costvar')
-                ->setOperator(FilterConfig::OPERATOR_EQ)
-            )
-        );
-      } else {
+                    ->setCallback(function ($val) {
+                        return $val;
+                    })
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setName('costvar')
+                            ->setOperator(FilterConfig::OPERATOR_EQ)
+                    )
+                );
+            } else {
 
-      $config->addColumn((new FieldConfig())
-        ->setName($colField)
-        ->setLabel($colHeader)
-        ->setSortable($colSortable)
-        ->addFilter(
-            (new FilterConfig)
-                ->setName($colField)
-                ->setOperator(FilterConfig::OPERATOR_LIKE)
-        )
-      );
+                $config->addColumn((new FieldConfig())
+                    ->setName($colField)
+                    ->setLabel($colHeader)
+                    ->setSortable($colSortable)
+                    ->addFilter(
+                        (new FilterConfig)
+                            ->setName($colField)
+                            ->setOperator(FilterConfig::OPERATOR_LIKE)
+                    )
+                );
+            }
+        }
     }
-  }
-  }
 }
 
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
@@ -436,31 +431,31 @@ if (!function_exists('AddColumns')) {
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 if (!function_exists('AddColumnSubs')) {
-  function AddColumnSubs($config,$reportId)
-  {
-    $availablereportcolumns = \DB::table('reportcolumnsubs')
-      ->where('reportid','=',$reportId)
-      ->orderby("columnorder","asc")
-      ->orderby("header","asc")
-      ->get();
+    function AddColumnSubs($config, $reportId)
+    {
+        $availablereportcolumns = \DB::table('reportcolumnsubs')
+            ->where('reportid', '=', $reportId)
+            ->orderby("columnorder", "asc")
+            ->orderby("header", "asc")
+            ->get();
 
-    foreach ($availablereportcolumns as $repcols){
-      $colField       =$repcols->field;
-      $colHeader      =$repcols->header;
-      $colSortable    =$repcols->sortable;
-      $colSortOrder   =$repcols->sortorder;
-      $colGroupOrder  =$repcols->grouporder;
-      $colSubtotal    =$repcols->subtotal;
-      $colTotal       =$repcols->total;
-      $colCount       =$repcols->count;
-      $colHidden      =$repcols->hidden;
+        foreach ($availablereportcolumns as $repcols) {
+            $colField = $repcols->field;
+            $colHeader = $repcols->header;
+            $colSortable = $repcols->sortable;
+            $colSortOrder = $repcols->sortorder;
+            $colGroupOrder = $repcols->grouporder;
+            $colSubtotal = $repcols->subtotal;
+            $colTotal = $repcols->total;
+            $colCount = $repcols->count;
+            $colHidden = $repcols->hidden;
 //      $colFormat      =$repcols->format;
 
-      if ($ColSortable = "Y") {
-        $colSortable = "TRUE";
-      } else {
-        $colSortable = "FALSE";
-      }
+            if ($ColSortable = "Y") {
+                $colSortable = "TRUE";
+            } else {
+                $colSortable = "FALSE";
+            }
 
 //      if (strlen($colFormat) <> 0) {
 //        $formatColumn = "TRUE";
@@ -468,7 +463,7 @@ if (!function_exists('AddColumnSubs')) {
 //        $formatColumn = "FALSE";
 //      }
 
-dump("1".$colField);
+            dump("1" . $colField);
 
 //      if ($formatColumn == "TRUE") {
 //      $config->addColumn((new FieldConfig())
@@ -494,11 +489,9 @@ dump("1".$colField);
 //      }
 
 
-
-      }
-  }
+        }
+    }
 }
-
 
 
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
@@ -510,12 +503,14 @@ dump("1".$colField);
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 
 if (!function_exists('AddFilters')) {
-  function AddFilters($input,$query)
-  {
+    function AddFilters($input, $query)
+    {
+dump($input);
+dump($query);
 
 // create an empty temp table to hold report parameters
 // "where id=-1" is intended to create a table with no records (id would never equal -1)....not sure how to do that otherwise
-      DB::statement("
+        DB::statement("
     CREATE TEMPORARY TABLE tempQueries (
         id INT,
         tablename VARCHAR(100),
@@ -527,110 +522,118 @@ if (!function_exists('AddFilters')) {
     )
 ");
 
-$id = 0;
+        $id = 0;
 
 //clear out existing session variables that relate to report queries.
 //need to do this, or else old variables hang around and cause problems when user moves to a new report
-foreach(Session::all() as $key => $obj):
-  if (str_contains($key,"||||")) {
-    sessionForgetOne($key);
-  }
-endforeach;
+        foreach (Session::all() as $key => $obj):
+            if (str_contains($key, "||||")) {
+                sessionForgetOne($key);
+            }
+        endforeach;
 
 // iterate through the values in the $input array
-foreach ($input as $key => $value){
-dump($key);
-  $value = Arr::get($input,$key);
+        foreach ($input as $key => $value) {
+            dump($key);
+            $value = Arr::get($input, $key);
 
-  // save the value out to a session variable so that we can pass the values back to the form when go to report.blade.show
-  sessionSet($key,$value);
+            // save the value out to a session variable so that we can pass the values back to the form when go to report.blade.show
+            sessionSet($key, $value);
 
-  // we have the key (beg/end, table, field) and the user's input value
-  // first item in array is key = "_token."  Ignore this element
-  // parse out data from $key and update tablename, fieldname, begvalue, endvalue
-  if ($key <> "_token") {
-    // parse out the key's contents
-    // format is like:  beg|positions||company|||
-    $break1 = strpos($key,"|");
-    $break2 = strpos($key,"||");
-    $break3 = strpos($key,"|||");
-    $break4 = strpos($key,"||||");
-    $begEnd = strtoupper(Substr($key,0,$break1));
-    $tableName = substr($key,$break1+1,$break2-$break1-1);
-    $fieldName = substr($key,$break2+2,$break3-$break2-2);
-    $datatype  = substr($key,$break3+3,$break4-$break3-3);
-    $nullField = NULL;
+            // we have the key (beg/end, table, field) and the user's input value
+            // first item in array is key = "_token."  Ignore this element
+            // parse out data from $key and update tablename, fieldname, begvalue, endvalue
+            if ($key <> "_token") {
+                // parse out the key's contents
+                // format is like:  beg|positions||company|||
+                $break1 = strpos($key, "|");
+                $break2 = strpos($key, "||");
+                $break3 = strpos($key, "|||");
+                $break4 = strpos($key, "||||");
+                $begEnd = strtoupper(Substr($key, 0, $break1));
+                $tableName = substr($key, $break1 + 1, $break2 - $break1 - 1);
+                $fieldName = substr($key, $break2 + 2, $break3 - $break2 - 2);
+                $datatype = substr($key, $break3 + 3, $break4 - $break3 - 3);
+                $nullField = NULL;
 
-    // if this is a BEG record, then add new record
-    if ($begEnd == "BEG") {
-      $id = $id + 1;
-      DB::insert('insert into tempQueries (id, tablename, fieldname, BegValue, DataType) values (?, ?, ?, ?, ?)', [$id, $tableName, $fieldName, $value, $datatype]);
-    }
+                // if this is a BEG record, then add new record
+                if ($begEnd == "BEG") {
+                    $id = $id + 1;
+                    DB::insert('insert into tempQueries (id, tablename, fieldname, BegValue, DataType) values (?, ?, ?, ?, ?)', [$id, $tableName, $fieldName, $value, $datatype]);
+                }
 
-    // if this is an END record then put value in record with corresponding BEG
-    if ($begEnd == "END") {
-      DB::update('update tempQueries set EndValue = ? where tablename = ? and fieldname = ?', [$value, $tableName, $fieldName] );
-      //DB::update('update tempQueries set EndValue = ? where fieldname = $fieldName', [$value] );
-    }
-  }
-}
+                // if this is an END record then put value in record with corresponding BEG
+                if ($begEnd == "END") {
+                    DB::update('update tempQueries set EndValue = ? where tablename = ? and fieldname = ?', [$value, $tableName, $fieldName]);
+                    //DB::update('update tempQueries set EndValue = ? where fieldname = $fieldName', [$value] );
+                }
+            }
+        }
 
-      dump(session()->all());
+        dump(session()->all());
 
-$exportQueryList = \DB::table('tempQueries')
-  ->get();
+        $exportQueryList = \DB::table('tempQueries')
+            ->get();
 
-dump($exportQueryList);
+        dump($exportQueryList);
 
-foreach ($exportQueryList as $WhereClause){
-  $WCTable=$WhereClause->tablename;
-  $WCField=$WhereClause->fieldname;
-  $WCBeg=$WhereClause->BegValue;
-  $WCEnd=$WhereClause->EndValue;
-  $WCType=strtoupper($WhereClause->DataType);
+        foreach ($exportQueryList as $WhereClause) {
+            $WCTable = $WhereClause->tablename;
+            $WCField = $WhereClause->fieldname;
+            $WCBeg = $WhereClause->BegValue;
+            $WCEnd = $WhereClause->EndValue;
+            $WCType = strtoupper($WhereClause->DataType);
 
-  $WCTableField=$WCTable.'.'.$WCField;
-  $WCBegLike=$WCBeg."%";
+            $WCTableField = $WCTable . '.' . $WCField;
+            $WCBegLike = $WCBeg . "%";
 
-  // begvalue is null, skip
-  if (is_null($WCBeg)){
-    // nothing to do...skip
-  }
+            dump($WCBeg);
 
-  // begvalue is not null, end value is null
-  if (! is_null($WCBeg) and is_null($WCEnd)){
-    // options:
-    // Beg but no end:
-    // string-like / decimal-equals / date-equals / boolean-equals
-    if ($WCType=='STRING'){
-      $query = $query->where($WCTableField, 'like', $WCBegLike);
-       dump($WCTableField);
-       dump($WCBegLike);
-    } else {
-      $query = $query->where($WCTableField, '=', $WCBeg);
-       dump($WCTableField);
-       dump($WCBeg);
-    }
-  }
+            // begvalue is null, skip
+            if (is_null($WCBeg)) {
+                // nothing to do...skip
+                dump("begvalue is null");
+            }
 
-  // begvalue and end value are not null
-  if (! is_null($WCBeg) and ! is_null($WCEnd)){
-    // options:
-    // Beg and End
-    // string-between / decimal-between / date-between / boolean-ignore
-    if ($WCType<>'BOOLEAN'){
-      $query = $query->wherebetween($WCTableField,[$WCBeg,$WCEnd]);
-    } else {
-      // no other options
-    }
-  }
-}
+            // begvalue is not null, end value is null
+            if (!is_null($WCBeg) and is_null($WCEnd)) {
+                // options:
+                // Beg but no end:
+                // string-like / decimal-equals / date-equals / boolean-equals
+                dump("begvalue is not null, endvalue is null");
+                if ($WCType == 'STRING') {
+//      $query = $query->where($WCTableField, 'like', $WCBegLike);
+                    dump($WCTableField);
+                    dump($WCBegLike);
+                } else {
+                    $query = $query->where($WCTableField, '=', $WCBeg);
+                    dump($WCTableField);
+                    dump($WCBeg);
+                }
+            }
+
+            // begvalue and end value are not null
+            if (!is_null($WCBeg) and !is_null($WCEnd)) {
+                // options:
+                // Beg and End
+                // string-between / decimal-between / date-between / boolean-ignore
+                dump("begvalue is not null, endvalue is not null");
+                if ($WCType <> 'BOOLEAN') {
+                    dump("trying to build query");
+                    $query = $query->wherebetween($WCTableField, [$WCBeg, $WCEnd]);
+                    dump("did my build of query work???");
+                    dump($query);
+                } else {
+                    // no other options
+                }
+            }
+        }
 
 //      dump($WCTableField);
 //      dump($WCBeg);
 
 // drop the temp table...don't need it any more
-      DB::statement('DROP TEMPORARY TABLE IF EXISTS tempQueries');
+        DB::statement('DROP TEMPORARY TABLE IF EXISTS tempQueries');
 
-}
+    }
 }
