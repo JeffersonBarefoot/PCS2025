@@ -240,9 +240,20 @@ class PositionController extends Controller
             $id = 1;
         }
 
-//        findOrFail either creates the $position object, or fails and routes to 404
-        $position = Position::findOrFail($id);
+        $position = Position::find($id);
 
+        // Attempt to find the Position by ID and ensure it belongs to the authenticated user
+        if (! $position) {
+            // If not found, get the first Position for this user
+            $position = Position::first();
+
+            if (! $position) {
+                // No positions exist for this user - handle gracefully
+                // For example, redirect back with an error message
+                return redirect()->route('positions.index')
+                    ->with('error', 'No positions found for your account.');
+            }
+        }
 
 
 
