@@ -400,20 +400,21 @@ class ReportController extends Controller
 
         dump($currentQueryList);
 
-        foreach ($currentQueryList as $currentFilters) {
+        foreach ($currentQueryList as $currentFilters) {  //cycle through the list of available filters.  Next steps will determine which are used, and how to build the filters into Eloquent
             $filTable = $currentFilters->tablename;
             $filField = $currentFilters->fieldname;
             $filBeg = $currentFilters->BegValue;
             $filEnd = $currentFilters->EndValue;
             $filType = $currentFilters->DataType;
 
-            // Next line builds:  positions.curstatus as Status
-            if (!is_null($filBeg) and !is_null($filEnd)) {
+            // build the filter string to feed Eloquent
+            if (!is_null($filBeg) and !is_null($filEnd)) {  // Both TO and FROM have values
                 $filString = "wherebetween(" . $filTable . "." . $filField . "[" . $filBeg . "," . $filEnd . "])";
-//                $filTable . "." . $filField . " as " . $colHeader;
-                dump($filString);
-                $reportdata = $reportdata->whereBetween($filTable . '.' . $filField, [$filBeg, $filEnd]);
-//            $reportdata = $reportdata->addSelect($colString);
+                $reportdata = $reportdata->whereBetween($filTable . '.' . $filField, [$filBeg, $filEnd]); // $reportdata = $reportdata->whereBetween(positions.posno,[100,200]);
+            }
+
+            if (is_null($filBeg) and is_null($filEnd)) {  // Neither TO or FROM have values
+                // Nothing to do here...
             }
 
 //            $reportdata = $reportdata->addFilter($filString);

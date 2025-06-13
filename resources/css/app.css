@@ -28,8 +28,8 @@ assigned to multiple classes of objects below*/
 
 /*!*Normal Grey Dev Colors*!*/
     --default-background-color: #e0e2e4;
-    --default-button-color: darkslategray;
-    --default-button-background-color: gainsboro;
+    --default-button-color: gainsboro;
+    --default-button-background-color: darkslategray;
     --default-navtree-background-color: gainsboro ;
     --default-header-text-color: darkgray ;
     --default-title-text-color:  redorange;
@@ -149,6 +149,13 @@ td {
 #datanavbar{
     background-color: var(--default-navtree-background-color);
     min-width: 400px;
+}
+
+.KoolReport-Report table,
+.KoolReport-Report table th,
+.KoolReport-Report table td {
+    background-color: white !important;
+    color: black !important;
 }
 
 .styled-button {

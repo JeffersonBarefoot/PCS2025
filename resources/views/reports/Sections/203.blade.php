@@ -34,26 +34,7 @@ use \koolreport\widgets\google\BarChart;
 <?php
 Table::create([
     "dataStore" => $reportarray,
-//    "grouping" => array(
-//        "curstatus" => array(
-//            "calculate" => array(
-//                "{sumBudgSal}" => array("sum", "budgsal")
-//            ),
-//            "top" => "<b>Current Status {curstatus}</b>",
-//            "bottom" => "<td><b>Total of Status {curstatus}</b></td><td><b>{sumBudgSal}</b></td>",
-//        ),
-//    ),
-//    "sorting" => ["curstatus" => "asc"],
-//    "showFooter" => true,
-//    "columns" => [
-//        "company",
-//        "posno",
-//        "curstatus",
-//        "descr" => ["label" => "Customerxx"],
-//        "budgsal" => ["cssStyle" => "text-align:right", "label" => "Amountxx", "type" => "number", "prefix" => "$", "footer" => "sum", "footerText" => "Total:@value"],
-//        "budgsal",
-//    ],
-
+    "cssClass" => "KoolReport-Report"
 ]);
 ?>
 
