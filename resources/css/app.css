@@ -1,3 +1,6 @@
+/* -----------------------------------------------------------
+   TAILwind BASE
+----------------------------------------------------------- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,48 +9,95 @@
     display: none;
 }
 
-/*https://www.w3schools.com/colors/colors_palettes.asp, "Rustic Palettes"*/
-/*HEX: #e0e2e4 - light gray*/
-/*HEX: #c6bcb6 - light brown*/
-/*HEX: #96897f - med brown*/
-/*HEX: #625750 - dark brown*/
+/* -----------------------------------------------------------
+   COLOR THEMES (CHOOSE ONE)
+----------------------------------------------------------- */
 
-/*////////////DEFAULT VARIABLES/////////////*/
-/*This sets the color theme default colors, which can then be
-assigned to multiple classes of objects below*/
+/* ===========================================================
+   THEME 1 — MODERN ENTERPRISE BLUE
+   =========================================================== */
+
+/*:root {*/
+/*    --default-background-color: #F4F6F8;*/
+/*    --default-button-background-color: #2F5DFF;*/
+/*    --default-button-color: white;*/
+
+/*    --default-navtree-background-color: #E5E7EB;*/
+/*    --default-navtree-text-color: #1B2A41;*/
+
+/*    --default-header-text-color: #1B2A41;*/
+/*    --default-title-text-color: #2F5DFF;*/
+/*    --default-normal-text-color: #374151;*/
+
+/*    --bs-card-bg: white;*/
+/*}*/
+
+/* ===========================================================
+   THEME 4 — MUTED ENTERPRISE BLUE (Balanced, Soft, Professional)
+   =========================================================== */
 :root {
-    /*--default-background-color: #d6dbdf;*/
-    /*--default-button-color: whitesmoke;*/
-    /*--default-button-background-color: darkgray;*/
-    /*--default-navtree-background-color: pink ;*/
+    /* Backgrounds */
+    --default-background-color: #F2F4F7;   /* soft, airy gray-blue */
+    --bs-card-bg: #FFFFFF;                 /* clean white cards */
 
-    /*--default-background-color: #e0e2e4;*/
-    /*--default-button-color: #e0e2e4;*/
-    /*--default-button-background-color: #625750;*/
-    /*--default-navtree-background-color: #e0e2e4 ;*/
+    /* Buttons */
+    --default-button-background-color: #4A6FA5;  /* muted steel blue */
+    --default-button-color: #FFFFFF;
 
-/*!*Normal Grey Dev Colors*!*/
-    --default-background-color: #e0e2e4;
-    --default-button-color: gainsboro;
-    --default-button-background-color: darkslategray;
-    --default-navtree-background-color: gainsboro ;
-    --default-header-text-color: darkgray ;
-    --default-title-text-color:  redorange;
-    --default-normal-text-color: darkslategray ;
+    /* Navigation */
+    --default-navtree-background-color: #E3E7ED; /* soft cool gray */
+    --default-navtree-text-color: #2F3A45;       /* slate */
 
-    /*--default-background-color: Black;*/
-    /*--default-button-color: Linen;*/
-    /*--default-button-background-color: Gray;*/
-    /*--default-navtree-background-color: Gray ;*/
-    /*--default-navtree-text-color: Linen ;*/
-    /*--default-header-text-color: Linen ;*/
-    /*--default-title-text-color:  Linen;*/
-    /*--default-normal-text-color: Linen ;*/
-
+    /* Text */
+    --default-header-text-color: #2F3A45;        /* slate */
+    --default-title-text-color: #4A6FA5;         /* muted blue */
+    --default-normal-text-color: #3F4A55;        /* soft charcoal */
 }
 
-/*//////////////CONTAINERS, COLS, ROWS//////////////*/
-.container-fluid{
+
+
+/* ===========================================================
+   THEME 2 — WARM NEUTRAL PROFESSIONAL
+   =========================================================== */
+
+/*:root {*/
+/*    --default-background-color: #E8E6E3;*/
+/*    --default-button-background-color: #5A4A42;*/
+/*    --default-button-color: #E8E6E3;*/
+
+/*    --default-navtree-background-color: #C7B8A6;*/
+/*    --default-navtree-text-color: #2F2F2F;*/
+
+/*    --default-header-text-color: #5A4A42;*/
+/*    --default-title-text-color: #C46A3A;*/
+/*    --default-normal-text-color: #2F2F2F;*/
+
+/*    --bs-card-bg: white;*/
+/*}*/
+
+
+/* ===========================================================
+   THEME 3 — MINIMALIST SLATE + EMERALD (ACTIVE)
+   =========================================================== */
+/*:root {*/
+/*    --default-background-color: #F7F7F7;*/
+/*    --default-button-background-color: #3A3F45;*/
+/*    --default-button-color: white;*/
+
+/*    --default-navtree-background-color: #E5E7EB;*/
+/*    --default-navtree-text-color: #3A3F45;*/
+
+/*    --default-header-text-color: #3A3F45;*/
+/*    --default-title-text-color: #1E8C55;*/
+/*    --default-normal-text-color: #3A3F45;*/
+
+/*    --bs-card-bg: white;*/
+/*}*/
+
+/* -----------------------------------------------------------
+   CONTAINERS
+----------------------------------------------------------- */
+.container-fluid {
     padding: 0;
 }
 
@@ -55,20 +105,19 @@ assigned to multiple classes of objects below*/
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: darkgray;
+    background-color: var(--default-navtree-background-color);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/*/////////////// TYPICAL HTML COMPONENTS ////////////////*/
-/*Standard page body*/
+/* -----------------------------------------------------------
+   TYPOGRAPHY & BASIC ELEMENTS
+----------------------------------------------------------- */
 body {
-    /*background-color: #d0d3d4 ;*/
     background-color: var(--default-background-color);
     font-family: Arial, sans-serif;
 }
 
-/*Standard page components*/
 h1 {
     color: var(--default-header-text-color);
     font-size: large;
@@ -85,11 +134,9 @@ p {
 .default-text {
     font-size: 10pt;
     color: var(--default-normal-text-color);
- }
+}
 
 .text-input-box {
-    /*background-color: var(--default-background-color);*/
-    /*background-color: orange;*/
     height: 22px;
     width: 150px;
     margin: 1px;
@@ -98,29 +145,34 @@ p {
     color: var(--default-normal-text-color);
 }
 
-
-
-
-/*///////////// COLLAPSIBLE SECTIONS //////////////*/
+/* -----------------------------------------------------------
+   COLLAPSIBLE SECTIONS / CARDS
+----------------------------------------------------------- */
 .card {
-    background-color: var(--default-background-color);
-    color:  var(--default-normal-text-color);
+    background-color: var(--bs-card-bg) !important;
+    color: var(--default-normal-text-color) !important;
+}
+
+.card-body {
+    background-color: var(--bs-card-bg) !important;
+    color: var(--default-normal-text-color) !important;
 }
 
 .collapse {
     visibility: visible;
 }
 
-/*Collapsible Panels*/
 .panel-body {
     visibility: visible;
-    color:  var(--default-normal-text-color);
+    color: var(--default-normal-text-color);
 }
 
-/*///////////// MISC COMPONENTS ///////////////*/
+/* -----------------------------------------------------------
+   BUTTONS
+----------------------------------------------------------- */
 .btn {
-    background-color: var(--default-button-background-color);  /*button main color*/
-    color: var(--default-button-color); /*button text color*/
+    background-color: var(--default-button-background-color);
+    color: var(--default-button-color);
     margin-top: 0;
     margin-bottom: 2px;
     height: 35px;
@@ -129,28 +181,40 @@ p {
     text-align: left;
 }
 
-/*////////// TABLES /////////////*/
+/* Remove old green button */
+.styled-button {
+    background-color: var(--default-button-background-color);
+    color: var(--default-button-color);
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* -----------------------------------------------------------
+   TABLES
+----------------------------------------------------------- */
 .table {
     border: 2px solid;
     border-spacing: 10px;
-    width:100%;
-    outline: magenta 80px;
-    color:  var(--default-normal-text-color);
+    width: 100%;
+    color: var(--default-normal-text-color);
 }
+
 table, tbody, tr, th, td {
     background-color: rgba(0, 0, 0, 0.0) !important;
-    color:  var(--default-normal-text-color);
+    color: var(--default-normal-text-color);
 }
+
 td {
     height: 30px;
 }
 
-/*////////// ONE OFF OBJECTS /////////////*/
-#datanavbar{
-    background-color: var(--default-navtree-background-color);
-    min-width: 400px;
-}
-
+/* KoolReport override */
 .KoolReport-Report table,
 .KoolReport-Report table th,
 .KoolReport-Report table td {
@@ -158,18 +222,11 @@ td {
     color: black !important;
 }
 
-.styled-button {
-    background-color: #4CAF50; /* Green background */
-    border: none; /* Remove borders */
-    color: white; /* White text */
-    padding: 15px 32px; /* Some padding */
-    text-align: center; /* Centered text */
-    text-decoration: none; /* Remove underline */
-    display: inline-block; /* Make the container inline */
-    font-size: 16px; /* Increase font size */
-    margin: 4px 2px; /* Some margin */
-    cursor: pointer; /* Pointer/hand icon on hover */
-    border-radius: 4px; /* Rounded corners */
+/* -----------------------------------------------------------
+   NAVIGATION TREE
+----------------------------------------------------------- */
+#datanavbar {
+    background-color: var(--default-navtree-background-color);
+    min-width: 400px;
+    color: var(--default-navtree-text-color);
 }
-
-
