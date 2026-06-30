@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+.
+```
 
 @include('Common.001head')
 
@@ -512,7 +512,6 @@
 @include('Common.002script')
 
 </html>
-
 
 
 

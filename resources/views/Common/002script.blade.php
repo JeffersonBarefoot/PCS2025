@@ -226,6 +226,11 @@ document.addEventListener('DOMContentLoaded', function () {
     PanelShowListener("PosSection11","P900Show");
     PanelShowListener("RepSection1","R201Show");
 
+    PanelShowListener("IncSection1","I201Show");
+    PanelShowListener("IncSection2","I202Show");
+    PanelShowListener("IncSection3","I203Show");
+    PanelShowListener("IncSection4","I204Show");
+
 });
 
 

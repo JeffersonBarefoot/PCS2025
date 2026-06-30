@@ -18,12 +18,17 @@
 <?php $expandincumbentHistory = Session::get('ExpandincumbentHistory') ?>
 <?php $expandIncumbentHistory = Session::get('ExpandIncumbentHistory') ?>
 
-
 <?php $level1Description = sessionGet('level1Desc') ?>
 <?php $level2Description = sessionGet('level2Desc') ?>
 <?php $level3Description = sessionGet('level3Desc') ?>
 <?php $level4Description = sessionGet('level4Desc') ?>
 <?php $level5Description = sessionGet('level5Desc') ?>
+
+{{--Check session vars for collapsible panel show-status - true/false--}}
+<?php $I201Show = sessionGet('I201Show') ?>
+<?php $I202Show = sessionGet('I202Show') ?>
+<?php $I203Show = sessionGet('I203Show') ?>
+<?php $I204Show = sessionGet('I204Show') ?>
 
 
 <body>
@@ -60,7 +65,7 @@
             {{--                    XXX TOP OF CONTENT ROW--}}
 
             {{--        Col03 Data NavBar--}}
-            <div class="col-xxl-3 margin-left: 5px">
+            <div class="col-3">
                 {{--                        XXX TOP OF NAVBAR COLUMN--}}
                 {{--            <div class="container-fluid">--}}
                 {{--                Row04 DataNavBar filters, Row05 DataNavBar records (pulls in by include)--}}
@@ -73,7 +78,7 @@
                 {{--                        XXX BOTTOM OF NAVBAR COLUMN--}}
             </div>
 
-            <div class="col xxl-9  p-5 m-1">
+            <div class="col-9 p-3">
                 {{--                        XXX TOP OF DATA COLUMN...all incumbent specific data in collapsible panels--}}
                 <div class="row">
                     @include('incumbents.Sections.101Titles')
@@ -88,10 +93,10 @@
                             {{--                        ________________________________________<br>--}}
                             {{--                        Section 1, Layout Row 8 <br>--}}
                             {{--                    @dump($incumbent)--}}
-                            <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#PosSection1"
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#IncSection1"
                                role="button"
-                               aria-expanded="false" aria-controls="collapseExample">
-                                incumbent Status:
+                               aria-expanded="false" aria-controls="IncSection1">
+                                Incumbent Status:
                                 Currently
                                 @if ($incumbent->active=="A")
                                     Active,
@@ -101,7 +106,7 @@
                                 {{ ucwords(strtolower($incumbent->curstatus)) }}
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection1">
+                        <div class="{{ $I201Show ? 'collapse show' : 'collapse' }}" id="IncSection1">
                             <div class="card">
                                 <div class="card-body">
                                     @include('incumbents.Sections.201Status')
@@ -115,43 +120,44 @@
                         <p>
                             {{--                        ________________________________________<br>--}}
                             {{--                        Section 2, Layout Row 9<br>--}}
-                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection2"
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#IncSection2"
                                role="button"
-                               aria-expanded="false" aria-controls="collapseExample">
+                               aria-expanded="false" aria-controls="IncSection2">
                                 Budgets and FTEs
                             </a>
                         </p>
-                        <div class="collapse" id="PosSection2">
+                        <div class="{{ $I202Show ? 'collapse show' : 'collapse' }}" id="IncSection2">
                             <div class="card card-body">
                                 @include('incumbents.Sections.202budgets')
                             </div>
                         </div>
                     </div>
 
-                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection3" role="button"
-                       aria-expanded="false" aria-controls="collapseExample">
-                        Organization
-                    </a>
-                    </p>
-                    <div class="collapse" id="PosSection3">
-                        <div class="card card-body">
-                            @include('incumbents.Sections.203Organization')
+                    {{--            Row10 ***********************************************--}}
+                    <div class="row">
+                        <p>
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#IncSection3" role="button"
+                               aria-expanded="false" aria-controls="IncSection3">
+                                Organization
+                            </a>
+                        </p>
+                        <div class="{{ $I203Show ? 'collapse show' : 'collapse' }}" id="IncSection3">
+                            <div class="card card-body">
+                                @include('incumbents.Sections.203Organization')
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {{--                Row11 ***********************************************--}}
-                <div class="row">
-                    <p>
-                        {{--                        ________________________________________<br>--}}
-                        {{--                        Section 4, Layout Row 11<br>--}}
-                        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection4"
-                           role="button"
-                           aria-expanded="false" aria-controls="collapseExample">
-                            History
-                        </a>
-                    </p>
-                    <div class="collapse" id="PosSection4">
+                    {{--            Row11 ***********************************************--}}
+                    <div class="row">
+                        <p>
+                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#IncSection4"
+                               role="button"
+                               aria-expanded="false" aria-controls="IncSection4">
+                                History
+                            </a>
+                        </p>
+                        <div class="{{ $I204Show ? 'collapse show' : 'collapse' }}" id="IncSection4">
                         <div class="card card-body">
                             <div class="card card-body">
                                 @include('incumbents.Sections.204History')

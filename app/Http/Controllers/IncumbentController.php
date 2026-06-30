@@ -39,10 +39,13 @@ class IncumbentController extends Controller
    //***************************************************
   public function index()
   {
-      //
-      //echo 'hello world';
-      $incumbents = Incumbent::all();
-      return view('incumbents.index', compact('incumbents'));
+      $incumbent = Incumbent::first();
+
+      if ($incumbent) {
+          return redirect()->route('incumbents.show', $incumbent->id);
+      }
+
+      return redirect()->back()->with('error', 'No incumbents found.');
   }
 
   /**

@@ -36,6 +36,17 @@ class PositionController extends Controller
         return response()->json(['status' => 'success']);
     }
 
+    public function index()
+    {
+        $position = Position::first();
+
+        if ($position) {
+            return redirect()->route('positions.show', $position->id);
+        }
+
+        return redirect()->back()->with('error', 'No positions found.');
+    }
+
     //***************************************************
     //***************************************************
     //***************************************************

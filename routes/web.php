@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReportBuilderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,10 +20,10 @@ Route::middleware([
     Route::resource('positions', 'App\Http\Controllers\PositionController');
     Route::resource('incumbents', 'App\Http\Controllers\IncumbentController');
 
-    Route::get('/dumpGridToCsv', 'App\Http\Controllers\ReportController@dumpGridToCsv')->name('dumpGridToCsv');
-    Route::resource('reports', 'App\Http\Controllers\ReportController');
+    Route::get('/reports', [ReportBuilderController::class, 'index'])->name('reports.index');
+    Route::get('/reports/{id}', [ReportBuilderController::class, 'show'])->name('reports.show');
+    Route::get('/dumpGridToCsv', [ReportBuilderController::class, 'dumpGridToCsv'])->name('dumpGridToCsv');
 
     Route::post('/uploadfile', 'App\Http\Controllers\UploadFileController@uploadfile')->name('uploadfile');
-
     Route::post('/update-collapse-status', 'App\Http\Controllers\PositionController@updateCollapseStatus')->name('updateCollapseStatus');
 });

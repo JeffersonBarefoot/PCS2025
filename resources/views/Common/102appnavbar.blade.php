@@ -1,19 +1,43 @@
-<div class="row">
-    <div class="col-xxl-4">
-        <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Go To The Dashboard<br></a>
-        <a href='/positions/4'>Go To Position #4<br></a>
-        <a href='/incumbents/57'>Go To Incumbent #57<br></a>
-        <a href='/reports/1'>Go To Reports<br></a>
-    </div>
-    <div class="col-xxl-4">
-    </div>
-    <div class="col" -xxl-3>
-        <h1 class="display-5 text-end font:bold">
-        PowerPCS
-        </h1>
-    </div>
-    <div class="col" -xxl-1>
-        <img src="{{asset('/images/PowerArmImageV2_Transp.png')}}" style="width:66.67px; height:100px;">
-    </div>
-</div>
+<div class="w-full flex items-center justify-between px-8 py-4 bg-white border-b shadow-sm">
 
+    <!-- Left Menu -->
+    <nav class="flex space-x-8 text-sm font-medium">
+
+        <a href="{{ route('dashboard') }}"
+           class="text-gray-700 hover:text-blue-700 transition">
+            Dashboard
+        </a>
+
+        <a href="/positions"
+           class="text-gray-700 hover:text-blue-700 transition">
+            Positions
+        </a>
+
+        <a href="/incumbents"
+           class="text-gray-700 hover:text-blue-700 transition">
+            Incumbents
+        </a>
+
+        <a href="/reports"
+           class="text-gray-700 hover:text-blue-700 transition">
+            Reports
+        </a>
+
+        <a href="/reportbuilders"
+           class="text-gray-700 hover:text-blue-700 transition">
+            Report Builder
+        </a>
+
+    </nav>
+
+    <!-- Right Side: Title + Logo -->
+    <div class="flex items-center space-x-4">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-800">
+            PowerPCS
+        </h1>
+
+        <img src="{{ asset('/images/PowerArmImageV2_Transp.png') }}"
+             class="w-14 h-20 object-contain">
+    </div>
+
+</div>
