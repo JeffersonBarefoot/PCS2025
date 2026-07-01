@@ -16,8 +16,7 @@ class CreateReportqueriesTable extends Migration
       Schema::create('reportqueries', function (Blueprint $table) {
           $table->bigIncrements('id');
           $table->timestamps();
-          $table->unsignedbiginteger('reportid');
-          $table->string('company',10)->default('SAMPLE');
+          $table->unsignedBigInteger('reportid');
           $table->string('active',1)->default('A');
           $table->string('sortorder',10)->default('');
           $table->string('descr',75)->default('');
@@ -28,7 +27,7 @@ class CreateReportqueriesTable extends Migration
       });
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '1'
+        ['reportid' => '1000'
         ,'sortorder'=>'1'
         ,'descr'=>'Company Code'
         ,'table' => 'positions'
@@ -39,7 +38,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '1'
+        ['reportid' => '1000'
         ,'sortorder'=>'2'
         ,'descr'=>'Position #'
         ,'table' => 'positions'
@@ -50,7 +49,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '1'
+        ['reportid' => '1000'
         ,'sortorder'=>'3'
         ,'descr'=>'Position Active Status'
         ,'table' => 'positions'
@@ -61,7 +60,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '1'
+        ['reportid' => '1000'
         ,'sortorder'=>'4'
         ,'descr'=>'Position Filled Status'
         ,'table' => 'positions'
@@ -72,7 +71,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '1'
+        ['reportid' => '1000'
         ,'sortorder'=>'5'
         ,'descr'=>'Position Start Date'
         ,'table' => 'positions'
@@ -83,7 +82,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '2'
+        ['reportid' => '1010'
         ,'sortorder'=>'1'
         ,'descr'=>'Company Code'
         ,'table' => 'positions'
@@ -94,7 +93,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '2'
+        ['reportid' => '1010'
         ,'sortorder'=>'2'
         ,'descr'=>'Position #'
         ,'table' => 'positions'
@@ -105,7 +104,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '2'
+        ['reportid' => '1010'
         ,'sortorder'=>'3'
         ,'descr'=>'Position Active Status'
         ,'table' => 'positions'
@@ -116,7 +115,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '2'
+        ['reportid' => '1010'
         ,'sortorder'=>'4'
         ,'descr'=>'Position Filled Status'
         ,'table' => 'positions'
@@ -127,7 +126,7 @@ class CreateReportqueriesTable extends Migration
       ]);
 
       DB::table('reportqueries')->insert([
-        ['reportid' => '2'
+        ['reportid' => '1010'
         ,'sortorder'=>'5'
         ,'descr'=>'Position Start Date'
         ,'table' => 'positions'

@@ -39,13 +39,14 @@ class IncumbentController extends Controller
    //***************************************************
   public function index()
   {
-      $incumbent = Incumbent::first();
+      $teamId    = Auth::user()->currentTeam->id;
+      $incumbent = Incumbent::where('teamid', $teamId)->first();
 
       if ($incumbent) {
           return redirect()->route('incumbents.show', $incumbent->id);
       }
 
-      return redirect()->back()->with('error', 'No incumbents found.');
+      return redirect()->route('dashboard')->with('error', 'No incumbents found for your team.');
   }
 
   /**

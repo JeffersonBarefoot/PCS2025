@@ -38,13 +38,14 @@ class PositionController extends Controller
 
     public function index()
     {
-        $position = Position::first();
+        $teamId   = Auth::user()->currentTeam->id;
+        $position = Position::where('teamid', $teamId)->first();
 
         if ($position) {
             return redirect()->route('positions.show', $position->id);
         }
 
-        return redirect()->back()->with('error', 'No positions found.');
+        return redirect()->route('dashboard')->with('error', 'No positions found for your team.');
     }
 
     //***************************************************

@@ -1,3 +1,7 @@
+@php
+    $fmtDate = fn($d) => (!$d || $d >= '2999-12-31') ? 'Present' : date_format(date_create($d), 'm/d/y');
+@endphp
+
 <!-- *************************** -->
 <!-- Left div contains list of all incumbents -->
 <div class="row">
@@ -46,7 +50,7 @@
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th width:40%>Record Created</th>
+                <th width:40%>Period</th>
                 <th width:10%>Status</th>
                 <th width:10%>FTE</th>
                 <th width:40%>Ann Cost</th>
@@ -69,7 +73,7 @@
                     <tr>
                         <!-- <td><a href={{route('positions.show',$position->id)}}?viewincid={{$viewinc->id}}&viewinchistid={{$incHistory->id}}>{{$incHistory->posstart}}</td> -->
                         <td>
-                            <a href={{route('positions.show',$position->id)}}?viewinchistid={{$incHistory->id}}>{{$incHistory->trans_date}}
+                            <a href={{route('positions.show',$position->id)}}?viewinchistid={{$incHistory->id}}>{{$fmtDate($incHistory->historystart).' – '.$fmtDate($incHistory->historyend)}}
                         </td>
                         <td>{{$incHistory->active_pos}}</td>
                         <td>{{round($incHistory->fulltimeequiv,3)}}</td>
@@ -87,7 +91,7 @@
     <!-- Right div contains details of selected incumbent -->
     <div class="col-md-5">Details:
         @foreach($viewIncumbentDetails as $vd)
-            {{$vd->fname.' '.$vd->lname.' @ '.$vd->trans_date.', annual cost '.FormatDollars($vd->ann_cost)}}
+            {{$vd->fname.' '.$vd->lname.' — '.$fmtDate($vd->posstart).' to '.$fmtDate($vd->posstop).', annual cost '.FormatDollars($vd->ann_cost)}}
         @endforeach
         <table class="table table-condensed">
             <thead>
@@ -114,7 +118,7 @@
                     <td style="text-align:left">{{$IncDet->posstart}}</td>
                     <td></td>
                     <td>Ended in Pos:</td>
-                    <td>{{$IncDet->posstop}}</td>
+                    <td>{{$fmtDate($IncDet->posstop)}}</td>
                 </tr>
 
                 <tr>

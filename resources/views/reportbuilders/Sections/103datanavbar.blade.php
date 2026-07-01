@@ -1,117 +1,53 @@
-<div class="row">
-    <div class="col-md-12" style="background-color:#aaa;">
+<div class="col-md-12" style="background-color:#eee; padding:10px;">
 
-        {{--        <!-- <form action={{route('reports.show',$report->id)}} method="get"> -->--}}
+    <h6 class="text-uppercase text-muted fw-bold mb-3">Report Library</h6>
 
-        <h2>Available Reports:</h2>
+    @php
+        $navGroups = [
+            'Position Reports'         => $availablereportsPOS,
+            'Position History'         => $availablereportsPOSH,
+            'Incumbent Reports'        => $availablereportsINC,
+            'Incumbent History'        => $availablereportsINCH,
+            'Budget Reports'           => $availablereportsBUDG,
+            'Vacancy Reports'          => $availablereportsVAC,
+            'Recruiting Reports'       => $availablereportsRECR,
+        ];
+        $navId = 0;
+    @endphp
 
-        <br>
-
-        <!-- ************************** -->
-        <!-- ************************** -->
-        <!-- Columns -->
-        <!-- ************************** -->
-        <!-- ************************** -->
-        <div class="row">
-            <p>
-                {{--                        ________________________________________<br>--}}
-                {{--                        Section 4, Layout Row 11<br>--}}
-                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#RepNavSection1"
-                   role="button"
-                   aria-expanded="false" aria-controls="collapseExample">
-                    Report Components:  Columns
+    @foreach($navGroups as $label => $groupReports)
+        @if($groupReports->isNotEmpty())
+            @php $navId++ @endphp
+            <div class="mb-2">
+                <a class="btn btn-sm btn-outline-secondary w-100 text-start"
+                   data-bs-toggle="collapse"
+                   href="#navGroup{{ $navId }}"
+                   role="button">
+                    {{ $label }}
                 </a>
-            </p>
-            {{--                        <div class="collapse" id="PosSection4">--}}
-            <div class="{{ $P204Show ? 'collapse show' : 'collapse' }}" id="RepNavSection1">
-                <div class="card card-body">
-                    <table class="table table-condensed">
-                        <tr>
-                        @foreach($availablereportsPOS as $rep)
-                            <tr>
-
-                                <td height="25"><a href={{route('reports.show',$rep->id)}}>{{$rep->descr}}</td>
-
-                                <!-- <td>{{$rep->descr}}</td> -->
-
-                            </tr>
-                            @endforeach
-                            </tr>
-                    </table>
+                <div class="collapse show" id="navGroup{{ $navId }}">
+                    <ul class="list-unstyled ps-2 mt-1 mb-0">
+                        @foreach($groupReports as $rep)
+                            <li class="d-flex align-items-center gap-1">
+                                <a href="{{ route('reports.show', $rep->id) }}"
+                                   class="text-decoration-none small {{ isset($report) && $report->id == $rep->id ? 'fw-bold text-primary' : 'text-dark' }}">
+                                    {{ $rep->descr }}
+                                    @if($rep->private === 'Y')
+                                        <span class="text-muted" title="Private">&#128274;</span>
+                                    @endif
+                                </a>
+                                @if(!$rep->is_system && $rep->userid === Auth::id())
+                                    <a href="{{ route('reports.edit', $rep->id) }}"
+                                       class="text-muted ms-auto" title="Edit report" style="font-size:0.7rem">
+                                        <span class="bi bi-pencil-fill"></span>
+                                    </a>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
-        </div>
-        <!-- ************************** -->
-        <!-- ************************** -->
-        <!-- Queries -->
-        <!-- ************************** -->
-        <!-- ************************** -->
-        <div class="row">
-            <p>
-                {{--                        ________________________________________<br>--}}
-                {{--                        Section 4, Layout Row 11<br>--}}
-                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#RepNavSection2"
-                   role="button"
-                   aria-expanded="false" aria-controls="collapseExample">
-                    Report Components:  Queries
-                </a>
-            </p>
-            {{--                        <div class="collapse" id="PosSection4">--}}
-            <div class="{{ $P204Show ? 'collapse show' : 'collapse' }}" id="RepNavSection2">
-                <div class="card card-body">
-                    <table class="table table-condensed">
-                        <tr>
-                        @foreach($availablereportsPOSH as $rep)
-                            <tr>
+        @endif
+    @endforeach
 
-                                <td height="25"><a href={{route('reports.show',$rep->id)}}>{{$rep->descr}}</td>
-
-                                <!-- <td>{{$rep->descr}}</td> -->
-
-                            </tr>
-                            @endforeach
-                            </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <!-- ************************** -->
-        <!-- ************************** -->
-        <!-- Reports -->
-        <!-- ************************** -->
-        <!-- ************************** -->
-        <div class="row">
-            <p>
-                {{--                        ________________________________________<br>--}}
-                {{--                        Section 4, Layout Row 11<br>--}}
-                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#RepNavSection3"
-                   role="button"
-                   aria-expanded="false" aria-controls="collapseExample">
-                    Report Definitions
-                </a>
-            </p>
-            {{--                        <div class="collapse" id="PosSection4">--}}
-            <div class="{{ $P204Show ? 'collapse show' : 'collapse' }}" id="RepNavSection3">
-                <div class="card card-body">
-                    <table class="table table-condensed">
-                        <tr>
-                        @foreach($availablereportsINC as $rep)
-                            <tr>
-
-                                <td height="25"><a href={{route('reports.show',$rep->id)}}>{{$rep->descr}}</td>
-
-                                <!-- <td>{{$rep->descr}}</td> -->
-
-                            </tr>
-                            @endforeach
-                            </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
 </div>
-

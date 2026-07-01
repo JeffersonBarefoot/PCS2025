@@ -23,9 +23,9 @@
             Reports
         </a>
 
-        <a href="/reportbuilders"
+        <a href="{{ route('setup.show') }}"
            class="text-gray-700 hover:text-blue-700 transition">
-            Report Builder
+            Setup
         </a>
 
     </nav>

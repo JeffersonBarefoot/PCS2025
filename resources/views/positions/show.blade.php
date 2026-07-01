@@ -309,24 +309,6 @@
                     {{--                    </div>--}}
                     {{--                </div>--}}
 
-                    {{--                    Row18 ***********************************************--}}
-                    <div class="row">
-                        <p>
-                            {{--                            ________________________________________<br>--}}
-                            {{--                            Section 11, Layout Row 18<br>--}}
-                            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#PosSection11"
-                               role="button"
-                               aria-expanded="false" aria-controls="collapseExample">
-                                Tools
-                            </a>
-                        </p>
-                        {{--                        <div class="collapse" id="PosSection11">--}}
-                        <div class="{{ $P900Show ? 'collapse show' : 'collapse' }}" id="PosSection11">
-                            <div class="card card-body">
-                                @include('positions.Sections.900importtools')
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

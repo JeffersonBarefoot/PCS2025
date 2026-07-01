@@ -2,9 +2,5 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class ReportColumnSubs extends Model
-{
-    //
-}
+// Renamed to ReportGroups — this alias kept for backwards compatibility
+class ReportColumnSubs extends ReportGroups {}

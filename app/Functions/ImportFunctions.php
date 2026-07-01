@@ -305,65 +305,55 @@ if (!function_exists('ImportPositions')) {
   //***************************************************
   //***************************************************
   //***************************************************
-  function ImportPositions($incomingFile)
+  function ImportPositions($incomingFile, $teamId = null)
   {
       $fileToProcess = storage_path('app/private/' . $incomingFile);
-      if (($handle = fopen($fileToProcess, 'r' )) !== FALSE) {
+      if (($handle = fopen($fileToProcess, 'r')) !== FALSE) {
 
-      // extract headers so we can see what fields are being imported
-      // the 2000 is the max line length, and is optional ("slightly slower")
-      $header = fgetcsv($handle, 2000, ',');
-      $headercount = count($header);
+          $header       = fgetcsv($handle, 2000, ',');
+          $headercount  = count($header);
+          $headerLower  = array_map('strtolower', $header);
+          $validColumns = \Schema::getColumnListing('positions');
 
-      // scan remaining CSV records, and put each into an array named $data
-      while ( ($data = fgetcsv ( $handle, 2000, ',' )) !== FALSE ) {
+          $invalid = array_values(array_diff($headerLower, $validColumns));
+          if (!empty($invalid)) {
+              fclose($handle);
+              return ['ok' => false, 'error' => 'Wrong file — columns not in positions table: ' . implode(', ', array_slice($invalid, 0, 6))];
+          }
 
-        //add a new record to positions table
-        $position = new Position();
-        $i = 0;
+          $inserted = 0;
+          $skipped  = 0;
 
-        // check for empty lines...in a CSV file they show up "as an array comprising a single null field, and will not be treated as an error."
-        if (! empty($data[0])) {
+          while (($data = fgetcsv($handle, 2000, ',')) !== FALSE) {
 
-          // scan through all fields in the current record
-          while ($i<$headercount):
+              if (empty($data[0])) continue;
 
-              // grab the fieldname from $header and the imported data from $data
-              $fieldname=$header[$i];
-              $fielddata=$data[$i];
+              $position = new Position();
+              $i = 0;
 
-            // if ! is_null($fielddata);
+              while ($i < $headercount):
+                  $fieldname = $headerLower[$i];
+                  $fielddata = validateData('positions', $fieldname, $data[$i]);
+                  $position->$fieldname = $fielddata;
+                  $i++;
+              endwhile;
 
-              // validate the incoming data, based on the table.field data type
-              $fielddata=validateData('positions',$fieldname,$fielddata);
+              if ($teamId) $position->teamid = $teamId;
 
-              // update the field in the new positions records
-              // import will look like:  $position->active="A"
-              $position->$fieldname=$fielddata;
+              $exists = \DB::table('positions')
+                  ->where('teamid', $teamId)
+                  ->where('company', $position->company)
+                  ->where('posno', $position->posno)
+                  ->exists();
 
-            // endif;
+              if (!$exists) { $position->save(); $inserted++; }
+              else          { $skipped++; }
+          }
 
-              $i++;
-          endwhile;
-
-
-
-        // MAKE SURE THAT THERE'S A COMPANY AND POSNO, AND THEY ARE UNIQUE
-
-        $position->save();
-        // ERRORS TO CATCH:
-        //incorrect field names will error on save()
-
-        }
-
+          fclose($handle);
+          return ['ok' => true, 'inserted' => $inserted, 'skipped' => $skipped];
       }
-
-      fclose ( $handle );
-
-      // rename('/ImportFiles/brmpositions.csv.imported','/ImportFiles/brmpositions.csv');
-
-
-    }
+      return ['ok' => false, 'error' => 'Could not open file.'];
   }
 }
 
@@ -384,69 +374,57 @@ if (!function_exists('ImportHPositions')) {
   //***************************************************
   function ImportHPositions($incomingFile)
   {
-
       $fileToProcess = storage_path('app/private/' . $incomingFile);
-    if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE) {
+      if (($handle = fopen($fileToProcess, 'r')) !== FALSE) {
 
-      // extract headers so we can see what fields are being imported
-      $header = fgetcsv($handle, 2000, ',');
-      $headercount = count($header);
+          $header       = fgetcsv($handle, 2000, ',');
+          $headercount  = count($header);
+          $headerLower  = array_map('strtolower', $header);
+          $validColumns = \Schema::getColumnListing('hpositions');
 
-      // scan remaining CSV records, and put each into an array named $data
-      while ( ($data = fgetcsv ( $handle, 2000, ',' )) !== FALSE ) {
-
-        //add a new record to positions table
-        $hposition = new HPosition();
-        $i = 0;
-
-        // check for empty lines...in a CSV file they show up "as an array comprising a single null field, and will not be treated as an error."
-        if (! empty($data[0])) {
-
-          // scan through all fields in the current record
-          while ($i<$headercount):
-
-              // grab the fieldname from $header and the imported data from $data
-              $fieldname=$header[$i];
-              $fielddata=$data[$i];
-
-              if (strToUpper($fieldname)=="COMPANY") {
-                $companyvalue = $fielddata;
-              }
-
-              if (strToUpper($fieldname)=="POSNO") {
-                $posnovalue = $fielddata;
-              }
-
-              // validate the incoming data, based on the table.field data type
-              $fielddata=validateData('hpositions',$fieldname,$fielddata);
-
-              // find the related position, and capture the position ID
-
-              // update the field in the new positions records
-              // import will look like:  $position->active="A"
-              $hposition->$fieldname=$fielddata;
-              $i++;
-          endwhile;
-
-
-          // MAKE SURE THAT THERE'S A COMPANY AND POSNO, AND THEY ARE UNIQUE
-          // MAKE SURE THAT THERE'S A COMPANY AND POSNO, AND THEY ARE UNIQUE
-          $positionid = GetPositionField($companyvalue, $posnovalue, "id");
-
-          if (! is_null($positionid)) {
-            $hposition->posid=$positionid;
+          $invalid = array_values(array_diff($headerLower, $validColumns));
+          if (!empty($invalid)) {
+              fclose($handle);
+              return ['ok' => false, 'error' => 'Wrong file — columns not in hpositions table: ' . implode(', ', array_slice($invalid, 0, 6))];
           }
 
-          // add correct team ID
-          $user = auth()->user();
-          $hposition->teamid=$user->currentTeam->id;
+          $inserted = 0;
+          $user     = auth()->user();
+          $teamId   = $user->currentTeam->id;
 
-          $hposition->save();
+          while (($data = fgetcsv($handle, 2000, ',')) !== FALSE) {
 
-        }
+              if (empty($data[0])) continue;
+
+              $hposition    = new HPosition();
+              $companyvalue = null;
+              $posnovalue   = null;
+              $i = 0;
+
+              while ($i < $headercount):
+                  $fieldname = $headerLower[$i];
+                  $fielddata = $data[$i];
+
+                  if ($fieldname === 'company') $companyvalue = $fielddata;
+                  if ($fieldname === 'posno')   $posnovalue   = $fielddata;
+
+                  $fielddata = validateData('hpositions', $fieldname, $fielddata);
+                  $hposition->$fieldname = $fielddata;
+                  $i++;
+              endwhile;
+
+              $positionid = GetPositionField($companyvalue, $posnovalue, 'id');
+              if (!is_null($positionid)) $hposition->posid = $positionid;
+
+              $hposition->teamid = $teamId;
+              $hposition->save();
+              $inserted++;
+          }
+
+          fclose($handle);
+          return ['ok' => true, 'inserted' => $inserted, 'skipped' => 0];
       }
-      fclose ( $handle );
-    }
+      return ['ok' => false, 'error' => 'Could not open file.'];
   }
 
 }
@@ -460,71 +438,66 @@ if (!function_exists('ImportIncumbents')) {
   //***************************************************
   //***************************************************
   //***************************************************
-  function ImportIncumbents($incomingFile)
+  function ImportIncumbents($incomingFile, $teamId = null)
   {
       $fileToProcess = storage_path('app/private/' . $incomingFile);
-//    if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE)
-    if (($handle = fopen($fileToProcess, 'r' )) !== FALSE) {
+      if (($handle = fopen($fileToProcess, 'r')) !== FALSE) {
 
-      // extract headers so we can see what fields are being imported
-      $header = fgetcsv($handle, 2000, ',');
-      $headercount = count($header);
+          $header       = fgetcsv($handle, 2000, ',');
+          $headercount  = count($header);
+          $headerLower  = array_map('strtolower', $header);
+          $validColumns = \Schema::getColumnListing('incumbents');
 
-      // scan remaining CSV records, and put each into an array named $data
-      while ( ($data = fgetcsv ( $handle, 2000, ',' )) !== FALSE ) {
+          $invalid = array_values(array_diff($headerLower, $validColumns));
+          if (!empty($invalid)) {
+              fclose($handle);
+              return ['ok' => false, 'error' => 'Wrong file — columns not in incumbents table: ' . implode(', ', array_slice($invalid, 0, 6))];
+          }
 
-        //add a new record to incumbents table
-        $incumbent = new Incumbent() ;
-        $i = 0;
+          $inserted = 0;
+          $skipped  = 0;
 
-        // check for empty lines...in a CSV file they show up "as an array comprising a single null field, and will not be treated as an error."
-        if (! empty($data[0])) {
+          while (($data = fgetcsv($handle, 2000, ',')) !== FALSE) {
 
-          // scan through all fields in the current record
-          while ($i<$headercount):
+              if (empty($data[0])) continue;
 
-              // grab the fieldname from $header and the imported data from $data
-              $fieldname=$header[$i];
-              $fielddata=$data[$i];
+              $incumbent       = new Incumbent();
+              $poscompanyvalue = null;
+              $posnovalue      = null;
+              $empnovalue      = null;
+              $i = 0;
 
-              if (strToUpper($fieldname)=="POSCOMPANY") {
-                $poscompanyvalue = $fielddata;
-              }
+              while ($i < $headercount):
+                  $fieldname = $headerLower[$i];
+                  $fielddata = $data[$i];
 
-              if (strToUpper($fieldname)=="POSNO") {
-                $posnovalue = $fielddata;
-              }
+                  if ($fieldname === 'poscompany') $poscompanyvalue = $fielddata;
+                  if ($fieldname === 'posno')      $posnovalue      = $fielddata;
+                  if ($fieldname === 'empno')      $empnovalue      = $fielddata;
 
-              if (strToUpper($fieldname)=="COMPANY") {
-                $companyvalue = $fielddata;
-              }
+                  $fielddata = validateData('incumbents', $fieldname, $fielddata);
+                  $incumbent->$fieldname = $fielddata;
+                  $i++;
+              endwhile;
 
-              if (strToUpper($fieldname)=="EMPNO") {
-                $empnovalue = $fielddata;
-              }
+              $positionid = GetPositionField($poscompanyvalue, $posnovalue, 'id');
+              if (!is_null($positionid)) $incumbent->posid = $positionid;
 
+              if ($teamId) $incumbent->teamid = $teamId;
 
-              // validate the incoming data, based on the table.field data type
-              $fielddata=validateData('incumbents',$fieldname,$fielddata);
+              $exists = \DB::table('incumbents')
+                  ->where('teamid', $teamId)
+                  ->where('empno', $empnovalue)
+                  ->exists();
 
-              // update the field in the new positions records
-              // import will look like:  $position->active="A"
-              $incumbent->$fieldname=$fielddata;
-              $i++;
-          endwhile;
+              if (!$exists) { $incumbent->save(); $inserted++; }
+              else          { $skipped++; }
+          }
 
-          // MAKE SURE THAT THERE'S A COMPANY AND POSNO, AND THEY ARE UNIQUE
-          $positionid = GetPositionField($poscompanyvalue, $posnovalue, "id");
-
-          if (! is_null($positionid)) {
-            $incumbent->posid=$positionid;
-            }
-
-          $incumbent->save();
-        }
+          fclose($handle);
+          return ['ok' => true, 'inserted' => $inserted, 'skipped' => $skipped];
       }
-      fclose ( $handle );
-    }
+      return ['ok' => false, 'error' => 'Could not open file.'];
   }
 }
 
@@ -540,77 +513,63 @@ if (!function_exists('ImportHIncumbents')) {
   function ImportHIncumbents($incomingFile)
   {
       $fileToProcess = storage_path('app/private/' . $incomingFile);
-    if (($handle = fopen ( $fileToProcess, 'r' )) !== FALSE) {
+      if (($handle = fopen($fileToProcess, 'r')) !== FALSE) {
 
-      // extract headers so we can see what fields are being imported
-      $header = fgetcsv($handle, 2000, ',');
-      $headercount = count($header);
+          $header       = fgetcsv($handle, 2000, ',');
+          $headercount  = count($header);
+          $headerLower  = array_map('strtolower', $header);
+          $validColumns = \Schema::getColumnListing('hincumbents');
 
-      // scan remaining CSV records, and put each into an array named $data
-      while ( ($data = fgetcsv ( $handle, 2000, ',' )) !== FALSE ) {
-
-        //add a new record to positions table
-        $hincumbent = new HIncumbent() ;
-        $i = 0;
-
-        // check for empty lines...in a CSV file they show up "as an array comprising a single null field, and will not be treated as an error."
-        if (! empty($data[0])) {
-
-          // scan through all fields in the current record
-          while ($i<$headercount):
-
-              // grab the fieldname from $header and the imported data from $data
-              $fieldname=$header[$i];
-              $fielddata=$data[$i];
-
-              if (strToUpper($fieldname)=="COMPANY") {
-                $companyvalue = $fielddata;
-              }
-
-              if (strToUpper($fieldname)=="POSCOMPANY") {
-                $poscompanyvalue = $fielddata;
-              }
-
-              if (strToUpper($fieldname)=="POSNO") {
-                $posnovalue = $fielddata;
-              }
-
-              if (strToUpper($fieldname)=="EMPNO") {
-                $empnovalue = $fielddata;
-              }
-
-              // validate the incoming data, based on the table.field data type
-              $fielddata=validateData('hincumbents',$fieldname,$fielddata);
-
-              // update the field in the new positions records
-              // import will look like:  $position->active="A"
-              // dump();
-              $hincumbent->$fieldname=$fielddata;
-              $i++;
-          endwhile;
-
-          // MAKE SURE THAT THERE'S A POSCOMPANY AND POSNO, AND THEY ARE UNIQUE
-          $positionid = GetPositionField($poscompanyvalue, $posnovalue, "id");
-          if (! is_null($positionid)) {
-            $hincumbent->posid=$positionid;
+          $invalid = array_values(array_diff($headerLower, $validColumns));
+          if (!empty($invalid)) {
+              fclose($handle);
+              return ['ok' => false, 'error' => 'Wrong file — columns not in hincumbents table: ' . implode(', ', array_slice($invalid, 0, 6))];
           }
 
-          // MAKE SURE THAT THERE'S A COMPANY AND EMPNO, AND THEY ARE UNIQUE
-          $incumbentid = GetIncumbentField($companyvalue, $empnovalue, "id");
-          if (! is_null($incumbentid)) {
-            $hincumbent->incid=$incumbentid;
+          $inserted = 0;
+          $user     = auth()->user();
+          $teamId   = $user->currentTeam->id;
+
+          while (($data = fgetcsv($handle, 2000, ',')) !== FALSE) {
+
+              if (empty($data[0])) continue;
+
+              $hincumbent      = new HIncumbent();
+              $companyvalue    = null;
+              $poscompanyvalue = null;
+              $posnovalue      = null;
+              $empnovalue      = null;
+              $i = 0;
+
+              while ($i < $headercount):
+                  $fieldname = $headerLower[$i];
+                  $fielddata = $data[$i];
+
+                  if ($fieldname === 'company')    $companyvalue    = $fielddata;
+                  if ($fieldname === 'poscompany') $poscompanyvalue = $fielddata;
+                  if ($fieldname === 'posno')      $posnovalue      = $fielddata;
+                  if ($fieldname === 'empno')      $empnovalue      = $fielddata;
+
+                  $fielddata = validateData('hincumbents', $fieldname, $fielddata);
+                  $hincumbent->$fieldname = $fielddata;
+                  $i++;
+              endwhile;
+
+              $positionid  = GetPositionField($poscompanyvalue, $posnovalue, 'id');
+              if (!is_null($positionid))  $hincumbent->posid  = $positionid;
+
+              $incumbentid = GetIncumbentField($companyvalue, $empnovalue, 'id');
+              if (!is_null($incumbentid)) $hincumbent->incid  = $incumbentid;
+
+              $hincumbent->teamid = $teamId;
+              $hincumbent->save();
+              $inserted++;
           }
 
-          // add correct team ID
-          $user = auth()->user();
-          $hincumbent->teamid=$user->currentTeam->id;
-
-          $hincumbent->save();
-        }
+          fclose($handle);
+          return ['ok' => true, 'inserted' => $inserted, 'skipped' => 0];
       }
-
-      fclose ( $handle );
-    }
+      return ['ok' => false, 'error' => 'Could not open file.'];
   }
 }
 
@@ -720,7 +679,6 @@ if (!function_exists('SeedPositionHistory')) {
 
           if (is_null($lastStart)) {
             $lastStart = getTodaysDate();
-            dump('ughhhhhh');
           }
 
         } else {
@@ -824,8 +782,10 @@ if (!function_exists('ImportIncumbentChanges')) {
   //***************************************************
   function ImportIncumbentChanges($incomingFile)
   {
-dd("running importincumbentchanges");
-    $fileToProcess = '../storage/app/importFiles/'.$incomingFile;
+    // TODO: not yet implemented
+    return;
+
+    $fileToProcess = storage_path('app/private/' . $incomingFile);
 
   //*** * 1 - create a cursor with all PowerPCS incumbents and their current positions.
   $PcsActiveIncumbents = GetAllActiveIncumbents();

@@ -181,6 +181,20 @@ p {
     text-align: left;
 }
 
+/* Action buttons (submit, confirm) — natural/auto width, centered text */
+.btn-action {
+    width: auto !important;
+    text-align: center !important;
+}
+
+/* Report group collapse chevron */
+.group-header .bi-chevron-down {
+    transition: transform 0.2s ease;
+}
+.group-header.collapsed .bi-chevron-down {
+    transform: rotate(-90deg);
+}
+
 /* Remove old green button */
 .styled-button {
     background-color: var(--default-button-background-color);
@@ -208,6 +222,12 @@ p {
 table, tbody, tr, th, td {
     background-color: rgba(0, 0, 0, 0.0) !important;
     color: var(--default-normal-text-color);
+}
+
+/* Preserve dark header background that the rule above would erase */
+thead.table-dark th {
+    background-color: #343a40 !important;
+    color: #fff !important;
 }
 
 td {

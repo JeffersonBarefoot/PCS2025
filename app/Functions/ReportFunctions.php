@@ -49,97 +49,71 @@ use Nayjest\Grids\GridConfig;
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 //><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 if (!function_exists('BuildQuery')) {
-    function BuildQuery($reportId, $reportType, $input, $report)
-
+    function BuildQuery($reportId, $reportType, $input, $report, $teamId = null)
     {
-
-        //######################################
-        // build $query
-        //######################################
         switch ($reportType) {
             case "POS":
-//                $query = (new Position)
-//                    ->newQuery()
-//                    ->select('*');
-//                return $query;
-
-                // this worked 20250507, Kool Report
-                $query = (new Position)
-                    ->newQuery();
+                $query = (new Position)->newQuery();
+                if ($teamId) $query->where('positions.teamid', $teamId);
                 return $query;
 
-
-
-
             case "POSH":
-                $query = (new Position)
-                    ->newQuery()
-                    ->select('*')
-                    ->join('hpositions', 'positions.posno', '=', 'hpositions.posno');
+                $query = (new Position)->newQuery()
+                    ->join('hpositions', 'positions.id', '=', 'hpositions.posid');
+                if ($teamId) $query->where('positions.teamid', $teamId);
                 return $query;
 
             case "INC":
-                // code
-                $query = (new Incumbent)
-                    ->newQuery()
-                    ->select('incumbents.company as inccomp'
-                        , 'positions.company as poscomp'
-                        , 'incumbents.posno'
-                        , 'incumbents.lname'
-                        , 'unitrate'
-                        , DB::raw('(unitrate + 1) as newrate')
-                        , 'positions.descr'
-                        , 'positions.level1')
-                    ->join('positions', 'incumbents.posno', '=', 'positions.posno')
-                    ->where('positions.Active', '=', 'A');
-
+                // No hardcoded select — reportcolumns drives the columns via addSelect in controller
+                $query = (new Incumbent)->newQuery()
+                    ->join('positions', 'incumbents.posid', '=', 'positions.id')
+                    ->where('incumbents.active', 'A');
+                if ($teamId) $query->where('incumbents.teamid', $teamId);
                 return $query;
 
             case "INCH":
-                // code
-
-
+                $query = (new Incumbent)->newQuery()
+                    ->join('hincumbents', 'incumbents.id', '=', 'hincumbents.incid')
+                    ->join('positions', 'incumbents.posid', '=', 'positions.id');
+                if ($teamId) $query->where('incumbents.teamid', $teamId);
                 return $query;
 
             case "BUDG":
-                // code
-                $query = (new Position)
-                    ->newQuery()
-                    ->select('positions.company as poscomp'
-                        , 'positions.posno'
-                        , 'positions.descr'
-                        , 'positions.level1'
-                        , 'positions.level2'
-                        , DB::raw("'|' as divider")
-                        , DB::raw("' ' as dividerspace")
-                        , DB::raw('sum(positions.budgsal) as budgcost')
-                        , DB::raw('sum(positions.fulltimeequiv) as budgfte')
-                        , DB::raw('sum(if(incumbents.ann_cost<>0,incumbents.ann_cost,0)) as actcost')
-                        , DB::raw('sum(if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as actfte')
-                        , DB::raw('sum(positions.fulltimeequiv-if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as ftevar')
-                        , DB::raw('sum(positions.budgsal-if(incumbents.fulltimeequiv<>0,incumbents.ann_cost,0)) as costvar')
-                        , DB::raw('count(incumbents.empno) as inccount')
+                $query = (new Position)->newQuery()
+                    ->select(
+                        'positions.company as poscomp',
+                        'positions.posno',
+                        'positions.descr',
+                        'positions.level1',
+                        'positions.level2',
+                        DB::raw("'|' as divider"),
+                        DB::raw('sum(positions.budgsal) as budgcost'),
+                        DB::raw('sum(positions.fulltimeequiv) as budgfte'),
+                        DB::raw('sum(if(incumbents.ann_cost<>0,incumbents.ann_cost,0)) as actcost'),
+                        DB::raw('sum(if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as actfte'),
+                        DB::raw('sum(positions.fulltimeequiv-if(incumbents.fulltimeequiv<>0,incumbents.fulltimeequiv,0)) as ftevar'),
+                        DB::raw('sum(positions.budgsal-if(incumbents.ann_cost<>0,incumbents.ann_cost,0)) as costvar'),
+                        DB::raw('count(incumbents.empno) as inccount')
                     )
-                    ->leftjoin('incumbents', 'positions.id', '=', 'incumbents.posid')
+                    ->leftJoin('incumbents', 'positions.id', '=', 'incumbents.posid')
                     ->groupBy('positions.company', 'positions.posno', 'positions.descr', 'positions.level1', 'positions.level2');
-
+                if ($teamId) $query->where('positions.teamid', $teamId);
                 return $query;
 
             case "VAC":
-                // code
-
+                $query = (new Position)->newQuery()
+                    ->where('positions.curstatus', 'VACANT');
+                if ($teamId) $query->where('positions.teamid', $teamId);
                 return $query;
 
             case "RECR":
-                // code
-
+                $query = (new Position)->newQuery()
+                    ->where('positions.curstatus', 'VACANT');
+                if ($teamId) $query->where('positions.teamid', $teamId);
                 return $query;
 
             default:
-
-                return $query;
-
-
+                return (new Position)->newQuery()->whereRaw('1=0');
         }
     }
 }
@@ -433,7 +407,7 @@ if (!function_exists('AddColumns')) {
 if (!function_exists('AddColumnSubs')) {
     function AddColumnSubs($config, $reportId)
     {
-        $availablereportcolumns = \DB::table('reportcolumnsubs')
+        $availablereportcolumns = \DB::table('reportgroups')
             ->where('reportid', '=', $reportId)
             ->orderby("columnorder", "asc")
             ->orderby("header", "asc")

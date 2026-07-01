@@ -1,70 +1,44 @@
-<body>
+<div>
 
-<div class="panel-body">
-    {{$report->notes}}<br>
+    @foreach($reportqueries as $query)
+        @php
+            $begKey   = 'beg|' . $query->table . '||' . $query->field . '|||' . $query->datatype . '||||';
+            $endKey   = 'end|' . $query->table . '||' . $query->field . '|||' . $query->datatype . '||||';
+            $inputType = $query->datatype === 'DATE' ? 'date' : 'text';
+        @endphp
+        <div class="row g-2 align-items-center mb-1">
+            <div class="col-3">
+                <label class="col-form-label col-form-label-sm fw-medium">{{ $query->descr }}</label>
+            </div>
+            <div class="col-4">
+                <input type="{{ $inputType }}"
+                       id="{{ $begKey }}" name="{{ $begKey }}"
+                       value="{{ sessionGet($begKey) }}"
+                       class="form-control form-control-sm"
+                       placeholder="From">
+            </div>
+            <div class="col-auto text-muted small">to</div>
+            <div class="col-4">
+                <input type="{{ $inputType }}"
+                       id="{{ $endKey }}" name="{{ $endKey }}"
+                       value="{{ sessionGet($endKey) }}"
+                       class="form-control form-control-sm"
+                       placeholder="To (optional)">
+            </div>
+        </div>
+    @endforeach
 
-
-    <table class="table table-condensed">
-        <thead>
-        <tr>
-            <th width="20%">Field</th>
-            <th width="10%">Start</th>
-            <th width="5%"></th>
-            <th width="10%">End</th>
-            <th width="55%"></th>
-
-        </tr>
-        </thead>
-
-        @foreach($reportqueries as $query)
-
-                <?php $reportQueryBegKey = 'beg|' . $query->table . '||' . $query->field . '|||' . $query->datatype . '||||' ?>
-                <?php $reportQueryEndKey = 'end|' . $query->table . '||' . $query->field . '|||' . $query->datatype . '||||' ?>
-
-
-
-            <tr>
-
-                <td>{{$query->descr}}</td>
-
-                @if ($query->datatype=="DATE")
-                    <!-- <td><input type="date" id=beg|{{$query->table}}||{{$query->field}}|||{{$query->datatype}}||||></td> -->
-                    <td><input type="date"
-                               id={{$reportQueryBegKey}} name={{$reportQueryBegKey}} value={{sessionGet($reportQueryBegKey)}}>
-                    </td>
-                @else
-                    <!-- <td><input id=beg|{{$query->table}}||{{$query->field}}||| name=beg|{{$query->table}}||{{$query->field}}|||{{$query->datatype}}||||></td> -->
-                    <td><input
-                            id={{$reportQueryBegKey}} name={{$reportQueryBegKey}} value={{sessionGet($reportQueryBegKey)}}>
-                    </td>
-                @endif
-
-                <td>to</td>
-
-                @if ($query->datatype=="DATE")
-                    <td><input type="date"
-                               id={{$reportQueryEndKey}} name={{$reportQueryEndKey}} value={{sessionGet($reportQueryEndKey)}}>
-                    </td>
-                @else
-                    <td><input
-                            id={{$reportQueryEndKey}} name={{$reportQueryEndKey}} value={{sessionGet($reportQueryEndKey)}}>
-                    </td>
-                @endif
-
-                <td>{{$query->options}}</td>
-                <!-- <td>{{$query->table}}</td>
-                <td>{{$query->field}}</td>
-                <td>{{$query->datatype}}</td>
-                <td>{{$query->descr}}</td> -->
-
-            </tr>
-        @endforeach
-    </table>
-
-    <button type="submit" class="btn btn-primary btn-sm">Run Report</button>
-    <!-- <button type="reset" class="btn btn-primary btn-sm">Reset Queries</button> -->
+    <div class="mt-3 d-flex gap-2">
+        <button type="submit" class="btn btn-success btn-action px-4">
+            &#9654; Run Report
+        </button>
+        <button type="submit" formaction="{{ route('reports.export', $report->id) }}"
+                class="btn btn-outline-primary btn-action px-3">
+            &#8595; Export CSV
+        </button>
+        <a href="{{ route('reports.show', $report->id) }}" class="btn btn-outline-secondary btn-action px-3">
+            &#10005; Clear Filters
+        </a>
+    </div>
 
 </div>
-
-
-</body>

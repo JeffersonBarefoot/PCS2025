@@ -1,3 +1,7 @@
+@php
+    $fmtDate = fn($d) => (!$d || $d >= '2999-12-31') ? 'Present' : date_format(date_create($d), 'm/d/y');
+@endphp
+
 <div class="row">
     <div class="col-md-6">
 
@@ -40,12 +44,12 @@
                     @if (is_null($posHistRecs->historystart))
                         <td>
                             <a href={{route('positions.show',$position->id)}}?viewposhistid={{$posHistRecs->id}}>
-                            {{'Unknown to '.date_format(date_create($posHistRecs->historyend),"m/d/y")}}
+                            {{'Unknown to '.$fmtDate($posHistRecs->historyend)}}
                         </td>
                     @else
                         <td>
                             <a href={{route('positions.show',$position->id)}}?viewposhistid={{$posHistRecs->id}}>
-                            {{date_format(date_create($posHistRecs->historystart),"m/d/y").' to '.date_format(date_create($posHistRecs->historyend),"m/d/y")}}
+                            {{$fmtDate($posHistRecs->historystart).' to '.$fmtDate($posHistRecs->historyend)}}
                         </td>
                     @endif
                     <td>{{$posHistRecs->active}}</td>
@@ -74,7 +78,7 @@
         @foreach($viewPositionHistoryDetails as $vphd)
             {{$vphd->company.'/'.$vphd->posno.' '.$vphd->descr}}
             &nbsp;&#11044;&nbsp;
-            {{date_format(date_create($vphd->historystart),"m/d/y").' to '.date_format(date_create($vphd->historyend),"m/d/y")}}
+            {{$fmtDate($vphd->historystart).' to '.$fmtDate($vphd->historyend)}}
             &nbsp;&#11044;&nbsp;
             {{'Annual cost '.FormatDollars($vphd->budgsal)}}
 

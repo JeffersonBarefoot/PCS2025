@@ -1,6 +1,2 @@
-<body>
-
-<h1 class="display-5">Section 4</h1>
-
-
-</body>
+{{-- Detail drill-down placeholder - will be built out in Phase 3 --}}
+<p class="text-muted small">Detail view coming soon.</p>
