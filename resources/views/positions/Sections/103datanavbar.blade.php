@@ -12,20 +12,11 @@
                 <div>
                     <br>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseFilter01"
-                                       role="button"
-                                       aria-expanded="false" aria-controls="collapseExample">
-                                        Filter Positions
-                                    </a>
-                                </div>
-                            </div>
-                        </h4>
-                    </div>
+                <div>
+                    <a class="section-toggle mb-1 d-block" data-bs-toggle="collapse" href="#collapseFilter01"
+                       role="button" aria-expanded="false">
+                        Filter Positions
+                    </a>
                     <div id="collapseFilter01" class="collapse">
                         <div class="card card-body">
 
@@ -44,7 +35,7 @@
                             <?php $posNavbarLevel4Desc = Session::get('level4Desc') ?>
                             <?php $posNavbarLevel5Desc = Session::get('level5Desc') ?>
 
-                            <table class="table table-condensed">
+                            <table class="table table-sm">
 {{--                                <div class="col p-10">--}}
 {{--                                <div class="col p-2">--}}
 {{--                                <col width: 150>--}}
@@ -122,7 +113,7 @@
                         </div>
                     </div>
                     <div style="height:700px;overflow:auto;">
-                        <table class="table table-condensed" >
+                        <table class="table table-sm" >
                             <col width: 3>
                             <col width: 3>
                             <col width: 80>
